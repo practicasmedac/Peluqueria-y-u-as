@@ -1,108 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lux | Uñas</title>
+    <link rel="stylesheet" href="uñas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="contenedorheader">
+            <h1>Studio Lux</h1>
+            <nav>
+                <ul class="enlaces">
+                    <button id="Inicio"><a href="index.html">Inicio</a></button>
+                    <button id="Servicios"><a href="servicios.html">Servicios</a></button>
+                    <button id="Contacto"><a href="contacto.html">Contacto</a></button>
+                    <button id="boton_abrir" class="enlaces"><a>Citas</a></button>
+                    <div id="menu" class="enlaces">
+                        <div class="contenido">
+                            <h2>Pide tu cita YA!</h2>
+                            <form id="formulario-login">
+                                <input type="text" id="correo" placeholder="Correo electrónico" required>
+                                <input type="date" id="dia" placeholder="día" required>
+                                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                                <button type="submit">Enviar</button>
+                                <button type="button" id="boton_cerrar">Cerrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background-color: #fffaf5;
-    color: #2e241f;
-    line-height: 1.5;
-}
-.contenedorheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(255, 189, 108, 0.25);
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #7f3907;
-    margin: 0;
-}
+    <main>
+        <div class="fila-imagen-texto">
+            <div class="contenedor-imagen">
+                <img src="uñas 1.jpg" alt="Uñas elegantes Studio Lux">
+            </div>
+            
+                
+            </div>
+        </div>
+        <div class="fila-imagen-central">
+            <div class="contenedor-imagen">
+                <img src="uñas 3.jpg" alt="Manicura con gel brillante">
+            </div>
+        </div>
+        <div class="fila-imagen-texto">
+            <div class="contenedor-imagen">
+                <img src="uñas 4.jpg" alt="Diseños personalizados de uñas">
+            </div>
+            
+        </div>
+            </ul>
+        </div>
+    </main>
 
-.enlaces {
-    display: flex;
-    list-style: none;
-    gap: 1.8rem;
-    margin: 0;
-    padding: 0;
-}
-.enlaces a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #7f3907;
-    font-size: 1.1rem;
-    padding: 0.3rem 0;
-}
-
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-.fila-imagen-texto {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    margin-right: auto;
-    max-width: 500px
-}
-
-.contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
-}
-
-.contenedor-texto {
-    flex: 1;
-    min-width: 200px;
-}
-
-.contenedor-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
-    transition: transform 0.25s ease;
-    display: block;
-}
-
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-}
-
-.contenedor-texto h3 {
-    font-size: 1.7rem;
-    color: #b45a2b;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.contenedor-texto p {
-    font-size: 1rem;
-    color: #3e2c21;
-    margin-bottom: 1rem;
-}
-
-.boton:hover {
-    background-color: #9c5e33;
-}
-
-.fila-imagen-central {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-    max-width: 500px;
-    margin-left: auto;
-}
-
-
-
+    <footer>
+        <p>&copy; 2024 Studio Lux. Todos los derechos reservados.</p>
+    </footer>
+    <script src="java.js"></script>
+</body>
+</html>
