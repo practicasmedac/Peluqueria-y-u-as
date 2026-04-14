@@ -1,108 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lux | Uñas</title>
+    <link rel="stylesheet" href="uñas.css">
+    <script src="uñas.js"></script>
+</head>
+<body>
+    <header>
+        <div class="contenedorheader">
+            <h1>Studio Lux</h1>
+            <nav>
+                <ul class="enlaces">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>   
+            </nav>
+        </div>
+    </header>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background-color: #fffaf5;
-    color: #2e241f;
-    line-height: 1.5;
-}
-.contenedorheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(255, 189, 108, 0.25);
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #7f3907;
-    margin: 0;
-}
+    <main>
 
-.enlaces {
-    display: flex;
-    list-style: none;
-    gap: 1.8rem;
-    margin: 0;
-    padding: 0;
-}
-.enlaces a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #7f3907;
-    font-size: 1.1rem;
-    padding: 0.3rem 0;
-}
+        <!-- BLOQUE 1 -->
+        <div class="fila-imagen-texto">
+            <div class="contenedor-imagen">
+                <img src="uñas 1.jpg" alt="Uñas elegantes Studio Lux">
+            </div>
 
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-.fila-imagen-texto {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    margin-right: auto;
-    max-width: 500px
-}
+            <div class="contenedor-texto">
+                <h3>Uñas elegantes</h3>
+                <p>En Studio Lux trabajamos con técnicas modernas para ofrecer un acabado impecable y duradero.</p>
+                <p>Nuestros diseños combinan elegancia y tendencia, adaptándose a cada estilo personal.</p>
+            </div>
+        </div>
 
-.contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
-}
+        <!-- IMAGEN CENTRAL -->
+        <div class="fila-imagen-central">
+            <div class="contenedor-imagen">
+                <img src="uñas 3.jpg" alt="Manicura con gel brillante">
+            </div>
+        </div>
 
-.contenedor-texto {
-    flex: 1;
-    min-width: 200px;
-}
+        <!-- BLOQUE 2 (IMAGEN IZQUIERDA + TEXTO DERECHA) -->
+        <div class="fila-imagen-texto">
+            <div class="contenedor-imagen">
+                <img src="uñas 4.jpg" alt="Diseños personalizados de uñas">
+            </div>
 
-.contenedor-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
-    transition: transform 0.25s ease;
-    display: block;
-}
+            <div class="contenedor-texto">
+                <h3>Diseños personalizados</h3>
+                <p>Creamos diseños únicos totalmente adaptados a cada cliente, teniendo en cuenta sus gustos y estilo.</p>
+                <p>Desde manicuras sencillas hasta decoraciones más elaboradas, garantizamos calidad y creatividad en cada trabajo.</p>
+            </div>
+        </div>
 
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-}
+    </main>
 
-.contenedor-texto h3 {
-    font-size: 1.7rem;
-    color: #b45a2b;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
+    <!-- FOOTER -->
+    <footer style="background-color: rgba(255, 189, 108, 0.25); text-align: center; padding: 1.5rem; margin-top: 2rem;">
+        <p style="margin-bottom: 0.8rem; color: #7f3907;">
+            &copy; 2024 Studio Lux. Todos los derechos reservados.
+        </p>
 
-.contenedor-texto p {
-    font-size: 1rem;
-    color: #3e2c21;
-    margin-bottom: 1rem;
-}
+        <div style="display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="#" style="text-decoration: none; color: #7f3907; font-weight: 600;">Instagram</a>
+            <a href="#" style="text-decoration: none; color: #7f3907; font-weight: 600;">Facebook</a>
+            <a href="#" style="text-decoration: none; color: #7f3907; font-weight: 600;">TikTok</a>
+        </div>
+    </footer>
 
-.boton:hover {
-    background-color: #9c5e33;
-}
-
-.fila-imagen-central {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-    max-width: 500px;
-    margin-left: auto;
-}
-
-
-
+</body>
+</html>
