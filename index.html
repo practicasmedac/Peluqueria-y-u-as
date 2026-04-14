@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Permite usar caracteres especiales como tildes y ñ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la web sea responsive en móviles -->
+    <title>StudioLux | Cortes</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="style.css"> <!-- Enlaza el archivo CSS externo para los estilos -->
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="logo">StudioLux</div> 
+        <nav>
+            <!-- Botones de navegación. "Ubicación" es un span, no un button -->
+            <button class="nav-btn">Miembros</button>
+            <button class="nav-btn">Blog</button>
+            <span class="nav-btn">Ubicación</span> <!--Span se usa porque quizás no es clickeable -->
+            <button class="nav-btn">Contacto</button>
+        </nav>
+    </header>
+   
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main>
+        
+        <!-- IMAGEN PRINCIPAL -->
+        <section class="seccion-imagen">
+            <div class="placeholder-imagen">
+                <img src="peluqueria1.jpg">
+        </section>
+        
+        <!-- CORTES -->
+        <section class="seccion-info">
+            <h1>Cortes</h1>
+            
+            <!-- Organiza los cortes -->
+            <div class="cortes-grid">
+                
+                <!-- CORTE 1 -->
+                <div class="corte-item">
+                    <div class="placeholder-img"></div>
+                    <span>(tipo de corte)</span> 
+                </div>
+                
+                <!-- CORTE 2 -->
+                <div class="corte-item">
+                    <div class="placeholder-img"></div>
+                    <span>(Tipo de corte)</span>
+                </div>
+                
+                <!-- CORTE 3 -->
+                <div class="corte-item">
+                    <div class="placeholder-img"></div>
+                    <span>(Tipo de corte)</span>
+                </div>
+                
+            </div>
+            
+            <!-- BOTÓN AGENDAR CITA -->
+            <div class="boton-cita">
+                <button class="btn-agendar" >
+                    Agendar Cita
+                </button>
+            </div>
+            
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>StudioLux</p>
+    </footer>
+
+</body>
+</html>
