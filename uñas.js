@@ -1,52 +1,30 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Lux | Uñas</title>
-    <link rel="stylesheet" href="uñas.css">
-    <script src="uñas.js"></script>
-</head>
-<body>
-    <header>
-        <div class="contenedorheader">
-            <h1>Studio Lux</h1>
-            <nav>
-                <ul class="enlaces">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>   
-            </nav>
-        </div>
-    </header>
+// Inicio
+const boton_inicio = document.getElementById('Inicio');
+const destino_inicio = document.getElementById('index.html');
 
-    <main>
-        <div class="fila-imagen-texto">
-            <div class="contenedor-imagen">
-                <img src="uñas 1.jpg" alt="Uñas elegantes Studio Lux">
-            </div>
-            
-                
-            </div>
-        </div>
-        <div class="fila-imagen-central">
-            <div class="contenedor-imagen">
-                <img src="uñas 3.jpg" alt="Manicura con gel brillante">
-            </div>
-        </div>
-        <div class="fila-imagen-texto">
-            <div class="contenedor-imagen">
-                <img src="uñas 4.jpg" alt="Diseños personalizados de uñas">
-            </div>
-            
-        </div>
-            </ul>
-        </div>
-    </main>
+boton_inicio.addEventListener('click', function() {
+    destino_inicio.scrollIntoView({ 
+        behavior: 'smooth'
+    });
+    
+});
+// Servicios
+const boton_servicios = document.getElementById('Servicios');
+const destino_servicios = document.getElementById('servicios.html');
 
-    <footer>
-        <p>&copy; 2024 Studio Lux. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+boton_servicios.addEventListener('click', function() {
+    destino_servicios.scrollIntoView({ 
+        behavior: 'smooth'
+    });
+    
+});
+//Contacto
+const boton_contacto = document.getElementById('Contacto');
+const destino_contacto = document.getElementById('contacto.html');
+
+boton_contacto.addEventListener('click', function() {
+    destino_contacto.scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+    
+});
