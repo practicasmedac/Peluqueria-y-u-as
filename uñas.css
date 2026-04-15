@@ -1,0 +1,290 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #fffaf5;
+    color: #2e241f;
+    line-height: 1.5;
+    scrollbar-darkshadow-color: #2e241f;
+}
+.contenedorheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffbd6c40;
+    flex-wrap: wrap;
+    gap: 2rem;
+    height: 2.5cm;
+    font-family: "Sekuya", system-ui;+
+    }
+
+.contenedorheader:hover {
+    transition: all 0.8s ease;
+    
+}
+
+.enlaces a:hover {
+    color: #b86c40c0;
+    transition: all 0.3s ease;
+    font-size: 19px;
+}
+h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #7f3907;
+    margin: 0;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 7px;
+    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7f3907, #ffbd6c);
+    transition: width 0.4s ease;
+}
+.enlaces {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+}
+.enlaces a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #7f3907;
+    font-size: 1.1rem;
+    padding: 0.3rem 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+.fila-imagen-texto {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    margin-right: auto;
+    max-width: 500px
+}
+
+.contenedor-imagen {
+    flex: 1.2;
+    min-width: 220px;
+}
+
+.contenedor-texto {
+    flex: 1;
+    min-width: 200px;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease;
+    display: block;
+}
+
+.contenedor-imagen img:hover {
+    transform: scale(1.01);
+}
+
+.contenedor-texto h3 {
+    font-size: 1.7rem;
+    color: #b45a2b;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.contenedor-texto p {
+    font-size: 1rem;
+    color: #3e2c21;
+    margin-bottom: 1rem;
+}
+
+.boton:hover {
+    background-color: #9c5e33;
+}
+
+.fila-imagen-central {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+}
+
+.contenedorheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
+    flex-wrap: wrap;
+    gap: 2rem;
+    position: fixed;  
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(127, 57, 7, 0.06);
+    border-bottom: 2px solid rgba(255, 189, 108, 0.3);
+}
+.enlaces {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.enlaces a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #7f3907;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.enlaces a:hover {
+    color: #b86c40;
+}
+
+.enlaces a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #ffbd6c;
+    transition: width 0.3s ease;
+}
+
+.enlaces a:hover::after {
+    width: 80%;
+}
+
+/* ===== SCRIPT ===== */
+@media (max-width: 768px) {
+    .contenedorheader {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    h1::after {
+        display: none;
+    }
+    
+    .enlaces {
+        gap: 1.5rem;
+    }
+}
+.contenedor-imagen {
+    flex: 1.2;
+    min-width: 220px;
+    position: relative;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
+    padding: 12px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    margin-top: 90px;
+}
+.contenedor-imagen:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.25);
+    padding: 10px;
+}
+.contenedor-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    display: block;
+    transition: all 0.4s ease;
+    filter: brightness(0.98) contrast(1.02);
+}
+
+.contenedor-imagen img:hover {
+    transform: scale(1.01);
+    filter: brightness(1) contrast(1.05);
+}
+
+/* Esquina decorativa en cada imagen (estilo estética) */
+.contenedor-imagen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-top: 3px solid #ffbd6c;
+    border-left: 3px solid #ffbd6c;
+    border-radius: 30px 0 0 0;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.contenedor-imagen::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-bottom: 3px solid #ffbd6c;
+    border-right: 3px solid #ffbd6c;
+    border-radius: 0 0 30px 0;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+
+.contenedor-imagen:hover::after {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+}
+
+/* Sello o etiqueta decorativa en imágenes */
+.contenedor-imagen .etiqueta {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #7f3907;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 2;
+}
