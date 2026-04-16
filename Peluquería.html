@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudioLux · Estudio de Belleza y Bienestar</title>
     
-    <!-- Fuente Sekuya -->
+    < Fuente Sekuya >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
     
-    <!-- CSS externo -->
+    < CSS externo >
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -50,12 +50,42 @@
                 <div class="linea-decorativa"></div>
             </div>
             <div class="servicios-grid">
-                <div class="servicio-card"><div class="servicio-icon">✂️</div><h3>Corte y Peinado</h3><p>Cortes modernos, clasicos y personalizados.</p><p class="precio">Desde 10€</p></div>
-                <div class="servicio-card"><div class="servicio-icon">🎨</div><h3>Coloracion</h3><p>Tintes, reflejos, balayage, mechas.</p><p class="precio">Desde 30€</p></div>
-                <div class="servicio-card"><div class="servicio-icon">💅</div><h3>Manicura y Pedicura</h3><p>Semipermanente, gel, acrilico.</p><p class="precio">Desde 20€</p></div>
-                <div class="servicio-card"><div class="servicio-icon">💆‍♀️</div><h3>Tratamientos Capilares</h3><p>Keratina, alisado, hidratacion.</p><p class="precio">Consultar</p></div>
-                <div class="servicio-card"><div class="servicio-icon">💄</div><h3>Maquillaje</h3><p>Maquillaje social, novias, sesiones.</p><p class="precio">Desde 25€</p></div>
-                <div class="servicio-card"><div class="servicio-icon">🌿</div><h3>Depilacion y Facial</h3><p>Depilacion con cera, limpieza facial.</p><p class="precio">Consultar</p></div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Corte y Peinado</h3>
+                    <p>Cortes modernos, clasicos y personalizados.</p>
+                    <p class="precio">Desde 10€</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Coloracion</h3>
+                    <p>Tintes, reflejos, balayage, mechas.</p>
+                    <p class="precio">Desde 30€</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Manicura y Pedicura</h3>
+                    <p>Semipermanente, gel, acrilico.</p>
+                    <p class="precio">Desde 20€</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Tratamientos Capilares</h3>
+                    <p>Keratina, alisado, hidratacion.</p>
+                    <p class="precio">Consultar</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Maquillaje</h3>
+                    <p>Maquillaje social, novias, sesiones.</p>
+                    <p class="precio">Desde 25€</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-icon"></div>
+                    <h3>Depilacion y Facial</h3>
+                    <p>Depilacion con cera, limpieza facial.</p>
+                    <p class="precio">Consultar</p>
+                </div>
             </div>
         </section>
 
@@ -93,11 +123,11 @@
         <div class="footer-bottom"><p>&copy; 2025 StudioLux · Todos los derechos reservados</p></div>
     </footer>
 
-    <!-- MODAL PARA AGENDAR CITA -->
+    < MODAL PARA AGENDAR CITA >
     <div id="modalCita" class="modal">
         <div class="modal-contenido">
             <div class="modal-header">
-                <h3>📅 Agendar cita</h3>
+                <h3> Agendar cita</h3>
                 <span class="modal-cerrar" id="cerrarModalBtn">&times;</span>
             </div>
             <form id="formCita">
@@ -111,7 +141,6 @@
     </div>
 
     <script>
-        // Función del botón Agendar cita
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('modalCita');
             const btnAgendar = document.getElementById('btnAgendarHeader');
@@ -159,7 +188,7 @@
 
                     const fechaObj = new Date(fecha);
                     const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {year:'numeric', month:'long', day:'numeric'});
-                    alert(`✅ Cita agendada\n\nNombre: ${nombre} ${apellido}\nDía: ${fechaFormateada}\nTeléfono: ${telefono}\n\n¡Te esperamos!`);
+                    alert(` Cita agendada\n\nNombre: ${nombre} ${apellido}\nDía: ${fechaFormateada}\nTeléfono: ${telefono}\n\n¡Te esperamos!`);
                     
                     formCita.reset();
                     modal.style.display = 'none';
@@ -167,6 +196,9 @@
                 };
             }
         });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
