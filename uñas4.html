@@ -31,7 +31,23 @@
             text-align: left;
         }
 
-        .texto-flotante h2 {
+        /* --- CLASE PARA EL TEXTO DE LA PENÚLTIMA IMAGEN --- */
+        .izquierda-absoluta {
+            position: absolute;
+            right: 560px; /* Se aleja de la imagen hacia la izquierda */
+            width: 500px;
+            text-align: right; /* Texto alineado hacia la imagen */
+            pointer-events: none;
+        }
+
+        .fila-imagen-central {
+            position: relative; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .texto-flotante h2, .izquierda-absoluta h2 {
             font-family: "Sekuya", serif;
             color: #7f3907;
             font-size: 2.4rem;
@@ -39,7 +55,7 @@
             letter-spacing: 1px;
         }
 
-        .texto-flotante h4 {
+        .texto-flotante h4, .izquierda-absoluta h4 {
             font-family: 'Playfair Display', serif;
             color: #b86c40;
             font-style: italic;
@@ -48,7 +64,7 @@
             font-weight: 400;
         }
 
-        .texto-flotante p {
+        .texto-flotante p, .izquierda-absoluta p {
             color: #b45a2b;
             font-size: 1.1rem;
             line-height: 1.7;
@@ -106,9 +122,9 @@
         }
 
         @media (max-width: 1200px) {
-            .texto-flotante { position: static; width: 100%; text-align: center; margin-top: 20px; }
+            .texto-flotante, .izquierda-absoluta { position: static; width: 100%; text-align: center; margin-top: 20px; }
             .seccion-valores { flex-direction: column; align-items: center; gap: 2rem; }
-            .fila-imagen-texto { flex-direction: column; }
+            .fila-imagen-texto, .fila-imagen-central { flex-direction: column; }
         }
     </style>
 </head>
@@ -159,6 +175,12 @@
         </section>
 
         <div class="fila-imagen-central">
+            <div class="izquierda-absoluta">
+                <h2>Brillo Infinito</h2>
+                <h4>Durabilidad que impresiona</h4>
+                <p>Nuestros acabados están diseñados para resistir el ritmo de tu día a día sin perder la intensidad del primer momento. Gracias a la tecnología de polimerización avanzada, logramos un sellado que evita las ralladuras y el desgaste prematuro en las puntas.</p>
+                <p>Cada capa se aplica con precisión milimétrica, asegurando que el grosor sea natural pero la protección sea máxima. Disfruta de unas manos impecables durante más de tres semanas con nuestra fórmula de alto rendimiento.</p>
+            </div>
             <div class="contenedor-imagen">
                 <img src="uñas 3.jpg" alt="Manicura con gel brillante">
             </div>
