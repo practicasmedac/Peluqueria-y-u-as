@@ -288,3 +288,118 @@ main {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 2;
 }
+ /* ESTILOS PARA RELLENAR LA PÁGINA SIN MOVER LO ANTERIOR */
+        .fila-imagen-texto {
+            position: relative; 
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5rem !important; /* Más separación para que rellene más */
+        }
+
+        .texto-flotante {
+            position: absolute;
+            width: 500px; /* Más ancho para que el texto luzca más */
+            pointer-events: none;
+        }
+
+        .derecha {
+            left: 560px; 
+            text-align: left;
+        }
+
+        /* --- CLASE PARA EL TEXTO DE LA PENÚLTIMA IMAGEN --- */
+        .izquierda-absoluta {
+            position: absolute;
+            right: 560px; /* Se aleja de la imagen hacia la izquierda */
+            width: 500px;
+            text-align: right; /* Texto alineado hacia la imagen */
+            pointer-events: none;
+        }
+
+        .fila-imagen-central {
+            position: relative; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .texto-flotante h2, .izquierda-absoluta h2 {
+            font-family: "Sekuya", serif;
+            color: #7f3907;
+            font-size: 2.4rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .texto-flotante h4, .izquierda-absoluta h4 {
+            font-family: 'Playfair Display', serif;
+            color: #b86c40;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+
+        .texto-flotante p, .izquierda-absoluta p {
+            color: #b45a2b;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        /* SECCIÓN EXTRA PARA RELLENAR EL HUECO CENTRAL */
+        .seccion-valores {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 1000px;
+            padding: 3rem;
+            background: rgba(253, 233, 213, 0.2);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 189, 108, 0.2);
+        }
+
+        .valor-item h5 {
+            font-family: "Sekuya", serif;
+            color: #7f3907;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .valor-item p {
+            color: #b45a2b;
+            font-size: 0.9rem;
+            max-width: 200px;
+        }
+
+        /* Footer Semitransparente Elegante */
+        .footer-custom {
+            background-color: rgba(46, 36, 31, 0.9) !important;
+            color: #fde9d5 !important;
+            padding: 60px 20px !important;
+            text-align: center !important;
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 100px;
+        }
+
+        .redes-sociales a {
+            color: #ffbd6c;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .redes-sociales a:hover {
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1200px) {
+            .texto-flotante, .izquierda-absoluta { position: static; width: 100%; text-align: center; margin-top: 20px; }
+            .seccion-valores { flex-direction: column; align-items: center; gap: 2rem; }
+            .fila-imagen-texto, .fila-imagen-central { flex-direction: column; }
+        }
