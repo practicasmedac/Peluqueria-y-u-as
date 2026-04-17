@@ -1,258 +1,467 @@
-/* ===== RESETEO GLOBAL ===== */
+/* RESET + BASE */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Padding y borde no aumentan el tamaño */
+    box-sizing: border-box;
 }
 
-/* ===== ESTILOS GENERALES ===== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fffaf5; /* Fondo beige cálido */
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #fffaf5;
     color: #2e241f;
     display: flex;
-    flex-direction: column; /* Para que el footer se pegue abajo */
+    flex-direction: column;
     min-height: 100vh;
+    line-height: 1.5;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
     display: flex;
-    justify-content: space-between; /* Logo izquierda, botones derecha */
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(255, 189, 108, 0.25); /* Naranja semitransparente */
+    padding: 1.2rem 3rem;
+    background: rgba(255, 189, 108, 0.18);
+    backdrop-filter: blur(2px);
+    border-bottom: 1px solid rgba(255, 189, 108, 0.3);
     flex-wrap: wrap;
     gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
     font-weight: 700;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    color: #b45a2b; /* Naranja terracota */
+    font-size: 2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #b45a2b 0%, #d47c45 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 6px rgba(180, 90, 43, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.02);
 }
 
 nav {
     display: flex;
-    gap: 12px;
+    gap: 8px;
+    background: rgba(255, 248, 240, 0.7);
+    padding: 5px;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
 }
 
 .nav-btn {
     background: transparent;
     border: none;
-    padding: 8px 18px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
     color: #7f4f2a;
     cursor: pointer;
-    border-radius: 30px;
-    transition: all 0.2s ease;
+    border-radius: 40px;
+    transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    letter-spacing: 0.5px;
 }
 
 .nav-btn:hover {
-    background-color: rgba(255, 189, 108, 0.25);
-    color: #b45a2b;
+    background-color: #ffbd6c;
+    color: #fffaf5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(180, 90, 43, 0.2);
 }
 
-/* ===== IMAGEN PRINCIPAL ===== */
+/* IMAGEN PRINCIPAL */
 .seccion-imagen {
-    padding: 40px 40px 20px 40px;
+    padding: 3rem 3rem 1.5rem 3rem;
     display: flex;
-    justify-content: center; /* Centra el banner */
+    justify-content: center;
 }
 
 .placeholder-imagen {
-    background-color: #f0e2d4;
-    border-radius: 20px;
-    height: 220px;
-    max-width: 550px;
+    background: #f0e2d4;
+    border-radius: 2rem;
+    height: 280px;
+    max-width: 780px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #f0dcc8;
-    transition: all 0.2s ease;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 189, 108, 0.3) inset;
+    transition: all 0.4s ease;
+}
+
+.placeholder-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
 }
 
 .placeholder-imagen:hover {
-    background-color: #e8d4c4;
-    transform: scale(1.01); 
+    transform: scale(1.01);
+    box-shadow: 0 28px 40px -15px rgba(180, 90, 43, 0.25);
 }
 
-.placeholder-imagen span {
-    font-size: 1rem;
-    color: #b98f6e;
+.placeholder-imagen:hover img {
+    transform: scale(1.03);
 }
 
-/* ===== SECCIÓN CORTES ===== */
+/* CONTENEDOR PRINCIPAL */
 .seccion-info {
-    padding: 20px 40px 60px 40px;
+    padding: 1rem 3rem 4rem 3rem;
     text-align: center;
 }
 
 .seccion-info h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 40px;
-    color: #b45a2b;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(120deg, #b45a2b, #d48a54);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
 }
 
+.seccion-info h1::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 20%;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, #ffbd6c, #b45a2b, #ffbd6c);
+    border-radius: 4px;
+}
+
+/* GRID */
 .cortes-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+    gap: 2rem;
     justify-content: center;
-    gap: 50px;
-    max-width: 700px;
-    margin: 0 auto; /* Centra la grilla */
-    margin-bottom: 50px;
+    padding: 2rem 1rem 2.5rem 1rem;
+    margin: 2rem auto 2rem auto;
+    max-width: 1400px;
 }
 
-/* ===== TARJETA DE CORTE ===== */
+/* CARDS */
 .corte-item {
     text-align: center;
-    width: 200px;
     background: #ffffff;
-    border-radius: 24px;
-    padding: 24px 16px 20px 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    border: 1px solid #f0e0d0;
+    border-radius: 2rem;
+    padding: 1.8rem 1.5rem;
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #fae6d8;
+    backdrop-filter: blur(2px);
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.corte-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 2rem;
+    padding: 2px;
+    background: linear-gradient(135deg, #ffbd6c80, #b45a2b40);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .corte-item:hover {
-    transform: translateY(-5px); /* La tarjeta sube */
+    transform: translateY(-5px);
+    border-color: #ffddbb;
+    box-shadow: 0 24px 36px -12px rgba(180, 90, 43, 0.2);
 }
 
-/* Círculo que representa la imagen del corte */
+.corte-item:hover::before {
+    opacity: 1;
+}
+
+/* BADGE */
+.corte-item .badge {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: rgba(255, 189, 108, 0.25);
+    backdrop-filter: blur(2px);
+    border-radius: 50px;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #b45a2b;
+    letter-spacing: 0.3px;
+    z-index: 2;
+}
+
+/* IMAGEN DE SERVICIO */
 .placeholder-img {
     width: 110px;
     height: 110px;
-    background-color: #faeadc;
-    border-radius: 50%; /* Forma circular */
-    margin: 0 auto 12px auto;
+    background: linear-gradient(145deg, #faeadc, #fff3e8);
+    border-radius: 40px;
+    margin: 0 auto 1.2rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #f0dcc8;
-    transition: all 0.2s ease;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 14px rgba(180, 90, 43, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
-.placeholder-img:hover {
-    background-color: #ffddbb;
-    transform: scale(1.03);
+.placeholder-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 40px;
+    transition: all 0.4s ease;
 }
 
-.corte-icono {
-    font-size: 2rem;
+.corte-item:hover .placeholder-img {
+    border-radius: 50%;
+    background: #ffefdf;
+    transform: rotate(2deg) scale(1.05);
+    box-shadow: 0 12px 20px rgba(180, 90, 43, 0.15);
 }
 
-.corte-item span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #7f4f2a;
+.corte-item:hover .placeholder-img img {
+    border-radius: 50%;
 }
 
-/* ===== BOTÓN AGENDAR CITA ===== */
+/* TITULO DEL SERVICIO */
+.servicio-nombre {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #b45a2b;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
+}
+
+/* DESPLEGABLE */
+.detalle-desplegable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.33, 1, 0.68, 1), margin 0.2s ease;
+    background: #fffbf7;
+    border-radius: 1.2rem;
+    margin-top: 0;
+    text-align: left;
+}
+
+.detalle-desplegable .lista-detalles {
+    padding: 0.8rem 1rem 1rem 1rem;
+    list-style: none;
+    margin: 0;
+}
+
+.detalle-desplegable .lista-detalles li {
+    font-size: 0.85rem;
+    color: #7f5e48;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed #f0e0d2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detalle-desplegable .lista-detalles li:last-child {
+    border-bottom: none;
+}
+
+.detalle-desplegable .lista-detalles li::before {
+    content: "•";
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+/* INDICADOR */
+.indicador-click {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 0.7rem;
+    color: #c28a62;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.indicador-click span:first-child {
+    font-size: 0.8rem;
+    transition: transform 0.2s;
+}
+
+.corte-item.active .indicador-click span:first-child {
+    transform: rotate(180deg);
+}
+
+.corte-item.active {
+    background: #fffefc;
+    border-color: #ffcf9a;
+    box-shadow: 0 20px 32px -12px rgba(180, 90, 43, 0.25);
+}
+
+.corte-item.active .detalle-desplegable {
+    max-height: 320px;
+    margin-top: 1rem;
+}
+
+/* BOTÓN AGENDAR - Sin emoticono */
 .boton-cita {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .btn-agendar {
-    background-color: #b45a2b;
+    background: linear-gradient(105deg, #b45a2b, #c96f3a);
     color: white;
     border: none;
-    padding: 14px 40px;
-    border-radius: 40px;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: inherit;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(180, 90, 43, 0.2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(180, 90, 43, 0.3);
 }
 
 .btn-agendar:hover {
-    background-color: #8b4520;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(180, 90, 43, 0.3);
+    background: linear-gradient(105deg, #9e4a22, #b45a2b);
+    transform: scale(1.03);
+    box-shadow: 0 14px 28px rgba(180, 90, 43, 0.4);
 }
 
 .btn-agendar:active {
     transform: scale(0.98);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
-    border-top: 1px solid #f0e0d0;
-    padding: 24px;
+    border-top: 1px solid rgba(255, 189, 108, 0.3);
+    padding: 2rem;
     text-align: center;
-    margin-top: auto; /* Empuja el footer hacia abajo */
-    background-color: #fffaf5;
+    margin-top: auto;
+    background: rgba(255, 250, 245, 0.9);
 }
 
 footer p {
     color: #b98f6e;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
-/* ===== RESPONSIVE (MÓVIL) ===== */
-@media (max-width: 700px) {
+/* ANIMACIONES */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.corte-item {
+    animation: fadeUp 0.5s ease backwards;
+}
+
+.corte-item:nth-child(1) { animation-delay: 0.05s; }
+.corte-item:nth-child(2) { animation-delay: 0.1s; }
+.corte-item:nth-child(3) { animation-delay: 0.15s; }
+.corte-item:nth-child(4) { animation-delay: 0.2s; }
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
     header {
-        flex-direction: column; /* Logo arriba, botones abajo */
-        gap: 15px;
-        padding: 15px 20px;
+        padding: 1rem 1.5rem;
     }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
+    .logo {
+        font-size: 1.7rem;
     }
-
+    .nav-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
     .seccion-imagen {
-        padding: 20px 20px 10px 20px;
+        padding: 1.5rem 1rem 0.5rem 1rem;
     }
-
     .placeholder-imagen {
-        height: 180px;
-        max-width: 400px;
+        height: 200px;
+        max-width: 95%;
     }
-
     .seccion-info {
-        padding: 20px 20px 50px 20px;
+        padding: 1rem 1.2rem 3rem 1.2rem;
     }
-
     .seccion-info h1 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
+        font-size: 2rem;
     }
-
     .cortes-grid {
-        gap: 20px;
-        margin-bottom: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem 1rem 2rem 1rem;
     }
-
     .corte-item {
-        width: 160px;
-        padding: 16px 12px;
+        padding: 1.4rem 1rem;
     }
-
     .placeholder-img {
-        width: 80px;
-        height: 80px;
+        width: 85px;
+        height: 85px;
     }
-
-    .corte-icono {
-        font-size: 1.5rem;
+    .servicio-nombre {
+        font-size: 1.3rem;
     }
-
+    .detalle-desplegable .lista-detalles li {
+        font-size: 0.75rem;
+    }
     .btn-agendar {
-        padding: 12px 30px;
+        padding: 0.8rem 1.8rem;
         font-size: 1rem;
+    }
+    .corte-item.active .detalle-desplegable {
+        max-height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cortes-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (hover: none) {
+    .corte-item:hover {
+        transform: none;
+    }
+    .btn-agendar:hover {
+        transform: none;
     }
 }

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>StudioLux | Peluquería Femenina - Servicios Desplegables</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">StudioLux</div> 
+        <nav>
+            <button class="nav-btn">Inicio</button>
+            <button class="nav-btn">Servicios</button>
+            <button class="nav-btn">Contacto</button>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- SECCIÓN: IMAGEN PRINCIPAL -->
+        <section class="seccion-imagen">
+            <div class="placeholder-imagen">
+                <img src="peluqueria1.png" alt="Salón StudioLux ambiente premium"> 
+            </div>
+        </section>
+        
+        <!-- SECCIÓN SERVICIOS -->
+        <section class="seccion-info">
+            <h1>Servicios capilares</h1> 
+            
+            <div class="cortes-grid" id="serviciosGrid">
+                <!-- CORTE -->
+                <div class="corte-item" data-servicio="corte">
+                    <div class="badge">Esencial</div>
+                    <div class="placeholder-img">
+                        <img src="corte.jpg" alt="Corte de cabello femenino">
+                    </div> 
+                    <span class="servicio-nombre">Corte</span> 
+                    <div class="detalle-desplegable">
+                        <ul class="lista-detalles">
+                            <li>Corte y desfilado profesional</li>
+                            <li>Capas degradadas y texturizado</li>
+                            <li>Corte bob, long bob y pixie</li>
+                            <li>Corte con navaja para movimiento</li>
+                            <li>Asesoría de estilo personalizado</li>
+                        </ul>
+                    </div>
+                    <div class="indicador-click">
+                        <span>▼</span> <span>Ver detalles</span>
+                    </div>
+                </div>
+                
+                <!-- TINTE -->
+                <div class="corte-item" data-servicio="color">
+                    <div class="badge">Premium</div>
+                    <div class="placeholder-img">
+                        <img src="coloracion.jpg" alt="Tinte de cabello femenino">
+                    </div>
+                    <span class="servicio-nombre">Coloración</span>
+                    <div class="detalle-desplegable">
+                        <ul class="lista-detalles">
+                            <li>Coloración completa con pigmentos premium</li>
+                            <li>Balayage y airtouch efecto solar</li>
+                            <li>Mechas californianas y babylights</li>
+                            <li>Cobertura de canas con matices naturales</li>
+                            <li>Reflejos y fantasías de color</li>
+                            <li>Tonos pastel y vibrantes bajo demanda</li>
+                        </ul>
+                    </div>
+                    <div class="indicador-click">
+                        <span>▼</span> <span>Ver detalles</span>
+                    </div>
+                </div>
+                
+                <!-- TRATAMIENTO -->
+                <div class="corte-item" data-servicio="tratamiento">
+                    <div class="badge">Hidratación</div>
+                    <div class="placeholder-img">
+                        <img src="tratamiento.jpg" alt="Tratamiento capilar">
+                    </div>
+                    <span class="servicio-nombre">Tratamiento</span> 
+                    <div class="detalle-desplegable">
+                        <ul class="lista-detalles">
+                            <li>Hidratación profunda con aceites esenciales</li>
+                            <li>Keratina y alisado brasileño</li>
+                            <li>Reconstrucción capilar para cabello dañado</li>
+                            <li>Baño de crema y nutrientes reparadores</li>
+                            <li>Reparación de puntas abiertas</li>
+                            <li>Tratamiento anti-frizz y brillo extremo</li>
+                        </ul>
+                    </div>
+                    <div class="indicador-click">
+                        <span>▼</span> <span>Ver detalles</span>
+                    </div>
+                </div>
+                
+                <!-- PEINADOS -->
+                <div class="corte-item" data-servicio="peinados">
+                    <div class="badge">Styling</div>
+                    <div class="placeholder-img">
+                        <img src="peinado.jpg" alt="Peinados femeninos">
+                    </div>
+                    <span class="servicio-nombre">Peinados</span> 
+                    <div class="detalle-desplegable">
+                        <ul class="lista-detalles">
+                            <li>Trenzas modernas y semirecogidos elegantes</li>
+                            <li>Ondas surferas y rizos con tenaza</li>
+                            <li>Alisado con plancha de cerámica</li>
+                            <li>Peinados para novias y eventos especiales</li>
+                            <li>Moños desenfadados y recogidos estructurados</li>
+                            <li>Acabados con fijación larga duración</li>
+                        </ul>
+                    </div>
+                    <div class="indicador-click">
+                        <span>▼</span> <span>Ver detalles</span>
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="boton-cita">
+                <button class="btn-agendar">Agendar cita</button>
+            </div>
+        </section> 
+    </main>
+
+    <footer>
+        <p>StudioLux · Elegancia y estilo femenino</p> 
+    </footer>
+
+    <script>
+        // Solo funcionalidad de desplegables
+        const serviciosCards = document.querySelectorAll('.corte-item');
+        
+        function closeAllDropdowns(exceptElement = null) {
+            serviciosCards.forEach(card => {
+                if (exceptElement !== card && card.classList.contains('active')) {
+                    card.classList.remove('active');
+                }
+            });
+        }
+        
+        serviciosCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (card.classList.contains('active')) {
+                    card.classList.remove('active');
+                } else {
+                    closeAllDropdowns(card);
+                    card.classList.add('active');
+                }
+                e.stopPropagation();
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.corte-item')) {
+                closeAllDropdowns();
+            }
+        });
+        
+        closeAllDropdowns();
+    </script>
+</body>
+</html>
