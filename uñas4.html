@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Lux | Uñas</title>
     <link rel="stylesheet" href="uñas.css">
-    <script src="uñas.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -14,17 +13,17 @@
     <header>
         <div class="contenedorheader">
             <div class="logo-section">
-                <div class="decoracion-izquierda"></div>
                 <h1>Studio Lux</h1>
-                <div class="decoracion-derecha"></div>
             </div>
-            <nav>
-                <ul class="enlaces">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>   
-            </nav>
+            <div class="header-derecha">
+                <nav>
+                    <ul class="enlaces">
+                        <li><a href="Peluquería.html">Inicio</a></li>
+                        <li><a href="Pelo.html">Pelo</a></li>
+                    </ul>   
+                </nav>
+                <button class="btn-cita-header" id="btnAgendarHeader">Agendar cita</button>
+            </div>
         </div>
     </header>
 
@@ -95,5 +94,86 @@
             &copy; 2026 STUDIO LUX - EXPERIENCIA EN UÑAS DE ALTA GAMA
         </p>
     </footer>
+
+    <!-- MODAL PARA AGENDAR CITA -->
+    <div id="modalCita" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3>Agendar cita</h3>
+                <span class="modal-cerrar" id="cerrarModalBtn">&times;</span>
+            </div>
+            <form id="formCita">
+                <div class="campo-form">
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="campo-form">
+                    <label>Apellido</label>
+                    <input type="text" id="apellido" placeholder="Tu apellido" required>
+                </div>
+                <div class="campo-form">
+                    <label>Día de la cita</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <div class="campo-form">
+                    <label>Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Ej: 612345678" required>
+                </div>
+                <button type="submit" class="btn-enviar">Confirmar cita</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal para agendar cita
+        const modal = document.getElementById('modalCita');
+        const btnAgendar = document.getElementById('btnAgendarHeader');
+        const cerrarBtn = document.getElementById('cerrarModalBtn');
+        const formCita = document.getElementById('formCita');
+
+        function abrirModal(e) {
+            if (e) e.preventDefault();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        if (btnAgendar) btnAgendar.onclick = abrirModal;
+        if (cerrarBtn) cerrarBtn.onclick = cerrarModal;
+
+        window.onclick = function(e) {
+            if (e.target === modal) cerrarModal();
+        };
+
+        if (formCita) {
+            formCita.onsubmit = function(e) {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value.trim();
+                const apellido = document.getElementById('apellido').value.trim();
+                const fecha = document.getElementById('fecha').value;
+                const telefono = document.getElementById('telefono').value.trim();
+
+                if (!nombre || !apellido || !fecha || !telefono) {
+                    alert('Completa todos los campos');
+                    return;
+                }
+                if (telefono.length < 9) {
+                    alert('Teléfono inválido (mínimo 9 dígitos)');
+                    return;
+                }
+
+                const fechaObj = new Date(fecha);
+                const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {year:'numeric', month:'long', day:'numeric'});
+                alert('Cita agendada\n\nNombre: ' + nombre + ' ' + apellido + '\nDía: ' + fechaFormateada + '\nTeléfono: ' + telefono + '\n\n¡Te esperamos!');
+                
+                formCita.reset();
+                cerrarModal();
+            };
+        }
+    </script>
 </body>
 </html>
