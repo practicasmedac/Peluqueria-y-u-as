@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +8,6 @@ body {
     background-color: #fffaf5;
     color: #2e241f;
     line-height: 1.5;
-    scrollbar-darkshadow-color: #2e241f;
 }
 .contenedorheader {
     display: flex;
@@ -20,12 +18,11 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     height: 2.5cm;
-    font-family: "Sekuya", system-ui;+
-    }
+    font-family: "Sekuya", system-ui; /* Eliminado el + que sobraba aquí */
+}
 
 .contenedorheader:hover {
     transition: all 0.8s ease;
-    
 }
 
 .enlaces a:hover {
@@ -46,7 +43,7 @@ h1 {
 }
 
 h1::after {
-    
+    content: ''; /* Añadido content necesario */
     position: absolute;
     bottom: -5px;
     left: 0;
@@ -55,6 +52,7 @@ h1::after {
     background: linear-gradient(90deg, #7f3907, #ffbd6c);
     transition: width 0.4s ease;
 }
+
 .enlaces {
     display: flex;
     list-style: none;
@@ -75,6 +73,7 @@ main {
     margin: 2rem auto;
     padding: 0 1.5rem;
 }
+
 .fila-imagen-texto {
     display: flex;
     align-items: center;
@@ -82,7 +81,7 @@ main {
     margin-bottom: 3rem;
     flex-wrap: wrap;
     margin-right: auto;
-    max-width: 500px
+    max-width: 500px; /* Esto mantiene tus fotos en su tamaño */
 }
 
 .contenedor-imagen {
@@ -121,10 +120,6 @@ main {
     margin-bottom: 1rem;
 }
 
-.boton:hover {
-    background-color: #9c5e33;
-}
-
 .fila-imagen-central {
     display: flex;
     justify-content: center;
@@ -133,79 +128,8 @@ main {
     margin-left: auto;
 }
 
-.contenedorheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
-    flex-wrap: wrap;
-    gap: 2rem;
-    position: fixed;  
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(127, 57, 7, 0.06);
-    border-bottom: 2px solid rgba(255, 189, 108, 0.3);
-}
-.enlaces {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    margin: 0;
-    padding: 0;
-}
-
-.enlaces a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #7f3907;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.enlaces a:hover {
-    color: #b86c40;
-}
-
-.enlaces a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: #ffbd6c;
-    transition: width 0.3s ease;
-}
-
-.enlaces a:hover::after {
-    width: 80%;
-}
-
-/* ===== SCRIPT ===== */
-@media (max-width: 768px) {
-    .contenedorheader {
-        padding: 1rem 1.5rem;
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    
-    h1::after {
-        display: none;
-    }
-    
-    .enlaces {
-        gap: 1.5rem;
-    }
-}
+/* Decoraciones Estéticas */
 .contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
     position: relative;
     border-radius: 30px;
     background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
@@ -214,26 +138,7 @@ main {
     transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     margin-top: 90px;
 }
-.contenedor-imagen:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.25);
-    padding: 10px;
-}
-.contenedor-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    display: block;
-    transition: all 0.4s ease;
-    filter: brightness(0.98) contrast(1.02);
-}
 
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-    filter: brightness(1) contrast(1.05);
-}
-
-/* Esquina decorativa en cada imagen (estilo estética) */
 .contenedor-imagen::before {
     content: '';
     position: absolute;
@@ -245,7 +150,6 @@ main {
     border-left: 3px solid #ffbd6c;
     border-radius: 30px 0 0 0;
     opacity: 0.6;
-    transition: all 0.3s ease;
     pointer-events: none;
 }
 
@@ -260,18 +164,9 @@ main {
     border-right: 3px solid #ffbd6c;
     border-radius: 0 0 30px 0;
     opacity: 0.6;
-    transition: all 0.3s ease;
     pointer-events: none;
 }
 
-
-.contenedor-imagen:hover::after {
-    width: 80px;
-    height: 80px;
-    opacity: 1;
-}
-
-/* Sello o etiqueta decorativa en imágenes */
 .contenedor-imagen .etiqueta {
     position: absolute;
     bottom: 20px;
@@ -283,8 +178,5 @@ main {
     font-size: 0.75rem;
     font-weight: 600;
     color: #7f3907;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 2;
 }
