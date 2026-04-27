@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioLux · Panel de Administración</title>
+    
+    <! Fuente Sekuya >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <div class="admin-header">
+        <h1>Studio<span>Lux</span> · Admin</h1>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <span class="admin-badge">Administrador</span>
+            <a href="index.html" class="btn-volver">← Volver al sitio</a>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <! TARJETAS DE RESUMEN >
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Citas de hoy</h3>
+                <div class="stat-number" id="citasHoy">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total clientes</h3>
+                <div class="stat-number" id="totalClientes">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Ingresos del mes</h3>
+                <div class="stat-number" id="ingresosMes">0€</div>
+            </div>
+        </div>
+        <! TARJETAS DE RESUMEN >
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Citas de hoy</h3>
+                <div class="stat-number" id="citasHoy">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total clientes</h3>
+                <div class="stat-number" id="totalClientes">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Ingresos del mes</h3>
+                <div class="stat-number" id="ingresosMes">0€</div>
+            </div>
+        </div>
+
+        <! TABLA DE CITAS >
+        <div class="citas-section">
+            <div class="section-header">
+                <h2>Listado de citas</h2>
+                <button class="btn-agregar" id="btnAbrirModal">+ Agendar nueva cita</button>
+            </div>
+            <div style="overflow-x: auto;">
+                <table id="tablaCitas">
+                    <thead>
+                        <tr><th>ID</th><th>Cliente</th><th>Teléfono</th><th>Servicio</th><th>Fecha</th><th>Estado</th><th>Acciones</th></table>
+                    </thead>
+                    <tbody id="tbodyCitas"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <! SERVICIOS MÁS SOLICITADOS >
+        <div class="servicios-populares">
+            <h2>Servicios más solicitados</h2>
+            <div id="listaServicios"></div>
+        </div>
+    </div>
+
+    <! MODAL AGREGAR CITA >
+    <div id="modalCita" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3>Agendar nueva cita</h3>
+                <span class="modal-cerrar" id="cerrarModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formNuevaCita">
+                    <div class="campo"><label>Nombre completo</label><input type="text" id="nuevoNombre" required></div>
+                    <div class="campo"><label>Teléfono</label><input type="tel" id="nuevoTelefono" required></div>
+                    <div class="campo"><label>Servicio</label>
+                        <select id="nuevoServicio">
+                            <option value="Corte y Peinado">Corte y Peinado</option>
+                            <option value="Coloración">Coloración</option>
+                            <option value="Manicura y Pedicura">Manicura y Pedicura</option>
+                            <option value="Tratamiento Capilar">Tratamiento Capilar</option>
+                            <option value="Maquillaje">Maquillaje</option>
+                            <option value="Depilación y Facial">Depilación y Facial</option>
+                        </select>
+                    </div>
+                    <div class="campo"><label>Fecha</label><input type="date" id="nuevaFecha" required></div>
+                    <button type="submit" class="btn-guardar">Guardar cita</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
