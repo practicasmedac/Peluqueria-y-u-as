@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #fffaf5;
+    color: #2e241f;
+    line-height: 1.5;
+}
+.contenedorheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffbd6c40;
+    flex-wrap: wrap;
+    gap: 2rem;
+    height: 2.5cm;
+    font-family: "Sekuya", system-ui; /* Eliminado el + que sobraba aquí */
+}
+
+.contenedorheader:hover {
+    transition: all 0.8s ease;
+}
+
+.enlaces a:hover {
+    color: #b86c40c0;
+    transition: all 0.3s ease;
+    font-size: 19px;
+}
+h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #7f3907;
+    margin: 0;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 7px;
+    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: ''; /* Añadido content necesario */
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7f3907, #ffbd6c);
+    transition: width 0.4s ease;
+}
+
+.enlaces {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+}
+.enlaces a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #7f3907;
+    font-size: 1.1rem;
+    padding: 0.3rem 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.fila-imagen-texto {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    margin-right: auto;
+    max-width: 500px; /* Esto mantiene tus fotos en su tamaño */
+}
+
+.contenedor-imagen {
+    flex: 1.2;
+    min-width: 220px;
+}
+
+.contenedor-texto {
+    flex: 1;
+    min-width: 200px;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease;
+    display: block;
+}
+
+.contenedor-imagen img:hover {
+    transform: scale(1.01);
+}
+
+.contenedor-texto h3 {
+    font-size: 1.7rem;
+    color: #b45a2b;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.contenedor-texto p {
+    font-size: 1rem;
+    color: #3e2c21;
+    margin-bottom: 1rem;
+}
+
+.fila-imagen-central {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+}
+
+/* Decoraciones Estéticas */
+.contenedor-imagen {
+    position: relative;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
+    padding: 12px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    margin-top: 90px;
+}
+
+.contenedor-imagen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-top: 3px solid #ffbd6c;
+    border-left: 3px solid #ffbd6c;
+    border-radius: 30px 0 0 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.contenedor-imagen::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-bottom: 3px solid #ffbd6c;
+    border-right: 3px solid #ffbd6c;
+    border-radius: 0 0 30px 0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.contenedor-imagen .etiqueta {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #7f3907;
+    z-index: 2;
+}
+/* --- TUS ESTILOS MANTENIDOS --- */
+.fila-imagen-texto {
+position: relative;
+overflow: visible;
+display: flex;
+align-items: center;
+margin-bottom: 5rem !important;
+}
+.texto-flotante {
+position: absolute;
+width: 500px;
+pointer-events: auto;
+}
+        .derecha { left: 560px; text-align: left; }
+        .izquierda-absoluta {
+            position: absolute;
+            right: 560px;
+            width: 500px;
+            text-align: right;
+            pointer-events: auto;
+        }
+        .fila-imagen-central {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .texto-flotante h2, .izquierda-absoluta h2 {
+            font-family: "Sekuya", serif;
+            color: #7f3907;
+            font-size: 2.4rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        .texto-flotante h4, .izquierda-absoluta h4 {
+            font-family: 'Playfair Display', serif;
+            color: #b86c40;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+        .texto-flotante p, .izquierda-absoluta p {
+            color: #b45a2b;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .seccion-valores {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 1000px;
+            padding: 3rem;
+            background: rgba(253, 233, 213, 0.2);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 189, 108, 0.2);
+        }
+        .valor-item h5 { font-family: "Sekuya", serif; color: #7f3907; font-size: 1.2rem; margin-bottom: 10px; }
+        .valor-item p { color: #b45a2b; font-size: 0.9rem; max-width: 200px; }
+
+        /* EL ÚNICO CAMBIO: FONDO SEMITRANSPARENTE */
+        .footer-custom {
+            background-color: rgba(46, 36, 31, 0.8) !important; 
+            color: #fde9d5 !important;
+            padding: 60px 20px !important;
+            text-align: center !important;
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 100px;
+        }
+
+        .btn-interactuables {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: inherit;
+        }
+        .btn-estudio {
+            padding: 10px 25px;
+            background-color: #7f3907;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .btn-estudio:hover {
+            background-color: #b86c40;
+            box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
+        }
+
+        .revelar-seccion {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .revelar-seccion.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1200px) {
+            .texto-flotante, .izquierda-absoluta { position: static; width: 100%; text-align: center; margin-top: 20px; }
+            .seccion-valores { flex-direction: column; align-items: center; gap: 2rem; }
+            .fila-imagen-texto, .fila-imagen-central { flex-direction: column; }
+        }

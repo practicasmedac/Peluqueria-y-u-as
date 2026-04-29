@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lux | Uñas</title>
+    <link rel="stylesheet" href="uñas.css">
+    <script src="uñas.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="contenedorheader">
+            <div class="logo-section">
+                <div class="decoracion-izquierda"></div>
+                <h1>Studio Lux</h1>
+                <div class="decoracion-derecha"></div>
+            </div>
+            <nav>
+                <ul class="enlaces">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Pelo.html" class="enlace-header">Pelo</a></li>
+                </ul>  
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="fila-imagen-texto revelar-seccion">
+            <div class="contenedor-imagen">
+                <img src="uñas 1.jpg" alt="Uñas elegantes Studio Lux">
+                <div class="etiqueta">PREMIUM</div>
+            </div>
+            <div class="texto-flotante derecha">
+                <h2>Manicura de Autor</h2>
+                <h4>Donde el lujo se encuentra con el cuidado</h4>
+                <p>En Studio Lux redefinimos el concepto de belleza. No se trata solo de color, sino de salud y estructura.</p>
+                <div class="btn-interactuables">
+                    <button class="btn-estudio" onclick="toggleDetalles('manicura')">Ver Detalles</button>
+                    <button class="btn-estudio" onclick="agendarCita('manicura')" style="background-color: transparent; border: 1px solid #7f3907; color: #7f3907;">Agendar</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="seccion-valores revelar-seccion">
+            <div class="valor-item">
+                <h5>Calidad Premium</h5>
+                <p>Productos libres de tóxicos y de las mejores marcas internacionales.</p>
+            </div>
+            <div class="valor-item">
+                <h5>Higiene Rigurosa</h5>
+                <p>Protocolos de esterilización de grado médico para tu total seguridad.</p>
+            </div>
+            <div class="valor-item">
+                <h5>Estilo Único</h5>
+                <p>Asesoramiento personalizado según la forma de tus manos y tu estilo.</p>
+            </div>
+        </section>
+
+        <div class="fila-imagen-central revelar-seccion">
+            <div class="izquierda-absoluta">
+                <h2>Brillo Infinito</h2>
+                <h4>Durabilidad que impresiona</h4>
+                <p>Nuestros acabados están diseñados para resistir el ritmo de tu día a día sin perder la intensidad del primer momento.</p>
+                <div class="btn-interactuables">
+                    <button class="btn-estudio" onclick="mostrarGaleria('brillo')">Ver Galería</button>
+                </div>
+            </div>
+            <div class="contenedor-imagen">
+                <img src="uñas 3.jpg" alt="Manicura con gel brillante">
+                <div class="etiqueta">GEL TECH</div>
+            </div>
+        </div>
+
+        <div class="fila-imagen-texto revelar-seccion">
+            <div class="contenedor-imagen">
+                <img src="uñas 4.jpg" alt="Diseños personalizados de uñas">
+                <div class="etiqueta">ARTIST</div>
+            </div>
+            <div class="texto-flotante derecha">
+                <h2>Nail Art Exclusivo</h2>
+                <h4>Lienzos en miniatura</h4>
+                <p>¿Buscas algo diferente? Nuestros artistas están especializados en técnicas de mano alzada y efectos cromados.</p>
+                <div class="btn-interactuables">
+                    <button class="btn-estudio" onclick="abrirCatalogo()">Catálogo</button>
+                    <button class="btn-estudio" onclick="consultarDisponibilidad()">Disponibilidad</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-custom">
+        <div class="redes-sociales">
+            <p style="margin-bottom: 25px; font-family: 'Playfair Display', serif; font-size: 1.4rem;">Forma parte de nuestra comunidad</p>
+            <a href="#">@StudioLux_Premium</a>
+            <a href="#">Studio Lux Facebook</a>
+            <a href="#">TikTok Studio</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.6; font-family: 'Segoe UI', sans-serif;">
+            Calle de la Elegancia 123, Madrid | Citas: +34 600 000 000
+        </p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('.revelar-seccion');
+            sections.forEach(sec => {
+                let top = sec.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    sec.classList.add('visible');
+                }
+            });
+        });
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
