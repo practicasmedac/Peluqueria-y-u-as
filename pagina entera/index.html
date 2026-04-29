@@ -33,7 +33,7 @@
     <div class="logo">Studio<span> Lux</span></div>
     <div class="header-derecha">
         <a href="uñas4.html" class="enlace-header">Uñas</a>
-        <a href="pelo.html" class="enlace-header">Pelo</a>
+        <a href="Pelo.html" class="enlace-header">Pelo</a>
         <button class="btn-cita-header" id="btnAgendarHeader">Agendar cita</button>
     </div>
 </header>
@@ -214,14 +214,56 @@
         </div>
     </div>
 
-    <script>
-        // Función del botón Agendar cita
+
+    <div class="chatbot-button" id="chatbotBtn">
+        <span>CHATBOT</span>
+    </div>
+
+    <div class="chat-ventana" id="ventanaChat">
+        <div class="chat-header">
+            <h3>💬 StudioLux Asistente</h3>
+            <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
+        </div>
+        <div class="chat-mensajes" id="contenedorMensajes">
+            <div class="mensaje-bot">✨ ¡Hola! Soy el asistente de StudioLux. ¿En qué puedo ayudarte? Pregúntame sobre corte, color, manicura, tratamientos, precios o reservas.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
+            <button id="enviarBtn">Enviar</button>
+        </div>
+    </div>
+
+<script src="chatbot.js"></script>
+
+    <script type="module">
+        // 1. Importaciones de Firebase (Usando CDN)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+
+        // 2. Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyALTEWvrAe0wZ2uw3n35jKKdPrQ0M3jxXc",
+            authDomain: "peluqueria-y-manicura.firebaseapp.com",
+            projectId: "peluqueria-y-manicura",
+            storageBucket: "peluqueria-y-manicura.firebasestorage.app",
+            messagingSenderId: "967796738416",
+            appId: "1:967796738416:web:6b42c6b02139b686ad27b5"
+        };
+
+        // 3. Inicialización
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const analytics = getAnalytics(app);
+
+        // 4. Lógica de la interfaz y envío del formulario
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('modalCita');
             const btnAgendar = document.getElementById('btnAgendarHeader');
             const cerrarBtn = document.getElementById('cerrarModalBtn');
             const formCita = document.getElementById('formCita');
 
+            // Abrir y cerrar modal
             if (btnAgendar) {
                 btnAgendar.onclick = function(e) {
                     e.preventDefault();
@@ -244,9 +286,11 @@
                 }
             };
 
+            // Manejo del formulario (Validación + Firebase)
             if (formCita) {
-                formCita.onsubmit = function(e) {
+                formCita.addEventListener('submit', async function(e) {
                     e.preventDefault();
+
                     const nombre = document.getElementById('nombre').value.trim();
                     const apellido = document.getElementById('apellido').value.trim();
                     const fecha = document.getElementById('fecha').value;
@@ -261,68 +305,39 @@
                         return;
                     }
 
-                    const fechaObj = new Date(fecha);
-                    const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {year:'numeric', month:'long', day:'numeric'});
-                    alert(`✅ Cita agendada\n\nNombre: ${nombre} ${apellido}\nDía: ${fechaFormateada}\nTeléfono: ${telefono}\n\n¡Te esperamos!`);
-                    
-                    formCita.reset();
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                };
+                    try {
+                        const btnSubmit = formCita.querySelector('button[type="submit"]');
+                        btnSubmit.textContent = "Guardando...";
+                        btnSubmit.disabled = true;
+
+                        await addDoc(collection(db, "citas"), { 
+                            nombre, 
+                            apellido, 
+                            fecha, 
+                            telefono,
+                            fechaRegistro: new Date()
+                        });
+
+                        const fechaObj = new Date(fecha);
+                        const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {year:'numeric', month:'long', day:'numeric'});
+                        alert(`✅ Cita agendada y guardada\n\nNombre: ${nombre} ${apellido}\nDía: ${fechaFormateada}\nTeléfono: ${telefono}\n\n¡Te esperamos!`);
+                        
+                        formCita.reset();
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+
+                    } catch (error) {
+                        console.error("Error guardando en Firebase:", error);
+                        alert("Hubo un error al conectar con la base de datos. Revisa la consola.");
+                    } finally {
+                        const btnSubmit = formCita.querySelector('button[type="submit"]');
+                        btnSubmit.textContent = "Confirmar cita";
+                        btnSubmit.disabled = false;
+                    }
+                });
             }
         });
     </script>
-    <div class="chatbot-button" id="chatbotBtn">
-        <span>CHATBOT</span>
-    </div>
-
-    <div class="chat-ventana" id="ventanaChat">
-        <div class="chat-header">
-            <h3>💬 StudioLux Asistente</h3>
-            <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
-        </div>
-        <div class="chat-mensajes" id="contenedorMensajes">
-            <div class="mensaje-bot">✨ ¡Hola! Soy el asistente de StudioLux. ¿En qué puedo ayudarte? Pregúntame sobre corte, color, manicura, tratamientos, precios o reservas.</div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
-            <button id="enviarBtn">Enviar</button>
-        </div>
-    </div>
-
-    <script src="chatbot.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyALTEWvrAe0wZ2uw3n35jKKdPrQ0M3jxXc",
-            authDomain: "peluqueria-y-manicura.firebaseapp.com",
-            projectId: "peluqueria-y-manicura",
-            storageBucket: "peluqueria-y-manicura.firebasestorage.app",
-            messagingSenderId: "967796738416",
-            appId: "1:967796738416:web:6b42c6b02139b686ad27b5"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        document.getElementById('formCita').onsubmit = async function(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value.trim();
-            const apellido = document.getElementById('apellido').value.trim();
-            const fecha = document.getElementById('fecha').value;
-            const telefono = document.getElementById('telefono').value.trim();
-
-            try {
-                await addDoc(collection(db, "citas"), { nombre, apellido, fecha, telefono });
-                alert("Cita agendada");
-                document.getElementById('formCita').reset();
-                document.getElementById('modalCita').style.display = 'none';
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
-    </script>
+</body>
 </body>
 </html>
