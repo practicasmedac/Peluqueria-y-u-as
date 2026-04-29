@@ -1,163 +1,172 @@
-(function() {
-    "use strict";
+//  VARIABLE GLOBAL 
+let citas = [];
 
-    // CREAR MODAL AUTOMÁTICAMENTE 
-    function crearModalSiNoExiste() {
-        if (document.getElementById('modalCita')) return;
+// Precios de referencia
+const precios = {
+    "Corte y Peinado": 10,
+    "Coloración": 30,
+    "Manicura y Pedicura": 20,
+    "Tratamiento Capilar": 45,
+    "Maquillaje": 25,
+    "Depilación y Facial": 35
+};
 
-        const modalHTML = `
-            <div id="modalCita" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center;">
-                <div class="modal-content" style="background: white; padding: 2rem; border-radius: 20px; max-width: 450px; width: 90%; position: relative;">
-                    <span id="cerrarModal" style="position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer;">&times;</span>
-                    <h2 style="margin-top: 0;">Agendar Cita</h2>
-                    <form id="formCita">
-                        <div style="margin-bottom: 1rem;">
-                            <label for="nombre">Nombre *</label>
-                            <input type="text" id="nombre" required style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label for="apellido">Apellido *</label>
-                            <input type="text" id="apellido" required style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label for="fecha">Fecha deseada *</label>
-                            <input type="date" id="fecha" required style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label for="telefono">Teléfono *</label>
-                            <input type="tel" id="telefono" required style="width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px;">
-                        </div>
-                        <button type="submit" style="background: #b28b5e; color: white; border: none; padding: 12px 24px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: bold;">Confirmar cita</button>
-                    </form>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
+// PERSISTENCIA LOCALSTORAGE 
+function guardarEnLocalStorage() {
+    localStorage.setItem('citasStudioLux', JSON.stringify(citas));
+}
+
+function cargarDeLocalStorage() {
+    const data = localStorage.getItem('citasStudioLux');
+    if (data) {
+        citas = JSON.parse(data);
+    } else {
+        citas = [
+            { id: 1, nombre: "Ana García", telefono: "611223344", servicio: "Corte y Peinado", fecha: "2025-04-16", estado: "confirmada" },
+            { id: 2, nombre: "María López", telefono: "622334455", servicio: "Coloración", fecha: "2025-04-16", estado: "pendiente" },
+            { id: 3, nombre: "Laura Martínez", telefono: "633445566", servicio: "Manicura y Pedicura", fecha: "2025-04-17", estado: "confirmada" },
+            { id: 4, nombre: "Carmen Ruiz", telefono: "644556677", servicio: "Tratamiento Capilar", fecha: "2025-04-18", estado: "pendiente" },
+            { id: 5, nombre: "Sofia Jiménez", telefono: "655667788", servicio: "Maquillaje", fecha: "2025-04-15", estado: "confirmada" }
+        ];
+        guardarEnLocalStorage();
     }
+}
 
-    // INICIALIZAR TODO AL CARGAR 
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        crearModalSiNoExiste();
+function formatoFecha(fecha) {
+    let f = new Date(fecha);
+    return f.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+}
 
-        // MODAL 
-        const modal = document.getElementById('modalCita');
-        const btnAgendar = document.getElementById('btnAgendarCita');
-        const cerrarBtn = document.getElementById('cerrarModal');
-        const formCita = document.getElementById('formCita');
-
-        function abrirModal() {
-            if (modal) modal.style.display = 'flex';
-        }
-
-        function cerrarModal() {
-            if (modal) modal.style.display = 'none';
-        }
-
-        if (btnAgendar) {
-            btnAgendar.addEventListener('click', function(e) {
-                e.preventDefault();
-                abrirModal();
-            });
-        }
-
-        if (cerrarBtn) {
-            cerrarBtn.addEventListener('click', cerrarModal);
-        }
-
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) cerrarModal();
-        });
-
-        if (formCita) {
-            formCita.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const nombre = document.getElementById('nombre').value.trim();
-                const apellido = document.getElementById('apellido').value.trim();
-                const fecha = document.getElementById('fecha').value;
-                const telefono = document.getElementById('telefono').value.trim();
-                
-                if (!nombre || !apellido || !fecha || !telefono) {
-                    alert('Por favor, completa todos los campos.');
-                    return;
-                }
-                
-                if (telefono.length < 9) {
-                    alert('Ingresa un número de teléfono válido (mínimo 9 dígitos).');
-                    return;
-                }
-                
-                const fechaObj = new Date(fecha);
-                const fechaFormateada = fechaObj.toLocaleDateString('es-ES', { 
-                    year: 'numeric', month: 'long', day: 'numeric' 
-                });
-                
-                alert(` Cita agendada con éxito en StudioLux\n\n` +
-                      `Datos de la reserva:\n` +
-                      `• Nombre: ${nombre} ${apellido}\n` +
-                      `• Día: ${fechaFormateada}\n` +
-                      `• Teléfono: ${telefono}\n\n` +
-                      `Nos pondremos en contacto para confirmar el horario.\n` +
-                      `¡Te esperamos!`);
-                
-                formCita.reset();
-                cerrarModal();
-            });
-        }
-
-        // ACORDEONES 
-        const accordionItems = document.querySelectorAll('.accordion-item');
-        accordionItems.forEach(item => {
-            const header = item.querySelector('.accordion-header');
-            const content = item.querySelector('.accordion-content');
-            if (!header || !content) return;
-            
-            content.style.display = 'none';
-            
-            let indicator = header.querySelector('.accordion-indicator');
-            if (!indicator) {
-                indicator = document.createElement('span');
-                indicator.className = 'accordion-indicator';
-                indicator.textContent = '[+]';
-                header.appendChild(indicator);
-            }
-            header.style.cursor = 'pointer';
-            
-            header.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (content.style.display === 'none') {
-                    content.style.display = 'block';
-                    indicator.textContent = '[-]';
-                } else {
-                    content.style.display = 'none';
-                    indicator.textContent = '[+]';
-                }
-            });
-        });
-
-        // DROPDOWN HEADER 
-        const dropdown = document.querySelector('.dropdown');
-        if (dropdown) {
-            const dropbtn = dropdown.querySelector('.dropbtn');
-            const dropdownContent = dropdown.querySelector('.dropdown-content');
-            if (dropbtn && dropdownContent) {
-                dropdownContent.style.display = 'none';
-                
-                dropbtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdownContent.style.display = 
-                        (dropdownContent.style.display === 'none') ? 'block' : 'none';
-                });
-                
-                document.addEventListener('click', function(e) {
-                    if (!dropdown.contains(e.target)) {
-                        dropdownContent.style.display = 'none';
-                    }
-                });
-            }
-        }
-
+function actualizarTabla() {
+    const tbody = document.getElementById('tbodyCitas');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    citas.forEach(cita => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = cita.id;
+        row.insertCell(1).textContent = cita.nombre;
+        row.insertCell(2).textContent = cita.telefono;
+        row.insertCell(3).textContent = cita.servicio;
+        row.insertCell(4).textContent = formatoFecha(cita.fecha);
+        row.insertCell(5).innerHTML = `<span class="estado ${cita.estado}">${cita.estado === 'confirmada' ? 'Confirmada' : 'Pendiente'}</span>`;
+        row.insertCell(6).innerHTML = `
+            <button class="btn-accion" onclick="abrirEditar(${cita.id})">Editar</button>
+            <button class="btn-accion" onclick="cambiarEstado(${cita.id})">Cambiar estado</button>
+            <button class="btn-accion" onclick="eliminarCita(${cita.id})">Eliminar</button>
+        `;
     });
-})();
+    actualizarEstadisticas();
+    guardarEnLocalStorage();
+}
+
+function actualizarEstadisticas() {
+    const hoy = new Date().toISOString().slice(0,10);
+    document.getElementById('citasHoy').textContent = citas.filter(c => c.fecha === hoy).length;
+    document.getElementById('totalClientes').textContent = new Set(citas.map(c => c.telefono)).size;
+    const mesActual = new Date().getMonth(), anioActual = new Date().getFullYear();
+    let ingresos = 0;
+    citas.forEach(cita => {
+        let fechaCita = new Date(cita.fecha);
+        if (fechaCita.getMonth() === mesActual && fechaCita.getFullYear() === anioActual && cita.estado === 'confirmada') {
+            ingresos += precios[cita.servicio] || 0;
+        }
+    });
+    document.getElementById('ingresosMes').textContent = ingresos + '€';
+    const conteoServicios = {};
+    citas.forEach(c => conteoServicios[c.servicio] = (conteoServicios[c.servicio] || 0) + 1);
+    const serviciosOrdenados = Object.entries(conteoServicios).sort((a,b) => b[1] - a[1]);
+    const listaDiv = document.getElementById('listaServicios');
+    if (listaDiv) {
+        listaDiv.innerHTML = '';
+        serviciosOrdenados.forEach(([servicio, cantidad]) => {
+            listaDiv.innerHTML += `<div class="servicio-item"><span class="servicio-nombre">${servicio}</span><span class="servicio-count">${cantidad} citas</span></div>`;
+        });
+        if (serviciosOrdenados.length === 0) listaDiv.innerHTML = '<p>No hay servicios registrados aún.</p>';
+    }
+}
+
+function cambiarEstado(id) {
+    const cita = citas.find(c => c.id === id);
+    if (cita) {
+        cita.estado = cita.estado === 'confirmada' ? 'pendiente' : 'confirmada';
+        actualizarTabla();
+        alert(`Estado actualizado a ${cita.estado === 'confirmada' ? 'Confirmada' : 'Pendiente'}`);
+    }
+}
+
+function eliminarCita(id) {
+    if (confirm('¿Eliminar esta cita permanentemente?')) {
+        citas = citas.filter(c => c.id !== id);
+        actualizarTabla();
+        alert('Cita eliminada');
+    }
+}
+
+function agregarCita(nombre, telefono, servicio, fecha) {
+    const nuevoId = citas.length > 0 ? Math.max(...citas.map(c => c.id)) + 1 : 1;
+    citas.push({ id: nuevoId, nombre, telefono, servicio, fecha, estado: 'pendiente' });
+    actualizarTabla();
+}
+
+function abrirEditar(id) {
+    const cita = citas.find(c => c.id === id);
+    if (!cita) return;
+    document.getElementById('editarId').value = cita.id;
+    document.getElementById('editarNombre').value = cita.nombre;
+    document.getElementById('editarTelefono').value = cita.telefono;
+    document.getElementById('editarServicio').value = cita.servicio;
+    document.getElementById('editarFecha').value = cita.fecha;
+    document.getElementById('modalEditarCita').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function guardarEdicion(e) {
+    e.preventDefault();
+    const id = parseInt(document.getElementById('editarId').value);
+    const nombre = document.getElementById('editarNombre').value.trim();
+    const telefono = document.getElementById('editarTelefono').value.trim();
+    const servicio = document.getElementById('editarServicio').value;
+    const fecha = document.getElementById('editarFecha').value;
+    if (!nombre || !telefono || !fecha) return alert('Completa todos los campos');
+    if (telefono.length < 9) return alert('Teléfono inválido');
+    const index = citas.findIndex(c => c.id === id);
+    if (index !== -1) {
+        citas[index] = { ...citas[index], nombre, telefono, servicio, fecha };
+        actualizarTabla();
+        cerrarModalEditar();
+        alert('Cita actualizada');
+    }
+}
+
+function cerrarModalEditar() {
+    document.getElementById('modalEditarCita').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    cargarDeLocalStorage();
+    actualizarTabla();
+    const modalAgregar = document.getElementById('modalCita');
+    document.getElementById('btnAbrirModal').onclick = () => { modalAgregar.style.display = 'block'; document.body.style.overflow = 'hidden'; };
+    document.getElementById('cerrarModal').onclick = () => { modalAgregar.style.display = 'none'; document.body.style.overflow = 'auto'; };
+    window.onclick = (e) => {
+        if (e.target === modalAgregar) { modalAgregar.style.display = 'none'; document.body.style.overflow = 'auto'; }
+        if (e.target === document.getElementById('modalEditarCita')) cerrarModalEditar();
+    };
+    document.getElementById('formNuevaCita').onsubmit = (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('nuevoNombre').value.trim();
+        const telefono = document.getElementById('nuevoTelefono').value.trim();
+        const servicio = document.getElementById('nuevoServicio').value;
+        const fecha = document.getElementById('nuevaFecha').value;
+        if (!nombre || !telefono || !fecha) return alert('Completa todos los campos');
+        if (telefono.length < 9) return alert('Teléfono inválido (mínimo 9 dígitos)');
+        agregarCita(nombre, telefono, servicio, fecha);
+        document.getElementById('formNuevaCita').reset();
+        modalAgregar.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        alert(' Cita agendada');
+    };
+    document.getElementById('formEditarCita').onsubmit = guardarEdicion;
+    document.getElementById('cerrarModalEditar').onclick = cerrarModalEditar;
+});
