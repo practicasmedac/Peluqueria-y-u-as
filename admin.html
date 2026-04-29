@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudioLux · Panel de Administración</title>
     
-    <! Fuente Sekuya >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sekuya&display=swap" rel="stylesheet">
-   
+    
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -23,22 +22,7 @@
     </div>
 
     <div class="admin-container">
-        <! TARJETAS DE RESUMEN >
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Citas de hoy</h3>
-                <div class="stat-number" id="citasHoy">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Total clientes</h3>
-                <div class="stat-number" id="totalClientes">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Ingresos del mes</h3>
-                <div class="stat-number" id="ingresosMes">0€</div>
-            </div>
-        </div>
-        <! TARJETAS DE RESUMEN >
+        <! Tarjetas resumen >
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Citas de hoy</h3>
@@ -54,7 +38,7 @@
             </div>
         </div>
 
-        <! TABLA DE CITAS >
+        <! Tabla de citas >
         <div class="citas-section">
             <div class="section-header">
                 <h2>Listado de citas</h2>
@@ -63,14 +47,14 @@
             <div style="overflow-x: auto;">
                 <table id="tablaCitas">
                     <thead>
-                        <tr><th>ID</th><th>Cliente</th><th>Teléfono</th><th>Servicio</th><th>Fecha</th><th>Estado</th><th>Acciones</th></table>
+                        <tr><th>ID</th><th>Cliente</th><th>Teléfono</th><th>Servicio</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr>
                     </thead>
                     <tbody id="tbodyCitas"></tbody>
                 </table>
             </div>
         </div>
 
-        <! SERVICIOS MÁS SOLICITADOS >
+        <! Servicios más solicitados >
         <div class="servicios-populares">
             <h2>Servicios más solicitados</h2>
             <div id="listaServicios"></div>
@@ -100,6 +84,35 @@
                     </div>
                     <div class="campo"><label>Fecha</label><input type="date" id="nuevaFecha" required></div>
                     <button type="submit" class="btn-guardar">Guardar cita</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <! MODAL EDITAR CITA >
+    <div id="modalEditarCita" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3>Editar cita</h3>
+                <span class="modal-cerrar" id="cerrarModalEditar">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarCita">
+                    <input type="hidden" id="editarId">
+                    <div class="campo"><label>Nombre completo</label><input type="text" id="editarNombre" required></div>
+                    <div class="campo"><label>Teléfono</label><input type="tel" id="editarTelefono" required></div>
+                    <div class="campo"><label>Servicio</label>
+                        <select id="editarServicio">
+                            <option value="Corte y Peinado">Corte y Peinado</option>
+                            <option value="Coloración">Coloración</option>
+                            <option value="Manicura y Pedicura">Manicura y Pedicura</option>
+                            <option value="Tratamiento Capilar">Tratamiento Capilar</option>
+                            <option value="Maquillaje">Maquillaje</option>
+                            <option value="Depilación y Facial">Depilación y Facial</option>
+                        </select>
+                    </div>
+                    <div class="campo"><label>Fecha</label><input type="date" id="editarFecha" required></div>
+                    <button type="submit" class="btn-guardar">Actualizar cita</button>
                 </form>
             </div>
         </div>
