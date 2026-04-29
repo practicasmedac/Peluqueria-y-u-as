@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff9f2 0%, #fff5eb 100%);
+    color: #2e241f;
+    min-height: 100vh;
+}
+
+.admin-header {
+    background: rgba(255, 189, 108, 0.95);
+    border-bottom: 3px solid #ffbd6c;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-header h1 {
+    font-family: "Sekuya", cursive;
+    color: #7f3907;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+}
+
+.admin-header h1 span {
+    font-weight: normal;
+    color: #b45f2b;
+}
+
+.admin-badge {
+    background-color: #b45f2b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.btn-volver {
+    background-color: #b45f2b;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-volver:hover {
+    background-color: #8a4a20;
+    transform: scale(1.02);
+}
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 189, 108, 0.3);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    color: #b45f2b;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d2d2d;
+}
+
+.citas-section {
+    background: white;
+    border-radius: 28px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 189, 108, 0.3);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    color: #7f3907;
+    font-size: 1.5rem;
+}
+
+.btn-agregar {
+    background-color: #b45f2b;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-agregar:hover {
+    background-color: #8a4a20;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: rgba(255, 189, 108, 0.2);
+    color: #7f3907;
+    font-weight: bold;
+}
+
+.estado {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.estado.confirmada {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.estado.pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.btn-accion {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin: 0 3px;
+    padding: 4px 8px;
+    transition: 0.2s;
+    color: #b45f2b;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.btn-accion:hover {
+    background-color: #ffbd6c20;
+    transform: scale(1.02);
+    color: #8a4a20;
+}
+
+.servicios-populares {
+    background: white;
+    border-radius: 28px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 189, 108, 0.3);
+}
+
+.servicios-populares h2 {
+    color: #7f3907;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.servicio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.servicio-nombre {
+    font-weight: bold;
+    color: #2d2d2d;
+}
+
+.servicio-count {
+    background-color: #ffbd6c;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-contenido {
+    background-color: white;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 28px;
+    overflow: hidden;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    background-color: #ffbd6c;
+}
+
+.modal-header h3 {
+    color: #2d2d2d;
+    font-size: 1.3rem;
+}
+
+.modal-cerrar {
+    font-size: 32px;
+    cursor: pointer;
+    color: #2d2d2d;
+}
+
+.modal-cerrar:hover {
+    color: #8a4a20;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2d2d2d;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    font-size: 1rem;
+}
+
+.campo input:focus, .campo select:focus {
+    outline: none;
+    border-color: #ffbd6c;
+}
+
+.btn-guardar {
+    width: 100%;
+    background-color: #b45f2b;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-guardar:hover {
+    background-color: #8a4a20;
+}
+
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .admin-container {
+        padding: 1rem;
+    }
+    th, td {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    .stats-grid {
+        gap: 1rem;
+    }
+}
