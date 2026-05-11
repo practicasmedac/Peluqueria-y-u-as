@@ -1,5 +1,32 @@
 
-// Precios de referencia
+// --- 1. IMPORTACIONES ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    doc, 
+    updateDoc, 
+    deleteDoc 
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+// --- 2. CONFIGURACIÓN FIREBASE ---
+const firebaseConfig = {
+    apiKey: "AIzaSyALTEWvrAe0wZ2uw3n35jKKdPrQ0M3jxXc",
+    authDomain: "peluqueria-y-manicura.firebaseapp.com",
+    projectId: "peluqueria-y-manicura",
+    storageBucket: "peluqueria-y-manicura.firebasestorage.app",
+    messagingSenderId: "967796738416",
+    appId: "1:967796738416:web:6b42c6b02139b686ad27b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// --- 3. VARIABLES GLOBALES ---
+let citas = [];
+
 const precios = {
     "Corte y Peinado": 10,
     "Coloración": 30,
@@ -9,68 +36,88 @@ const precios = {
     "Depilación y Facial": 35
 };
 
-// FUNCIONES GLOBALES 
+// --- 4. LECTURA DE DATOS ---
+async function cargarCitas() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "citas"));
+        citas = []; 
+        
+        querySnapshot.forEach((documento) => {
+            const datos = documento.data();
+            citas.push({
+                id: documento.id,
+                nombre: datos.nombre || '',
+                telefono: datos.telefono || '',
+                servicio: datos.servicio || '',
+                fecha: datos.fecha || '',
+                estado: datos.estado || 'pendiente'
+            });
+        });
+        
+        actualizarTabla(); 
+    } catch (error) {
+        console.error("Error al cargar citas de Firebase:", error);
+    }
+}
+
+// --- 5. INTERFAZ Y ESTADÍSTICAS ---
 function formatoFecha(fecha) {
+    if (!fecha) return '-';
     let f = new Date(fecha);
     return f.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 function actualizarTabla() {
     const tbody = document.getElementById('tbodyCitas');
-    if (!tbody) {
-        console.error('No se encontró tbodyCitas');
-        return;
-    }
+    if (!tbody) return;
     
     tbody.innerHTML = '';
     
     citas.forEach(cita => {
         const row = tbody.insertRow();
-        row.insertCell(0).textContent = cita.id;
+        row.insertCell(0).textContent = String(cita.id).substring(0, 5) + '...';
         row.insertCell(1).textContent = cita.nombre;
         row.insertCell(2).textContent = cita.telefono;
         row.insertCell(3).textContent = cita.servicio;
         row.insertCell(4).textContent = formatoFecha(cita.fecha);
         row.insertCell(5).innerHTML = `<span class="estado ${cita.estado}">${cita.estado === 'confirmada' ? 'Confirmada' : 'Pendiente'}</span>`;
+        
         row.insertCell(6).innerHTML = `
-            <button class="btn-accion" onclick="cambiarEstado(${cita.id})">Cambiar</button>
-            <button class="btn-accion" onclick="eliminarCita(${cita.id})">Eliminar</button>
+            <button class="btn-accion" onclick="cambiarEstado('${cita.id}', '${cita.estado}')">Estado</button>
+            <button class="btn-accion" onclick="abrirEditar('${cita.id}')">Editar</button>
+            <button class="btn-accion" onclick="eliminarCita('${cita.id}')">Borrar</button>
         `;
     });
     
     actualizarEstadisticas();
-    console.log('Tabla actualizada, total citas:', citas.length);
 }
 
 function actualizarEstadisticas() {
-    // Citas de hoy
     const hoy = new Date().toISOString().slice(0, 10);
     const citasHoy = citas.filter(c => c.fecha === hoy).length;
-    const citasHoyElem = document.getElementById('citasHoy');
-    if (citasHoyElem) citasHoyElem.textContent = citasHoy;
+    if (document.getElementById('citasHoy')) document.getElementById('citasHoy').textContent = citasHoy;
     
-    // Total clientes únicos
     const clientesUnicos = new Set(citas.map(c => c.telefono)).size;
-    const totalClientesElem = document.getElementById('totalClientes');
-    if (totalClientesElem) totalClientesElem.textContent = clientesUnicos;
+    if (document.getElementById('totalClientes')) document.getElementById('totalClientes').textContent = clientesUnicos;
     
-    // Ingresos del mes actual
     const mesActual = new Date().getMonth();
     const anioActual = new Date().getFullYear();
     let ingresos = 0;
     citas.forEach(cita => {
-        let fechaCita = new Date(cita.fecha);
-        if (fechaCita.getMonth() === mesActual && fechaCita.getFullYear() === anioActual && cita.estado === 'confirmada') {
-            ingresos += precios[cita.servicio] || 0;
+        if(cita.fecha) {
+            let fechaCita = new Date(cita.fecha);
+            if (fechaCita.getMonth() === mesActual && fechaCita.getFullYear() === anioActual && cita.estado === 'confirmada') {
+                ingresos += precios[cita.servicio] || 0;
+            }
         }
     });
-    const ingresosMesElem = document.getElementById('ingresosMes');
-    if (ingresosMesElem) ingresosMesElem.textContent = ingresos + '€';
+    if (document.getElementById('ingresosMes')) document.getElementById('ingresosMes').textContent = ingresos + '€';
     
-    // Servicios más solicitados
     const conteoServicios = {};
     citas.forEach(cita => {
-        conteoServicios[cita.servicio] = (conteoServicios[cita.servicio] || 0) + 1;
+        if(cita.servicio) {
+            conteoServicios[cita.servicio] = (conteoServicios[cita.servicio] || 0) + 1;
+        }
     });
     const serviciosOrdenados = Object.entries(conteoServicios).sort((a, b) => b[1] - a[1]);
     const listaDiv = document.getElementById('listaServicios');
@@ -85,106 +132,139 @@ function actualizarEstadisticas() {
     }
 }
 
-function cambiarEstado(id) {
+// --- 6. ACCIONES DE BOTONES (PÚBLICAS) ---
+window.cambiarEstado = async function(id, estadoActual) {
+    try {
+        const nuevoEstado = estadoActual === 'confirmada' ? 'pendiente' : 'confirmada';
+        await updateDoc(doc(db, "citas", id), { estado: nuevoEstado });
+        await cargarCitas();
+    } catch (error) {
+        console.error("Error al cambiar estado:", error);
+    }
+}
+
+window.eliminarCita = async function(id) {
+    if (confirm('¿Estás seguro de eliminar esta cita?')) {
+        try {
+            await deleteDoc(doc(db, "citas", id));
+            await cargarCitas(); 
+        } catch (error) {
+            console.error("Error al eliminar:", error);
+        }
+    }
+}
+
+window.abrirEditar = function(id) {
     const cita = citas.find(c => c.id === id);
     if (cita) {
-        cita.estado = cita.estado === 'confirmada' ? 'pendiente' : 'confirmada';
-        actualizarTabla();
+        document.getElementById('editarId').value = cita.id;
+        document.getElementById('editarNombre').value = cita.nombre;
+        document.getElementById('editarTelefono').value = cita.telefono;
+        document.getElementById('editarServicio').value = cita.servicio;
+        document.getElementById('editarFecha').value = cita.fecha;
+        
+        document.getElementById('modalEditarCita').style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
-function eliminarCita(id) {
-    if (confirm('¿Eliminar esta cita?')) {
-        citas = citas.filter(c => c.id !== id);
-        actualizarTabla();
-    }
-}
-
-function agregarCita(nombre, telefono, servicio, fecha) {
-    const nuevoId = citas.length > 0 ? Math.max(...citas.map(c => c.id)) + 1 : 1;
-    const nuevaCita = {
-        id: nuevoId,
-        nombre: nombre,
-        telefono: telefono,
-        servicio: servicio,
-        fecha: fecha,
-        estado: 'pendiente'
+// --- 7. EVENTOS Y FORMULARIOS ---
+document.addEventListener('DOMContentLoaded', () => {
+    const modalNueva = document.getElementById('modalCita');
+    const modalEditar = document.getElementById('modalEditarCita');
+    
+    document.getElementById('btnAbrirModal').onclick = (e) => {
+        e.preventDefault();
+        modalNueva.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     };
-    citas.push(nuevaCita);
-    console.log('Cita agregada:', nuevaCita);
-    actualizarTabla();
-}
-
-// MODAL Y FORMULARIO 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM cargado - Iniciando panel de administración');
     
-    const modal = document.getElementById('modalCita');
-    const btnAbrir = document.getElementById('btnAbrirModal');
-    const btnCerrar = document.getElementById('cerrarModal');
-    const formNueva = document.getElementById('formNuevaCita');
-
-    // Abrir modal
-    if (btnAbrir) {
-        btnAbrir.onclick = function(e) {
-            e.preventDefault();
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            console.log('Modal abierto');
-        };
-    } else {
-        console.error('No se encontró btnAbrirModal');
-    }
+    document.getElementById('cerrarModal').onclick = () => {
+        modalNueva.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
     
-    // Cerrar modal con X
-    if (btnCerrar) {
-        btnCerrar.onclick = function() {
-            modal.style.display = 'none';
+    if(document.getElementById('cerrarModalEditar')) {
+        document.getElementById('cerrarModalEditar').onclick = () => {
+            modalEditar.style.display = 'none';
             document.body.style.overflow = 'auto';
-            console.log('Modal cerrado');
         };
     }
     
-    // Cerrar modal click fuera
-    window.onclick = function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+    window.onclick = (e) => {
+        if (e.target === modalNueva) {
+            modalNueva.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        if (e.target === modalEditar) {
+            modalEditar.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     };
-
-    // Guardar nueva cita
+    
+    const formNueva = document.getElementById('formNuevaCita');
     if (formNueva) {
-        formNueva.onsubmit = function(e) {
+        formNueva.onsubmit = async (e) => {
             e.preventDefault();
-            console.log('Formulario enviado');
+            const nuevaCita = {
+                nombre: document.getElementById('nuevoNombre').value.trim(),
+                telefono: document.getElementById('nuevoTelefono').value.trim(),
+                servicio: document.getElementById('nuevoServicio').value,
+                fecha: document.getElementById('nuevaFecha').value,
+                estado: 'pendiente'
+            };
             
-            const nombre = document.getElementById('nuevoNombre').value.trim();
-            const telefono = document.getElementById('nuevoTelefono').value.trim();
-            const servicio = document.getElementById('nuevoServicio').value;
-            const fecha = document.getElementById('nuevaFecha').value;
-            
-            console.log('Datos:', { nombre, telefono, servicio, fecha });
-            
-            if (!nombre || !telefono || !fecha) {
-                alert('Completa todos los campos');
-                return;
-            }
-            if (telefono.length < 9) {
+            if (nuevaCita.telefono.length < 9) {
                 alert('Teléfono inválido (mínimo 9 dígitos)');
                 return;
             }
-            
-            agregarCita(nombre, telefono, servicio, fecha);
-            formNueva.reset();
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            alert(' Cita agendada correctamente');
+            try {
+                await addDoc(collection(db, "citas"), nuevaCita);
+                formNueva.reset();
+                modalNueva.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                await cargarCitas();
+                alert('Cita agendada correctamente');
+            } catch (error) {
+                console.error("Error al agendar:", error);
+                alert("Hubo un error al guardar la cita.");
+            }
         };
-    } else {
-        console.error('No se encontró formNuevaCita');
     }
-
-    // Cargar datos iniciales
-    actualizarTabla();
+    
+    const formEditar = document.getElementById('formEditarCita');
+    if (formEditar) {
+        formEditar.onsubmit = async (e) => {
+            e.preventDefault();
+            
+            const id = document.getElementById('editarId').value;
+            const datosActualizados = {
+                nombre: document.getElementById('editarNombre').value.trim(),
+                telefono: document.getElementById('editarTelefono').value.trim(),
+                servicio: document.getElementById('editarServicio').value,
+                fecha: document.getElementById('editarFecha').value
+            };
+            
+            if (datosActualizados.telefono.length < 9) {
+                alert('Teléfono inválido (mínimo 9 dígitos)');
+                return;
+            }
+            try {
+                await updateDoc(doc(db, "citas", id), datosActualizados);
+                modalEditar.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                await cargarCitas();
+                alert('Cita actualizada correctamente');
+            } catch (error) {
+                console.error("Error al actualizar:", error);
+                alert("Hubo un error al actualizar la cita.");
+            }
+        };
+    }
+    
+    // Carga inicial
+    cargarCitas();
 });
+
