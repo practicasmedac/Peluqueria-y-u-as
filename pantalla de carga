@@ -1,0 +1,111 @@
+1. HTML (LOADER)
+<!-- PANTALLA DE CARGA -->
+<body class="hidden">
+
+<div class="centrado" id="onload">
+    <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- TU CONTENIDO VA AQUÍ -->
+ 2. CSS (LOADER)
+/* BLOQUEAR SCROLL MIENTRAS CARGA */
+.hidden{
+    overflow: hidden;
+}
+
+/* PANTALLA DE CARGA */
+.centrado{
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+/* SPINNER */
+.lds-roller {
+  color: #1e3f3d;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-roller div,
+.lds-roller div:after {
+  box-sizing: border-box;
+}
+
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  margin: -3.5px 0 0 -3.5px;
+}
+
+/* POSICIONES */
+.lds-roller div:nth-child(1) { animation-delay: -0.036s; }
+.lds-roller div:nth-child(2) { animation-delay: -0.072s; }
+.lds-roller div:nth-child(3) { animation-delay: -0.108s; }
+.lds-roller div:nth-child(4) { animation-delay: -0.144s; }
+.lds-roller div:nth-child(5) { animation-delay: -0.18s; }
+.lds-roller div:nth-child(6) { animation-delay: -0.216s; }
+.lds-roller div:nth-child(7) { animation-delay: -0.252s; }
+.lds-roller div:nth-child(8) { animation-delay: -0.288s; }
+
+/* ORBITA */
+.lds-roller div:nth-child(1):after { top: 62px; left: 62px; }
+.lds-roller div:nth-child(2):after { top: 67px; left: 56px; }
+.lds-roller div:nth-child(3):after { top: 70px; left: 48px; }
+.lds-roller div:nth-child(4):after { top: 72px; left: 40px; }
+.lds-roller div:nth-child(5):after { top: 70px; left: 32px; }
+.lds-roller div:nth-child(6):after { top: 67px; left: 24px; }
+.lds-roller div:nth-child(7):after { top: 62px; left: 17px; }
+.lds-roller div:nth-child(8):after { top: 56px; left: 12px; }
+
+/* ANIMACIÓN */
+@keyframes lds-roller {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+⚙️ 3. JAVASCRIPT (SIN JQUERY, RECOMENDADO)
+window.addEventListener('load', () => {
+    const loader = document.getElementById('onload');
+
+    loader.style.transition = 'opacity 0.5s ease';
+    loader.style.opacity = '0';
+
+    setTimeout(() => {
+        loader.style.display = 'none';
+        document.body.classList.remove('hidden');
+    }, 500);
+});
+ IMPORTANTE
+
+Debe incluir:
+
+<body class="hidden">
+
+y poner el loader justo después del <body>.
