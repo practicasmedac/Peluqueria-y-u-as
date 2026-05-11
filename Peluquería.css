@@ -853,9 +853,42 @@ footer {
 .chat-input-area button {
     margin-left: 10px;
     padding: 10px 20px;
-    background: #b86c40;
+    background: rgb(184, 108, 64);
     color: white;
     border: none;
     border-radius: 25px;
     cursor: pointer;
+}
+.btn-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: rgb(184, 108, 64);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.btn-whatsapp:hover {
+    transform: scale(1.05);
+    background-color:rgb(88, 49, 28);;
+}
+.btn-whatsapp img {
+    width: 24px;
+    height: 24px;
+}
+@media (max-width: 480px) {
+    .btn-whatsapp {
+        bottom: 20px;
+        left: 20px;
+        padding: 8px 16px;
+    }
 }

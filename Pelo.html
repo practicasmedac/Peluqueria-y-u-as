@@ -151,9 +151,88 @@
         </form>
     </div>
 </div>
+<!-- CHATBOT -->
+<div class="chatbot-button" id="chatbotBtn">
+    <span>¿Necesitas ayuda?</span>
+</div>
+
+<div class="chat-ventana" id="ventanaChat">
+    <div class="chat-header">
+        <h3>💬 StudioLux Asistente</h3>
+        <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
+    </div>
+    <div class="chat-mensajes" id="contenedorMensajes">
+        <div class="mensaje-bot">✨ ¡Hola! Soy el asistente de StudioLux. ¿En qué puedo ayudarte? Pregúntame sobre corte, color, manicura, tratamientos, precios o reservas.</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
+        <button id="enviarBtn">Enviar</button>
+    </div>
+</div>
 
 <script>
-    // Modal
+    // Modal con fecha mínima
+    const modal = document.getElementById('modalCita');
+    const btnHeader = document.getElementById('btnAgendarHeader');
+    const btnFooter = document.getElementById('btnAgendarFooter');
+    const cerrar = document.getElementById('cerrarModalBtn');
+
+    // Evitar fechas pasadas
+    const inputFecha = document.getElementById('fecha');
+    if (inputFecha) {
+        const hoy = new Date().toISOString().split('T')[0];
+        inputFecha.setAttribute('min', hoy);
+    }
+
+    function abrirModal(e) {
+        if (e) e.preventDefault();
+        modal.style.display = 'block';
+        modal.offsetHeight;
+        modal.classList.add('modal-visible');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal() {
+        modal.classList.remove('modal-visible');
+        setTimeout(() => {
+            if (!modal.classList.contains('modal-visible')) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }, 400);
+    }
+
+    if (btnHeader) btnHeader.onclick = abrirModal;
+    if (btnFooter) btnFooter.onclick = abrirModal;
+    if (cerrar) cerrar.onclick = cerrarModal;
+
+    window.onclick = (e) => {
+        if (e.target === modal) cerrarModal();
+    };
+
+    document.getElementById('formCita')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const fecha = document.getElementById('fecha').value;
+        if (!nombre || !telefono || !fecha) {
+            alert('Completa todos los campos');
+            return;
+        }
+        if (telefono.length < 9) {
+            alert('Teléfono inválido (mínimo 9 dígitos)');
+            return;
+        }
+        const fechaObj = new Date(fecha);
+        const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {year:'numeric', month:'long', day:'numeric'});
+        alert('✅ Cita reservada, ' + nombre + '. Te esperamos el ' + fechaFormateada + '.');
+        cerrarModal();
+        e.target.reset();
+    });
+</script>
+
+<script>
+    // Modal con transiciones suaves
     const modal = document.getElementById('modalCita');
     const btnHeader = document.getElementById('btnAgendarHeader');
     const btnFooter = document.getElementById('btnAgendarFooter');
@@ -162,12 +241,21 @@
     function abrirModal(e) {
         if (e) e.preventDefault();
         modal.style.display = 'block';
+        // Forzar un reflow para que la transición funcione
+        modal.offsetHeight;
+        modal.classList.add('modal-visible');
         document.body.style.overflow = 'hidden';
     }
 
     function cerrarModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        modal.classList.remove('modal-visible');
+        // Esperar a que termine la transición antes de ocultar el display
+        setTimeout(() => {
+            if (!modal.classList.contains('modal-visible')) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }, 400);
     }
 
     if (btnHeader) btnHeader.onclick = abrirModal;
@@ -192,5 +280,13 @@
         e.target.reset();
     });
 </script>
+<script src="chatbot.js"></script>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/34123456789?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" 
+   class="btn-whatsapp" 
+   target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <span>WhatsApp</span>
+</a>
 </body>
 </html>

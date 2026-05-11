@@ -123,6 +123,24 @@
             </form>
         </div>
     </div>
+     <!-- CHATBOT -->
+    <div class="chatbot-button" id="chatbotBtn">
+        <span>¿Necesitas ayuda?</span>
+    </div>
+
+    <div class="chat-ventana" id="ventanaChat">
+        <div class="chat-header">
+            <h3>💬 StudioLux Asistente</h3>
+            <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
+        </div>
+        <div class="chat-mensajes" id="contenedorMensajes">
+            <div class="mensaje-bot">✨ ¡Hola! Soy el asistente de StudioLux. ¿En qué puedo ayudarte? Pregúntame sobre corte, color, manicura, tratamientos, precios o reservas.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
+            <button id="enviarBtn">Enviar</button>
+        </div>
+    </div>
 
     <script>
         // Modal para agendar cita
@@ -175,5 +193,12 @@
             };
         }
     </script>
+    <script src="chatbot.js"></script>
+    <a href="https://wa.me/34123456789?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" 
+   class="btn-whatsapp" 
+   target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <span>WhatsApp</span>
+</a>
 </body>
 </html>

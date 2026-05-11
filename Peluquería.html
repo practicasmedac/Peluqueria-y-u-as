@@ -273,9 +273,8 @@
         });
     </script>
     <div class="chatbot-button" id="chatbotBtn">
-        <span>CHATBOT</span>
-    </div>
-
+    <center><span>¿Necesitas ayuda?</span></center>
+</div>
     <div class="chat-ventana" id="ventanaChat">
         <div class="chat-header">
             <h3>💬 StudioLux Asistente</h3>
@@ -291,5 +290,19 @@
     </div>
 
     <script src="chatbot.js"></script>
+    <script>
+        const inputFecha = document.getElementById('fecha');
+if (inputFecha) {
+    const hoy = new Date().toISOString().split('T')[0];
+    inputFecha.setAttribute('min', hoy);
+}
+</script>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/34123456789?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" 
+   class="btn-whatsapp" 
+   target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <span>WhatsApp</span>
+</a>
 </body>
 </html>
