@@ -20,7 +20,7 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     height: 2.5cm;
-    font-family: "Sekuya", system-ui;+
+    font-family: "Sekuya", system-ui;
     }
 
 .contenedorheader:hover {
