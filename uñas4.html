@@ -201,4 +201,317 @@
     <span>WhatsApp</span>
 </a>
 </body>
+<!-- REVELAR TEXTOS AL HACER SCROLL (MUCHO MÁS TARDÍO) -->
+<style>
+    /* Textos que queremos animar */
+    .texto-flotante.derecha,
+    .izquierda-absoluta {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    
+    /* Cuando entran en pantalla */
+    .texto-flotante.derecha.revelado,
+    .izquierda-absoluta.revelado {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Retrasos escalonados */
+    .texto-flotante.derecha.revelado {
+        transition-delay: 0.2s;
+    }
+    .izquierda-absoluta.revelado {
+        transition-delay: 0.3s;
+    }
+</style>
+
+<script>
+(function() {
+    const textos = document.querySelectorAll('.texto-flotante.derecha, .izquierda-absoluta');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revelado');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.9,              // Solo cuando el 90% del texto es visible
+        rootMargin: "0px 0px -80px 0px"  // Margen negativo fuerte
+    });
+    
+    textos.forEach(texto => observer.observe(texto));
+    
+    // Comprobación inicial (por si ya están visibles al cargar, aunque improbable con 0.9)
+    setTimeout(() => {
+        textos.forEach(texto => {
+            const rect = texto.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 150) {
+                texto.classList.add('revelado');
+                observer.unobserve(texto);
+            }
+        });
+    }, 200);
+    
+    console.log('✅ Studio Lux Uñas - Textos aparecen MUY tarde al hacer scroll');
+})();
+</script>
+<!-- PANTALLA DE CARGA STUDIO LUX - 2.5 SEGUNDOS -->
+<style>
+    #global-loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
+        backdrop-filter: blur(12px);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+        font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    #global-loader-overlay.active-loader {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Ocultar el contenido de la página hasta que el loader termine */
+    body.loader-active main,
+    body.loader-active header,
+    body.loader-active footer,
+    body.loader-active .chatbot-button,
+    body.loader-active .btn-whatsapp {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .loader-spinner {
+        width: 80px;
+        height: 80px;
+        border: 5px solid rgba(255, 189, 108, 0.3);
+        border-top: 5px solid #b86c40;
+        border-radius: 50%;
+        animation: spinLoader 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        box-shadow: 0 0 20px rgba(184, 108, 64, 0.3);
+    }
+
+    @keyframes spinLoader {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loader-text {
+        margin-top: 30px;
+        font-family: "Sekuya", "Playfair Display", cursive;
+        letter-spacing: 4px;
+        font-size: 1.3rem;
+        background: linear-gradient(135deg, #7f3907 0%, #b86c40 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: softPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes softPulse {
+        0% { opacity: 0.6; letter-spacing: 4px; }
+        50% { opacity: 1; letter-spacing: 8px; }
+        100% { opacity: 0.6; letter-spacing: 4px; }
+    }
+
+    .loader-decoration {
+        margin-top: 25px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .loader-decoration span {
+        width: 10px;
+        height: 10px;
+        background-color: #ffbd6c;
+        border-radius: 50%;
+        animation: bounceDot 1s infinite alternate;
+    }
+
+    .loader-decoration span:nth-child(2) { animation-delay: 0.25s; }
+    .loader-decoration span:nth-child(3) { animation-delay: 0.5s; }
+
+    @keyframes bounceDot {
+        0% { transform: translateY(0px); opacity: 0.4; }
+        100% { transform: translateY(-12px); opacity: 1; background-color: #b86c40; }
+    }
+
+    /* Animación de texto de "cargando" que cambia */
+    .loader-dots::after {
+        content: '';
+        animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+        0%, 20% { content: ''; }
+        40% { content: '.'; }
+        60% { content: '..'; }
+        80%, 100% { content: '...'; }
+    }
+
+    body.loader-active {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+(function() {
+    let loaderOverlay = document.getElementById('global-loader-overlay');
+    if (!loaderOverlay) {
+        const div = document.createElement('div');
+        div.id = 'global-loader-overlay';
+        div.innerHTML = `
+            <div class="loader-spinner"></div>
+            <div class="loader-text">STUDIO LUX<span class="loader-dots"></span></div>
+            <div class="loader-decoration">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `;
+        document.body.appendChild(div);
+        loaderOverlay = div;
+    }
+
+    // Función para mostrar loader con fade in
+    function showLoader() {
+        if (loaderOverlay) {
+            loaderOverlay.classList.add('active-loader');
+            document.body.classList.add('loader-active');
+        }
+    }
+
+    // Función para ocultar loader con fade out (transición suave)
+    function hideLoader() {
+        if (loaderOverlay) {
+            loaderOverlay.classList.remove('active-loader');
+            document.body.classList.remove('loader-active');
+        }
+    }
+
+    // Navegación con loader de 2.5 segundos
+    function navigateWithLoader(url) {
+        if (!url || url.startsWith('#') || url.startsWith('javascript:') || 
+            url.startsWith('mailto:') || url.startsWith('tel:')) {
+            return true;
+        }
+
+        // Verificar si es enlace externo
+        try {
+            const linkUrl = new URL(url, window.location.href);
+            if (linkUrl.origin !== window.location.origin) return true;
+        } catch(e) {}
+
+        // Mostrar loader
+        showLoader();
+        
+        // ⏱️ 2500 milisegundos = 2.5 segundos de pantalla de carga
+        setTimeout(() => {
+            window.location.href = url;
+        }, 2500);
+        
+        return false;
+    }
+
+    // Interceptar clics en enlaces
+    function attachLoaderToLinks() {
+        const allLinks = document.querySelectorAll('a');
+        for (let link of allLinks) {
+            if (link.hasAttribute('data-loader-attached')) continue;
+            if (link.target === '_blank') continue;
+            
+            const href = link.getAttribute('href');
+            if (!href) continue;
+            if (href.startsWith('#') || href.startsWith('javascript:') || 
+                href.startsWith('mailto:') || href.startsWith('tel:')) continue;
+            
+            // Verificar si es externo
+            let isExternal = false;
+            try {
+                const linkUrl = new URL(href, window.location.href);
+                if (linkUrl.origin !== window.location.origin) isExternal = true;
+            } catch(e) {}
+            
+            if (isExternal) continue;
+            
+            link.setAttribute('data-loader-attached', 'true');
+            link.addEventListener('click', function(e) {
+                const targetUrl = this.getAttribute('href');
+                if (!targetUrl) return;
+                if (targetUrl.endsWith('.pdf') || targetUrl.endsWith('.zip')) return;
+                
+                e.preventDefault();
+                navigateWithLoader(targetUrl);
+                return false;
+            });
+        }
+    }
+
+    // Excluir botones de cita (modal)
+    function excludeModalButtons() {
+        const citaButtons = document.querySelectorAll('.btn-cita-header, #btnAgendarHeader, #btnAgendarFooter');
+        for (let btn of citaButtons) {
+            btn.removeAttribute('data-loader-attached');
+            // Aseguramos que no tengan el evento del loader
+            btn.style.pointerEvents = 'auto';
+        }
+    }
+
+    // Inicializar
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            attachLoaderToLinks();
+            excludeModalButtons();
+            observeDynamicLinks();
+        });
+    } else {
+        attachLoaderToLinks();
+        excludeModalButtons();
+        observeDynamicLinks();
+    }
+
+    function observeDynamicLinks() {
+        const observer = new MutationObserver(() => {
+            attachLoaderToLinks();
+            excludeModalButtons();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Cuando la página carga completamente, ocultar loader con fade out suave
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            hideLoader();
+        }, 100); // Pequeño retraso para asegurar que todo está visible
+    });
+
+    // Para cuando se usa el botón de atrás/adelante del navegador
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            hideLoader();
+        }
+    });
+
+    // Exponer función global
+    window.StudioLuxLoader = {
+        show: showLoader,
+        hide: hideLoader,
+        navigate: navigateWithLoader
+    };
+})();
+</script>
 </html>
