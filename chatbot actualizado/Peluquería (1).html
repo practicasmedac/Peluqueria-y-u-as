@@ -218,7 +218,64 @@
                 <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
             </div>
             <button type="submit" class="btn-enviar">Ingresar</button>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" id="btnOlvidePassword" style="color: #b86c40; text-decoration: none;">¿Olvidaste tu contraseña?</a>
+            </div>
         </form>
+    </div>
+</div>
+
+<!-- MODAL RECUPERAR CONTRASEÑA -->
+<div id="modalResetPassword" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Recuperar contraseña</h3>
+            <span class="modal-cerrar" id="cerrarResetBtn">&times;</span>
+        </div>
+        <form id="formResetPassword">
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="resetEmail" placeholder="tu@email.com" required>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar correo</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL PERFIL DE USUARIO (CON MIS CITAS) -->
+<div id="modalPerfil" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Mi Perfil</h3>
+            <span class="modal-cerrar" id="cerrarPerfilBtn">&times;</span>
+        </div>
+        <form id="formPerfil">
+            <div class="campo-form">
+                <label>Nombre completo</label>
+                <input type="text" id="perfilNombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="perfilEmail" disabled style="background:#f0f0f0;">
+            </div>
+            <div class="campo-form">
+                <label>Teléfono</label>
+                <input type="tel" id="perfilTelefono" placeholder="Tu teléfono">
+            </div>
+            <div class="campo-form">
+                <label>Miembro desde</label>
+                <input type="text" id="perfilFecha" disabled style="background:#f0f0f0;">
+            </div>
+            <button type="submit" class="btn-enviar">Guardar cambios</button>
+        </form>
+        
+        <!-- SECCIÓN MIS CITAS -->
+        <div style="margin: 20px 25px 25px 25px; border-top: 1px solid #ffbd6c; padding-top: 20px;">
+            <h4 style="color:#7f3907; font-family:'Playfair Display', cursive; margin-bottom:15px;">📋 Mis próximas citas</h4>
+            <div id="misCitasContainer" style="max-height: 300px; overflow-y: auto;">
+                <p style="color:#999;">Cargando tus citas...</p>
+            </div>
+        </div>
     </div>
 </div>
 
