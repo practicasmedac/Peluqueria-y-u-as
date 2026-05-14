@@ -32,7 +32,7 @@ header {
 }
 
 .logo {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     font-weight: bold;
     font-size: 2rem;
     text-transform: uppercase;
@@ -53,7 +53,7 @@ header {
 }
 
 .enlace-header {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     text-decoration: none;
     font-weight: 600;
     color: #7f3907;
@@ -95,7 +95,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
     color: #fffaf5;
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     letter-spacing: 3px;
     box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
 }
@@ -166,7 +166,7 @@ main {
 }
 
 .titulo-seccion h2 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     font-size: 2.5rem;
     color: #7f3907;
     letter-spacing: 3px;
@@ -228,7 +228,7 @@ main {
 }
 
 .valor h4 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     font-size: 1.3rem;
     margin: 10px 0;
     color: #b45a2b;
@@ -290,7 +290,7 @@ main {
 }
 
 .servicio-card h3 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     font-size: 1.4rem;
     margin-bottom: 12px;
     color: #7f3907;
@@ -380,7 +380,7 @@ main {
 }
 
 .caja-info h3 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     margin-bottom: 15px;
     color: #b45a2b;
     font-size: 1.3rem;
@@ -406,9 +406,9 @@ main {
 
 .modal-contenido {
     background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
-    margin: 10% auto;
+    margin: 5% auto;
     width: 90%;
-    max-width: 450px;
+    max-width: 500px;
     border-radius: 32px;
     animation: modalFadeIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     overflow: hidden;
@@ -436,7 +436,7 @@ main {
 }
 
 .modal-header h3 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     font-size: 1.4rem;
     color: #fffaf5;
     letter-spacing: 2px;
@@ -455,13 +455,9 @@ main {
     transform: scale(1.1);
 }
 
-#formCita {
-    padding: 30px 25px;
-    background: transparent;
-}
-
 .campo-form {
     margin-bottom: 20px;
+    padding: 0 25px;
 }
 
 .campo-form label {
@@ -469,11 +465,11 @@ main {
     margin-bottom: 8px;
     font-weight: 600;
     color: #7f3907;
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     letter-spacing: 1px;
 }
 
-.campo-form input {
+.campo-form input, .campo-form select {
     width: 100%;
     padding: 12px 18px;
     border: 2px solid rgba(255, 189, 108, 0.4);
@@ -484,14 +480,15 @@ main {
     transition: all 0.3s ease;
 }
 
-.campo-form input:focus {
+.campo-form input:focus, .campo-form select:focus {
     outline: none;
     border-color: #b86c40;
     box-shadow: 0 0 0 3px rgba(184, 108, 64, 0.2);
 }
 
 .btn-enviar {
-    width: 100%;
+    width: calc(100% - 50px);
+    margin: 0 25px 25px 25px;
     background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
     border: none;
     padding: 14px;
@@ -500,9 +497,8 @@ main {
     border-radius: 50px;
     cursor: pointer;
     color: #fffaf5;
-    margin-top: 15px;
     transition: all 0.3s ease;
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     letter-spacing: 2px;
 }
 
@@ -529,7 +525,7 @@ footer {
 }
 
 .footer-col h3 {
-    font-family: "Sekuya", "Playfair Display", cursive;
+    font-family: "Playfair Display", cursive;
     margin-bottom: 20px;
     color: #ffbd6c;
     font-size: 1.3rem;
@@ -554,7 +550,7 @@ footer {
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
-/* ===== BOTONES FLOTANTES JUNTOS (MODO OSCURO + CHATBOT) ===== */
+/* ===== BOTONES FLOTANTES ===== */
 .floating-buttons {
     position: fixed;
     bottom: 30px;
@@ -812,6 +808,18 @@ body.dark .sugerencia-btn:hover {
     50% { opacity: 1; }
 }
 
+/* Animación para notificaciones */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* MODO OSCURO */
 body.dark {
     background-color: #1a1411;
@@ -905,6 +913,140 @@ body.dark .btn-modo-oscuro-float:hover {
     color: #ffbd6c;
 }
 
+/* Botón Registrarse */
+.btn-registro-header {
+    background: transparent;
+    border: 2px solid #b86c40;
+    padding: 10px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #b86c40;
+    font-family: "Playfair Display", cursive;
+    letter-spacing: 3px;
+}
+
+.btn-registro-header:hover {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: #fffaf5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
+    border-color: transparent;
+}
+
+/* Botón Iniciar sesión */
+.btn-login-header {
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
+    border: none;
+    padding: 10px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fffaf5;
+    font-family: "Playfair Display", cursive;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
+}
+
+.btn-login-header:hover {
+    background: linear-gradient(135deg, #7f3907 0%, #5a2a05 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
+    letter-spacing: 4px;
+}
+
+/* Modo oscuro botones */
+body.dark .btn-registro-header {
+    border-color: #ffbd6c;
+    color: #ffbd6c;
+}
+
+body.dark .btn-registro-header:hover {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: #2a1f1a;
+}
+
+body.dark .btn-login-header {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: #2a1f1a;
+}
+
+body.dark .btn-login-header:hover {
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
+    color: #fffaf5;
+}
+
+/* ===== PERFIL DE USUARIO ===== */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 189, 108, 0.15);
+    padding: 5px 15px 5px 10px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Playfair Display", cursive;
+    color: #7f3907;
+}
+
+.user-avatar span:first-child {
+    font-size: 1.3rem;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid #b86c40;
+    padding: 5px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #b86c40;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: "Playfair Display", cursive;
+}
+
+.btn-logout:hover {
+    background: #b86c40;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Modo oscuro perfil */
+body.dark .user-profile {
+    background: rgba(255, 189, 108, 0.1);
+}
+
+body.dark .user-avatar {
+    color: #ffbd6c;
+}
+
+body.dark .btn-logout {
+    border-color: #ffbd6c;
+    color: #ffbd6c;
+}
+
+body.dark .btn-logout:hover {
+    background: #ffbd6c;
+    color: #2a1f1a;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     header {
@@ -926,7 +1068,7 @@ body.dark .btn-modo-oscuro-float:hover {
         letter-spacing: 1px;
     }
     
-    .btn-cita-header {
+    .btn-cita-header, .btn-registro-header, .btn-login-header {
         padding: 6px 16px;
         font-size: 0.8rem;
         letter-spacing: 2px;
@@ -1003,6 +1145,15 @@ body.dark .btn-modo-oscuro-float:hover {
         padding: 5px 12px;
         font-size: 0.7rem;
     }
+    
+    .user-profile {
+        padding: 3px 10px 3px 8px;
+        gap: 8px;
+    }
+    
+    .user-name {
+        font-size: 0.75rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1016,7 +1167,7 @@ body.dark .btn-modo-oscuro-float:hover {
         letter-spacing: 0.5px;
     }
     
-    .btn-cita-header {
+    .btn-cita-header, .btn-registro-header, .btn-login-header {
         padding: 5px 12px;
         font-size: 0.7rem;
     }
@@ -1048,70 +1199,4 @@ body.dark .btn-modo-oscuro-float:hover {
     .chatbot-button span {
         font-size: 10px;
     }
-    /* Botón Registrarse */
-.btn-registro-header {
-    background: transparent;
-    border: 2px solid #b86c40;
-    padding: 10px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #b86c40;
-    font-family: "Sekuya", "Playfair Display", cursive;
-    letter-spacing: 3px;
-}
-
-.btn-registro-header:hover {
-    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
-    color: #fffaf5;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
-    border-color: transparent;
-}
-
-/* Botón Iniciar sesión - Versión más oscura */
-.btn-login-header {
-    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
-    border: none;
-    padding: 10px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #fffaf5;
-    font-family: "Sekuya", "Playfair Display", cursive;
-    letter-spacing: 3px;
-    box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
-}
-
-.btn-login-header:hover {
-    background: linear-gradient(135deg, #7f3907 0%, #5a2a05 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
-    letter-spacing: 4px;
-}
-
-/* Modo oscuro para los nuevos botones */
-body.dark .btn-registro-header {
-    border-color: #ffbd6c;
-    color: #ffbd6c;
-}
-
-body.dark .btn-registro-header:hover {
-    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
-    color: #2a1f1a;
-}
-
-body.dark .btn-login-header {
-    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
-    color: #2a1f1a;
-}
-
-body.dark .btn-login-header:hover {
-    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
-    color: #fffaf5;
-}
 }
