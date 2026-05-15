@@ -1,423 +1,22 @@
+/* ============================================ */
+/* STUDIO LUX - IMAGEN FIJA, TEXTO CON ANIMACIÓN */
+/* ============================================ */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     background-color: #fffaf5;
     color: #2e241f;
     line-height: 1.5;
-    scrollbar-darkshadow-color: #2e241f;
-}
-.contenedorheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffbd6c40;
-    flex-wrap: wrap;
-    gap: 2rem;
-    height: 2.5cm;
-    font-family: "Sekuya", system-ui;+
-    }
-
-.contenedorheader:hover {
-    transition: all 0.8s ease;
-    
+    overflow-x: hidden;
 }
 
-.enlaces a:hover {
-    color: #b86c40c0;
-    transition: all 0.3s ease;
-    font-size: 19px;
-}
-h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #7f3907;
-    margin: 0;
-    font-family: "Sekuya", "Playfair Display", cursive;
-    letter-spacing: 7px;
-    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.1);
-    position: relative;
-    display: inline-block;
-}
-
-h1::after {
-    
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #7f3907, #ffbd6c);
-    transition: width 0.4s ease;
-}
-.enlaces {
-    display: flex;
-    list-style: none;
-    gap: 1.8rem;
-    margin: 0;
-    padding: 0;
-}
-.enlaces a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #7f3907;
-    font-size: 1.1rem;
-    padding: 0.3rem 0;
-}
-
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-.fila-imagen-texto {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    margin-right: auto;
-    max-width: 500px
-}
-
-.contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
-}
-
-.contenedor-texto {
-    flex: 1;
-    min-width: 200px;
-}
-
-.contenedor-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.1);
-    transition: transform 0.25s ease;
-    display: block;
-}
-
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-}
-
-.contenedor-texto h3 {
-    font-size: 1.7rem;
-    color: #b45a2b;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.contenedor-texto p {
-    font-size: 1rem;
-    color: #3e2c21;
-    margin-bottom: 1rem;
-}
-
-.boton:hover {
-    background-color: #9c5e33;
-}
-
-.fila-imagen-central {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-    max-width: 500px;
-    margin-left: auto;
-}
-
-.contenedorheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
-    flex-wrap: wrap;
-    gap: 2rem;
-    position: fixed;  
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(127, 57, 7, 0.06);
-    border-bottom: 2px solid rgba(255, 189, 108, 0.3);
-}
-.enlaces {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    margin: 0;
-    padding: 0;
-}
-
-.enlaces a {
-    text-decoration: none;
-    font-weight: 600;
-    color: #7f3907;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.enlaces a:hover {
-    color: #b86c40;
-}
-
-.enlaces a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: #ffbd6c;
-    transition: width 0.3s ease;
-}
-
-.enlaces a:hover::after {
-    width: 80%;
-}
-
-/* ===== SCRIPT ===== */
-@media (max-width: 768px) {
-    .contenedorheader {
-        padding: 1rem 1.5rem;
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    
-    h1::after {
-        display: none;
-    }
-    
-    .enlaces {
-        gap: 1.5rem;
-    }
-}
-.contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
-    position: relative;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
-    padding: 12px;
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    margin-top: 90px;
-}
-.contenedor-imagen:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.25);
-    padding: 10px;
-}
-.contenedor-imagen img {
-    width: 100%;
-    height: auto;
-    border-radius: 24px;
-    display: block;
-    transition: all 0.4s ease;
-    filter: brightness(0.98) contrast(1.02);
-}
-
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-    filter: brightness(1) contrast(1.05);
-}
-
-/* Esquina decorativa en cada imagen (estilo estética) */
-.contenedor-imagen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    border-top: 3px solid #ffbd6c;
-    border-left: 3px solid #ffbd6c;
-    border-radius: 30px 0 0 0;
-    opacity: 0.6;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.contenedor-imagen::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    border-bottom: 3px solid #ffbd6c;
-    border-right: 3px solid #ffbd6c;
-    border-radius: 0 0 30px 0;
-    opacity: 0.6;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-
-.contenedor-imagen:hover::after {
-    width: 80px;
-    height: 80px;
-    opacity: 1;
-}
-
-/* Sello o etiqueta decorativa en imágenes */
-.contenedor-imagen .etiqueta {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(4px);
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #7f3907;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    z-index: 2;
-}
- /* ESTILOS PARA RELLENAR LA PÁGINA SIN MOVER LO ANTERIOR */
-        .fila-imagen-texto {
-            position: relative; 
-            overflow: visible;
-            display: flex;
-            align-items: center;
-            margin-bottom: 5rem !important; /* Más separación para que rellene más */
-        }
-
-        .texto-flotante {
-            position: relative;
-            width: 500px; /* Más ancho para que el texto luzca más */
-            pointer-events: none;
-            margin-left: 20px; /* Pequeño margen para separar del borde de la imagen */
-        }
-
-        .derecha {
-            
-            text-align: left;
-        }
-
-        /* --- CLASE PARA EL TEXTO DE LA PENÚLTIMA IMAGEN --- */
-        .izquierda-absoluta {
-            position: relative;
-            right: 560px; /* Se aleja de la imagen hacia la izquierda */
-            width: 500px;
-            text-align: right; /* Texto alineado hacia la imagen */
-            pointer-events: none;
-        }
-
-        .fila-imagen-central {
-            position: relative; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .texto-flotante h2, .izquierda-absoluta h2 {
-            font-family: "Sekuya", serif;
-            color: #7f3907;
-            font-size: 2.4rem;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .texto-flotante h4, .izquierda-absoluta h4 {
-            font-family: 'Playfair Display', serif;
-            color: #b86c40;
-            font-style: italic;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 400;
-        }
-
-        .texto-flotante p, .izquierda-absoluta p {
-            color: #b45a2b;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        /* SECCIÓN EXTRA PARA RELLENAR EL HUECO CENTRAL */
-        .seccion-valores {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin: 4rem auto;
-            max-width: 1000px;
-            padding: 3rem;
-            background: rgba(253, 233, 213, 0.2);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 189, 108, 0.2);
-        }
-
-        .valor-item h5 {
-            font-family: "Sekuya", serif;
-            color: #7f3907;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .valor-item p {
-            color: #b45a2b;
-            font-size: 0.9rem;
-            max-width: 200px;
-        }
-
-        /* Footer Semitransparente Elegante */
-        .footer-custom {
-            background-color: rgba(46, 36, 31, 0.9) !important;
-            color: #fde9d5 !important;
-            padding: 60px 20px !important;
-            text-align: center !important;
-            font-family: 'Segoe UI', sans-serif;
-            margin-top: 100px;
-        }
-
-        .redes-sociales a {
-            color: #ffbd6c;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .redes-sociales a:hover {
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 1200px) {
-            .texto-flotante, .izquierda-absoluta { position: static; width: 100%; text-align: center; margin-top: 20px; }
-            .seccion-valores { flex-direction: column; align-items: center; gap: 2rem; }
-            .fila-imagen-texto, .fila-imagen-central { flex-direction: column; }
-        }
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background-color: #fffaf5;
-    color: #2e241f;
-    line-height: 1.5;
-    scrollbar-darkshadow-color: #2e241f;
-}
-
-/* HEADER */
+/* ---------- HEADER ---------- */
 .contenedorheader {
     display: flex;
     justify-content: space-between;
@@ -431,39 +30,19 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
+    backdrop-filter: blur(8px);
     box-shadow: 0 2px 20px rgba(127, 57, 7, 0.06);
     border-bottom: 2px solid rgba(255, 189, 108, 0.3);
-    height: 90px;
 }
 
-.logo-section {
-    display: flex;
-    align-items: center;
-}
-
-h1 {
+.logo-section h1 {
     font-size: 1.8rem;
     font-weight: bold;
     color: #7f3907;
-    margin: 0;
     font-family: "Sekuya", "Playfair Display", cursive;
     letter-spacing: 7px;
-    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.1);
-    position: relative;
-    display: inline-block;
 }
 
-h1::after {
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #7f3907, #ffbd6c);
-    transition: width 0.4s ease;
-}
-
-/* HEADER DERECHA */
 .header-derecha {
     display: flex;
     align-items: center;
@@ -474,8 +53,6 @@ h1::after {
     display: flex;
     list-style: none;
     gap: 2.5rem;
-    margin: 0;
-    padding: 0;
 }
 
 .enlaces a {
@@ -483,189 +60,134 @@ h1::after {
     font-weight: 600;
     color: #7f3907;
     font-size: 1.1rem;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
-    position: relative;
     font-family: "Sekuya", "Playfair Display", cursive;
-}
-
-.enlaces a:hover {
-    color: #b86c40;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .enlaces a::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: -5px;
+    left: 0;
     width: 0;
     height: 2px;
     background: #ffbd6c;
-    transition: width 0.3s ease;
+    transition: width 0.3s;
 }
 
 .enlaces a:hover::after {
-    width: 80%;
+    width: 100%;
 }
 
-/* BOTÓN AGENDAR CITA */
 .btn-cita-header {
     background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
     border: none;
-    padding: 8px 24px;
+    padding: 8px 28px;
     font-size: 0.95rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
     color: #fffaf5;
     font-family: "Sekuya", "Playfair Display", cursive;
     letter-spacing: 2px;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
 }
 
 .btn-cita-header:hover {
-    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
     transform: translateY(-2px);
     letter-spacing: 3px;
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
 }
 
+/* ---------- MAIN ---------- */
 main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-    padding-top: 90px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 120px 2rem 2rem;
 }
 
-.fila-imagen-texto {
-    position: relative;
-    overflow: visible;
+/* ---------- FILAS INTERACTIVAS (IMAGEN FIJA, TEXTO OCULTO) ---------- */
+.fila-interactiva {
     display: flex;
     align-items: center;
-    margin-bottom: 5rem !important;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
 }
 
-.contenedor-imagen {
-    flex: 1.2;
-    min-width: 220px;
-    position: relative;
-    border-radius: 30px;
+/* Contenedor de la imagen: se queda en su sitio, no se mueve al hacer clic */
+.contenedor-imagen-click {
+    width: 480px;
+    max-width: 90%;
+    cursor: pointer;
+    border-radius: 32px;
     background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
     padding: 12px;
     box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    margin-top: 0;
+    transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.contenedor-imagen:hover {
-    transform: translateY(-8px);
+.contenedor-imagen-click:hover {
+    transform: translateY(-6px);
     box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.25);
-    padding: 10px;
 }
 
-.contenedor-imagen img {
+.contenedor-imagen-click img {
     width: 100%;
     height: auto;
     border-radius: 24px;
     display: block;
-    transition: all 0.4s ease;
-    filter: brightness(0.98) contrast(1.02);
-}
-
-.contenedor-imagen img:hover {
-    transform: scale(1.01);
-    filter: brightness(1) contrast(1.05);
-}
-
-/* Esquina decorativa */
-.contenedor-imagen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    border-top: 3px solid #ffbd6c;
-    border-left: 3px solid #ffbd6c;
-    border-radius: 30px 0 0 0;
-    opacity: 0.6;
-    transition: all 0.3s ease;
     pointer-events: none;
 }
 
-.contenedor-imagen::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    border-bottom: 3px solid #ffbd6c;
-    border-right: 3px solid #ffbd6c;
-    border-radius: 0 0 30px 0;
-    opacity: 0.6;
-    transition: all 0.3s ease;
+/* Texto acompañante: INVISIBLE al inicio, se desliza desde la derecha */
+.texto-acompanante {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(253, 233, 213, 0.3);
+    padding: 2rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateX(40px);  /* para filas normales (imagen izquierda) */
+    transition: opacity 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
     pointer-events: none;
 }
 
-.contenedor-imagen:hover::after {
-    width: 80px;
-    height: 80px;
-    opacity: 1;
-}
-
-.texto-flotante {
-    position: absolute;
-    width: 500px;
-    pointer-events: none;
-}
-
-.derecha {
-    left: 560px;
-    text-align: left;
-}
-
-.izquierda-absoluta {
-    position: absolute;
-    right: 560px;
-    width: 500px;
-    text-align: right;
-    pointer-events: none;
-}
-
-.fila-imagen-central {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.texto-flotante h2, .izquierda-absoluta h2 {
+.texto-acompanante h2 {
     font-family: "Sekuya", serif;
     color: #7f3907;
-    font-size: 2.4rem;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
 }
 
-.texto-flotante h4, .izquierda-absoluta h4 {
+.texto-acompanante h4 {
     font-family: 'Playfair Display', serif;
     color: #b86c40;
     font-style: italic;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     font-size: 1.3rem;
-    font-weight: 400;
 }
 
-.texto-flotante p, .izquierda-absoluta p {
-    color: #b45a2b;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 10px;
+.texto-acompanante p {
+    color: #5a3a28;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
 }
 
+/* --- AL HACER CLICK (clase .animada) -> el texto se vuelve visible --- */
+.fila-interactiva.animada .texto-acompanante {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* La imagen NO se mueve, no tiene transform en .animada */
+
+/* ---------- SECCIÓN VALORES ---------- */
 .seccion-valores {
     display: flex;
     justify-content: space-around;
@@ -673,31 +195,33 @@ main {
     margin: 4rem auto;
     max-width: 1000px;
     padding: 3rem;
-    background: rgba(253, 233, 213, 0.2);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 189, 108, 0.2);
+    background: rgba(253, 233, 213, 0.3);
+    border-radius: 60px;
+    border: 1px solid rgba(255, 189, 108, 0.4);
+    backdrop-filter: blur(5px);
 }
 
 .valor-item h5 {
     font-family: "Sekuya", serif;
     color: #7f3907;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 10px;
 }
 
 .valor-item p {
     color: #b45a2b;
-    font-size: 0.9rem;
-    max-width: 200px;
+    font-size: 0.95rem;
+    max-width: 220px;
 }
 
+/* ---------- FOOTER ---------- */
 .footer-custom {
-    background-color: rgba(46, 36, 31, 0.9) !important;
-    color: #fde9d5 !important;
-    padding: 60px 20px !important;
-    text-align: center !important;
-    font-family: 'Segoe UI', sans-serif;
-    margin-top: 100px;
+    background-color: rgba(46, 36, 31, 0.95);
+    color: #fde9d5;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 80px;
+    border-top: 2px solid #ffbd6c;
 }
 
 .redes-sociales a {
@@ -706,25 +230,25 @@ main {
     margin: 0 20px;
     font-weight: 600;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .redes-sociales a:hover {
-    color: #ffffff;
+    color: white;
     letter-spacing: 1px;
 }
 
-/* MODAL */
+/* ---------- MODAL ---------- */
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(46, 36, 31, 0.85);
-    backdrop-filter: blur(4px);
+    background-color: rgba(46, 36, 31, 0.9);
+    backdrop-filter: blur(6px);
 }
 
 .modal-contenido {
@@ -732,134 +256,240 @@ main {
     margin: 10% auto;
     width: 90%;
     max-width: 450px;
-    border-radius: 32px;
-    animation: modalFadeIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border-radius: 40px;
+    animation: modalFade 0.4s;
     overflow: hidden;
-    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 189, 108, 0.5);
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-60px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+@keyframes modalFade {
+    from { opacity: 0; transform: scale(0.9) translateY(-40px);}
+    to { opacity: 1; transform: scale(1) translateY(0);}
 }
 
 .modal-header {
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    padding: 20px 25px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px 25px;
-    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
-}
-
-.modal-header h3 {
-    font-family: "Sekuya", "Playfair Display", cursive;
-    font-size: 1.4rem;
-    color: #fffaf5;
-    letter-spacing: 2px;
-    margin: 0;
+    color: white;
 }
 
 .modal-cerrar {
     font-size: 32px;
-    font-weight: bold;
     cursor: pointer;
-    color: #fffaf5;
-    transition: 0.2s;
-}
-
-.modal-cerrar:hover {
-    color: #2e241f;
-    transform: scale(1.1);
-}
-
-#formCita {
-    padding: 30px 25px;
-    background: transparent;
 }
 
 .campo-form {
-    margin-bottom: 20px;
+    padding: 15px 25px;
 }
 
 .campo-form label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: bold;
     color: #7f3907;
-    font-family: "Sekuya", "Playfair Display", cursive;
-    letter-spacing: 1px;
+    margin-bottom: 6px;
 }
 
 .campo-form input {
     width: 100%;
     padding: 12px 18px;
-    border: 2px solid rgba(255, 189, 108, 0.4);
+    border: 2px solid #ffbd6c80;
     border-radius: 50px;
     font-size: 1rem;
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background: white;
-    transition: all 0.3s ease;
-}
-
-.campo-form input:focus {
-    outline: none;
-    border-color: #b86c40;
-    box-shadow: 0 0 0 3px rgba(184, 108, 64, 0.2);
 }
 
 .btn-enviar {
-    width: 100%;
-    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    width: calc(100% - 50px);
+    margin: 0 25px 30px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
     border: none;
     padding: 14px;
-    font-size: 1.1rem;
+    border-radius: 50px;
+    color: white;
     font-weight: bold;
+    cursor: pointer;
+}
+
+/* ---------- CHATBOT ---------- */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 160px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
     border-radius: 50px;
     cursor: pointer;
-    color: #fffaf5;
-    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.chatbot-button span { color: white; font-weight: bold; }
+
+.chat-ventana {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background: #fffaf5;
+    border-radius: 25px;
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    border: 1px solid #ffbd6c;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    padding: 12px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-mensajes {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mensaje-bot {
+    background: #f1e6dc;
+    padding: 8px 14px;
+    border-radius: 20px;
+    align-self: flex-start;
+    max-width: 85%;
+}
+
+.mensaje-usuario {
+    background: #b86c40;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    align-self: flex-end;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-top: 1px solid #ffbd6c;
+    background: white;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ffbd6c;
+}
+
+.chat-input-area button {
+    background: #b86c40;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ---------- WHATSAPP ---------- */
+.btn-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: #b86c40;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    font-family: "Sekuya", "Playfair Display", cursive;
-    letter-spacing: 2px;
 }
 
-.btn-enviar:hover {
-    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
-    transform: translateY(-2px);
-    letter-spacing: 3px;
+.btn-whatsapp:hover {
+    transform: scale(1.05);
+    background-color: #58311c;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-    .texto-flotante, .izquierda-absoluta {
-        position: static;
-        width: 100%;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .seccion-valores {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-    .fila-imagen-texto, .fila-imagen-central {
-        flex-direction: column;
-    }
+.btn-whatsapp img {
+    width: 24px;
+    height: 24px;
 }
 
+/* ---------- LOADER ---------- */
+#global-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fffaf5, #fde9d5);
+    backdrop-filter: blur(12px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s, visibility 0.6s;
+}
+
+#global-loader-overlay.active-loader {
+    visibility: visible;
+    opacity: 1;
+}
+
+.loader-spinner {
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgba(255,189,108,0.3);
+    border-top: 5px solid #b86c40;
+    border-radius: 50%;
+    animation: spinLoader 1s infinite;
+}
+
+@keyframes spinLoader {
+    to { transform: rotate(360deg); }
+}
+
+.loader-text {
+    margin-top: 20px;
+    font-family: "Sekuya", cursive;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #7f3907, #b86c40);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+body.loader-active {
+    overflow: hidden;
+}
+
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
     .contenedorheader {
-        padding: 1rem 1.5rem;
         flex-direction: column;
+        padding: 0.8rem;
         height: auto;
-        gap: 0.8rem;
     }
     .header-derecha {
         flex-direction: column;
@@ -868,174 +498,214 @@ main {
     .enlaces {
         gap: 1.5rem;
     }
-    h1::after {
-        display: none;
-    }
     main {
-        padding-top: 160px;
+        padding-top: 150px;
     }
-}
-.chatbot-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 160px;
-            height: 50px;
-            background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .chatbot-button:hover { transform: scale(1.05); }
-        .chatbot-button span { color: white; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 14px; }
-        .chat-ventana {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            max-height: 500px;
-            background: #fffaf5;
-            border-radius: 20px;
-            display: none;
-            flex-direction: column;
-            z-index: 9998;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            border: 1px solid #ffbd6c;
-            overflow: hidden;
-        }
-        .chat-header { background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%); padding: 15px 20px; display: flex; justify-content: space-between; color: white; }
-        .chat-cerrar { font-size: 24px; cursor: pointer; }
-        .chat-mensajes { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; max-height: 380px; min-height: 200px; }
-        .mensaje-bot { background: white; padding: 10px 15px; border-radius: 18px; border-bottom-left-radius: 5px; max-width: 85%; align-self: flex-start; border: 1px solid #ffbd6c; }
-        .mensaje-usuario { background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%); color: white; padding: 10px 15px; border-radius: 18px; border-bottom-right-radius: 5px; max-width: 85%; align-self: flex-end; }
-        .chat-input-area { display: flex; padding: 12px 15px; background: white; border-top: 1px solid #ffbd6c; gap: 10px; }
-        .chat-input-area input { flex: 1; padding: 10px 15px; border: 1px solid #ffbd6c; border-radius: 25px; }
-        .chat-input-area button { padding: 10px 20px; background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%); color: white; border: none; border-radius: 25px; cursor: pointer; }
-        @media (max-width: 480px) {
-            .chat-ventana { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
-            .chatbot-button { bottom: 20px; right: 20px; width: 150px; height: 45px; }
-            .chatbot-button span { font-size: 12px; }
-        }
-        .btn-whatsapp {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    background-color: rgb(184, 108, 64);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-family: 'Segoe UI', sans-serif;
-    font-weight: bold;
-    z-index: 9999;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-.btn-whatsapp:hover {
-    transform: scale(1.05);
-    background-color:rgb(88, 49, 28);;
-}
-.btn-whatsapp img {
-    width: 24px;
-    height: 24px;
-}
-@media (max-width: 480px) {
+    .fila-interactiva {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .contenedor-imagen-click,
+    .texto-acompanante {
+        width: 95%;
+        max-width: 95%;
+    }
+    .texto-acompanante {
+        transform: translateX(0); /* en móvil no hay desplazamiento lateral */
+    }
+    .chat-ventana {
+        width: calc(100vw - 40px);
+        right: 20px;
+        bottom: 90px;
+    }
+    .chatbot-button {
+        bottom: 20px;
+        right: 20px;
+        width: 140px;
+        height: 45px;
+    }
     .btn-whatsapp {
         bottom: 20px;
         left: 20px;
         padding: 8px 16px;
     }
 }
-#global-loader-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
-            backdrop-filter: blur(12px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.5s;
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        }
+/* ============================================ */
+/* STUDIO LUX - VERSIÓN CON IMAGEN FIJA Y TEXTO */
+/* ============================================ */
 
-        #global-loader-overlay.active-loader {
-            visibility: visible;
-            opacity: 1;
-        }
+/* ... todo el reset, header, footer, modal, chatbot, loader, etc. (igual que antes) ... */
 
-        /* ANIMACIÓN DE CARGANDO ELEGANTE */
-        .loader-spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid rgba(255, 189, 108, 0.3);
-            border-top: 5px solid #b86c40;
-            border-radius: 50%;
-            animation: spinLoader 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-            box-shadow: 0 0 15px rgba(184, 108, 64, 0.2);
-        }
+/* ---------- FILAS INTERACTIVAS ---------- */
+.fila-interactiva {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
 
-        @keyframes spinLoader {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+.contenedor-imagen-click {
+    width: 480px;
+    max-width: 90%;
+    cursor: pointer;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
+    padding: 12px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
 
-        .loader-text {
-            margin-top: 28px;
-            font-family: "Sekuya", "Playfair Display", cursive;
-            letter-spacing: 4px;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, #7f3907 0%, #b86c40 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: softPulse 1.5s ease-in-out infinite;
-        }
+.contenedor-imagen-click:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.25);
+}
 
-        @keyframes softPulse {
-            0% { opacity: 0.6; letter-spacing: 4px; }
-            50% { opacity: 1; letter-spacing: 6px; }
-            100% { opacity: 0.6; letter-spacing: 4px; }
-        }
+.contenedor-imagen-click img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    display: block;
+    pointer-events: none;
+}
 
-        .loader-decoration {
-            margin-top: 20px;
-            display: flex;
-            gap: 12px;
-        }
-        .loader-decoration span {
-            width: 8px;
-            height: 8px;
-            background-color: #ffbd6c;
-            border-radius: 50%;
-            animation: bounceDot 0.8s infinite alternate;
-        }
-        .loader-decoration span:nth-child(2) { animation-delay: 0.2s; }
-        .loader-decoration span:nth-child(3) { animation-delay: 0.4s; }
+/* Texto acompañante: oculto inicialmente */
+.texto-acompanante {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(253, 233, 213, 0.3);
+    padding: 2rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateX(40px);  /* para texto a la derecha (imagen izquierda) */
+    transition: opacity 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+    pointer-events: none;
+}
 
-        @keyframes bounceDot {
-            0% { transform: translateY(0px); opacity: 0.4; }
-            100% { transform: translateY(-8px); opacity: 1; background-color: #b86c40; }
-        }
+/* Para la fila con imagen a la derecha: el texto viene desde la izquierda */
+.fila-reverse .texto-acompanante {
+    transform: translateX(-40px);
+}
 
-        /* evita interacción durante carga */
-        body.loader-active {
-            overflow: hidden;
-        }
-         .texto-flotante, .izquierda-absoluta {
-        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out !important;
-    }s
+/* Al hacer clic en la imagen, el texto aparece */
+.fila-interactiva.animada .texto-acompanante {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* ========== INDICADOR DE CLICK EN LA IMAGEN ========== */
+.contenedor-imagen-click {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de "clic aquí" al hacer hover */
+.contenedor-imagen-click::after {
+    content: "Haz clic";
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: #ffbd6c;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 189, 108, 0.5);
+}
+
+/* Al hacer hover sobre la imagen, aparece el mensaje */
+.contenedor-imagen-click:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Efecto de brillo sutil al pasar el ratón (ya existía el hover, pero añadimos un resplandor) */
+.contenedor-imagen-click {
+    transition: all 0.3s ease;
+}
+.contenedor-imagen-click:hover {
+    box-shadow: 0 0 0 3px rgba(255, 189, 108, 0.4), 0 25px 40px -12px rgba(127, 57, 7, 0.25);
+}
+
+/* Para pantallas táctiles (móviles), el mensaje no aparece por hover, 
+   pero se puede mostrar un pequeño icono fijo? Mejor no saturar. */
+@media (max-width: 768px) {
+    .contenedor-imagen-click::after {
+        content: "✨ Toca aquí";
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        bottom: 10px;
+    }
+}
+/* Efecto de pulso al pasar el ratón */
+.contenedor-imagen-click:hover {
+    animation: pulseGlow 1.2s infinite;
+}
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 189, 108, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 189, 108, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 189, 108, 0);
+    }
+}
+/* CHATBOT BOTÓN - CORREGIDO */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: auto;               /* Cambiado de 160px a auto para que se ajuste al contenido */
+    min-width: 160px;          /* Ancho mínimo por si el texto es corto */
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    padding: 0 20px;           /* Espaciado horizontal interno */
+    white-space: nowrap;       /* Evita que el texto se rompa en varias líneas */
+}
+
+.chatbot-button span {
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', 'Sekuya', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+    display: inline-block;
+    line-height: 1;            /* Asegura centrado vertical */
+}
+
+/* Ajuste para móviles (si el texto es largo, que no se salga) */
+@media (max-width: 480px) {
+    .chatbot-button {
+        padding: 0 15px;
+        min-width: 130px;
+        height: 45px;
+    }
+    .chatbot-button span {
+        font-size: 0.8rem;
+        white-space: normal;    /* Permitir salto de línea en móvil muy pequeño */
+        line-height: 1.2;
+    }
+}
