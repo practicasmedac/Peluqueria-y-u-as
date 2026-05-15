@@ -1,4 +1,4 @@
-/* ESTILOS COMPLETOS */
+/* ESTILOS COMPLETOS - STUDIO LUX STYLE */
 * {
     margin: 0;
     padding: 0;
@@ -6,90 +6,143 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    border: 3px solid black;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #fffaf5;
+    color: #2e241f;
+    line-height: 1.5;
 }
 
-.logo, .titulo-seccion h2 {
-    font-family: "Sekuya", system-ui, 'Segoe UI', sans-serif;
-    letter-spacing: 1px;
-}
-
-/* HEADER FIJO */
+/* ===== HEADER FIJO CON ESTILO LUX ===== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color: rgba(255, 189, 108, 0.95);
-    border-bottom: 3px solid rgba(255, 189, 108, 0.8);
-    transition: background-color 0.4s ease-in-out;
+    padding: 1rem 3rem;
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-main {
-    padding-top: 85px;
-}
-
-header.amarillo-pastel {
-    background-color: rgba(255, 235, 150, 0.95);
+    box-shadow: 0 2px 20px rgba(127, 57, 7, 0.06);
+    border-bottom: 2px solid rgba(255, 189, 108, 0.3);
+    height: 90px;
 }
 
 .logo {
+    font-family: "Sekuya", "Playfair Display", cursive;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 2rem;
     text-transform: uppercase;
+    color: #7f3907;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.1);
 }
 
 .logo span {
-    font-weight: normal;
-    color: #b45f2b;
+    color: #b86c40;
+}
+
+/* ===== HEADER DERECHA - ENLACES ===== */
+.header-derecha {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.enlace-header {
+    font-family: "Sekuya", "Playfair Display", cursive;
+    text-decoration: none;
+    font-weight: 600;
+    color: #7f3907;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+.enlace-header:hover {
+    color: #b86c40;
+}
+
+.enlace-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #ffbd6c;
+    transition: width 0.3s ease;
+}
+
+.enlace-header:hover::after {
+    width: 80%;
 }
 
 /* BOTON AGENDAR CITA */
 .btn-cita-header {
-    background-color: #b45f2b;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
     border: none;
-    padding: 8px 25px;
+    padding: 10px 28px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.2s;
-    color: white;
+    transition: all 0.3s ease;
+    color: #fffaf5;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
 }
 
 .btn-cita-header:hover {
-    background-color: #8a4a20;
-    transform: scale(1.02);
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
+    letter-spacing: 4px;
 }
 
-/* VIDEO */
+main {
+    padding-top: 90px;
+}
+
+/* ===== SECCION VIDEO - MEJORADA ===== */
 .seccion-imagen {
-    height: 550px;
+    height: 85vh;
+    min-height: 550px;
     position: relative;
     overflow: hidden;
-    border-bottom: 3px solid black;
+    margin-bottom: 2rem;
 }
 
-.video-fondo {
+.seccion-imagen video {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: cover;
-    top: 0;
-    left: 0;
 }
 
-/* SECCIONES */
+.seccion-imagen::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, #fffaf5 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ===== SECCIONES GENERALES ===== */
 .seccion-info {
     padding: 60px 40px;
     max-width: 1200px;
@@ -98,7 +151,10 @@ header.amarillo-pastel {
 }
 
 .fondo-claro {
-    background-color: rgba(255, 189, 108, 0.08);
+    background: linear-gradient(135deg, #fff5eb34 0%, #fde9d5 100%);
+    border-radius: 48px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(127, 57, 7, 0.05);
 }
 
 .titulo-seccion {
@@ -107,22 +163,28 @@ header.amarillo-pastel {
 }
 
 .titulo-seccion h2 {
+    font-family: "Sekuya", "Playfair Display", cursive;
     font-size: 2.5rem;
-    color: #2d2d2d;
+    color: #7f3907;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(127, 57, 7, 0.08);
+    position: relative;
+    display: inline-block;
 }
 
 .linea-decorativa {
     width: 80px;
     height: 3px;
-    background-color: #ffbd6c;
+    background: linear-gradient(90deg, #ffbd6c, #7f3907);
     margin: 15px auto 0;
+    border-radius: 3px;
 }
 
-/* SOBRE NOSOTROS */
+/* ===== SOBRE NOSOTROS ===== */
 .contenido-sobre {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 50px;
     align-items: center;
 }
 
@@ -135,7 +197,7 @@ header.amarillo-pastel {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 20px;
-    color: #333;
+    color: #3e2c21;
 }
 
 .valores {
@@ -147,39 +209,76 @@ header.amarillo-pastel {
 
 .valor {
     text-align: center;
-    padding: 20px;
+    padding: 25px 20px;
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border: 1px solid #ffbd6c40;
+    border-radius: 24px;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 189, 108, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.valor:hover {
+    transform: translateY(-5px);
+    border-color: #ffbd6c;
+    box-shadow: 0 20px 35px -10px rgba(127, 57, 7, 0.15);
 }
 
 .valor h4 {
+    font-family: "Sekuya", "Playfair Display", cursive;
     font-size: 1.3rem;
     margin: 10px 0;
-    color: #b45f2b;
+    color: #b45a2b;
 }
 
-/* SERVICIOS */
+.valor p {
+    color: #7f3907;
+    font-size: 0.9rem;
+}
+
+/* ===== SERVICIOS GRID ===== */
 .servicios-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .servicio-card {
     background: white;
-    border-radius: 24px;
-    padding: 25px 20px;
+    border-radius: 28px;
+    padding: 30px 20px;
     text-align: center;
-    transition: all 0.3s;
-    border: 1px solid #ffbd6c60;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255, 189, 108, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    position: relative;
 }
 
 .servicio-card:hover {
     transform: translateY(-8px);
     border-color: #ffbd6c;
+    box-shadow: 0 25px 40px -12px rgba(127, 57, 7, 0.2);
+}
+
+.servicio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-top: 2px solid #ffbd6c;
+    border-left: 2px solid #ffbd6c;
+    border-radius: 28px 0 0 0;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.servicio-card:hover::before {
+    width: 70px;
+    height: 70px;
+    opacity: 1;
 }
 
 .servicio-icon {
@@ -188,19 +287,26 @@ header.amarillo-pastel {
 }
 
 .servicio-card h3 {
+    font-family: "Sekuya", "Playfair Display", cursive;
     font-size: 1.4rem;
     margin-bottom: 12px;
-    color: #2c2c2c;
+    color: #7f3907;
+}
+
+.servicio-card p {
+    color: #5a3a28;
+    font-size: 0.95rem;
 }
 
 .precio {
     font-weight: bold;
-    color: #b45f2b;
-    font-size: 1.1rem;
+    color: #b86c40;
+    font-size: 1.2rem;
     margin-top: 12px;
+    font-family: "Playfair Display", serif;
 }
 
-/* ASESORAMIENTO */
+/* ===== ASESORAMIENTO ===== */
 .contenido-asesoramiento {
     display: flex;
     flex-wrap: wrap;
@@ -218,7 +324,8 @@ header.amarillo-pastel {
 .asesor-texto p {
     font-size: 1.1rem;
     line-height: 1.7;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #3e2c21;
 }
 
 .asesor-texto ul {
@@ -229,19 +336,21 @@ header.amarillo-pastel {
 .asesor-texto li {
     margin: 15px 0;
     font-size: 1rem;
-    padding-left: 20px;
+    padding-left: 28px;
     position: relative;
+    color: #5a3a28;
 }
 
 .asesor-texto li::before {
     content: "✓";
-    color: #b45f2b;
+    color: #b86c40;
     font-weight: bold;
     position: absolute;
     left: 0;
+    font-size: 1.2rem;
 }
 
-/* CONTACTO */
+/* ===== CONTACTO ===== */
 .info-doble {
     display: flex;
     flex-wrap: wrap;
@@ -252,19 +361,34 @@ header.amarillo-pastel {
 
 .caja-info {
     background: white;
-    border: 1px solid #ffbd6c;
-    border-radius: 20px;
-    padding: 25px;
+    border: 1px solid rgba(255, 189, 108, 0.5);
+    border-radius: 28px;
+    padding: 30px;
     width: 300px;
     text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+.caja-info:hover {
+    transform: translateY(-5px);
+    border-color: #ffbd6c;
+    box-shadow: 0 15px 30px rgba(127, 57, 7, 0.1);
 }
 
 .caja-info h3 {
+    font-family: "Sekuya", "Playfair Display", cursive;
     margin-bottom: 15px;
-    color: #b45f2b;
+    color: #b45a2b;
+    font-size: 1.3rem;
 }
 
-/* MODAL - MINI VENTANA */
+.caja-info p {
+    color: #5a3a28;
+    line-height: 1.6;
+}
+
+/* ===== MODAL MEJORADO ===== */
 .modal {
     display: none;
     position: fixed;
@@ -273,27 +397,30 @@ header.amarillo-pastel {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(46, 36, 31, 0.85);
+    backdrop-filter: blur(4px);
 }
 
 .modal-contenido {
-    background-color: white;
+    background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
     margin: 10% auto;
     width: 90%;
     max-width: 450px;
-    border-radius: 28px;
-    animation: modalFadeIn 0.3s ease;
+    border-radius: 32px;
+    animation: modalFadeIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     overflow: hidden;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 189, 108, 0.5);
 }
 
 @keyframes modalFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(-60px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -301,30 +428,33 @@ header.amarillo-pastel {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 25px;
-    background-color: #ffbd6c;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
 }
 
 .modal-header h3 {
+    font-family: "Sekuya", "Playfair Display", cursive;
     font-size: 1.4rem;
-    color: #2d2d2d;
+    color: #fffaf5;
+    letter-spacing: 2px;
 }
 
 .modal-cerrar {
     font-size: 32px;
     font-weight: bold;
     cursor: pointer;
-    color: #2d2d2d;
+    color: #fffaf5;
     transition: 0.2s;
 }
 
 .modal-cerrar:hover {
-    color: #8a4a20;
+    color: #2e241f;
+    transform: scale(1.1);
 }
 
 #formCita {
     padding: 30px 25px;
-    background: white;
+    background: transparent;
 }
 
 .campo-form {
@@ -334,47 +464,57 @@ header.amarillo-pastel {
 .campo-form label {
     display: block;
     margin-bottom: 8px;
-    font-weight: bold;
-    color: #2d2d2d;
+    font-weight: 600;
+    color: #7f3907;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 1px;
 }
 
 .campo-form input {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 16px;
+    padding: 12px 18px;
+    border: 2px solid rgba(255, 189, 108, 0.4);
+    border-radius: 50px;
     font-size: 1rem;
-    font-family: inherit;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: white;
+    transition: all 0.3s ease;
 }
 
 .campo-form input:focus {
     outline: none;
-    border-color: #ffbd6c;
+    border-color: #b86c40;
+    box-shadow: 0 0 0 3px rgba(184, 108, 64, 0.2);
 }
 
 .btn-enviar {
     width: 100%;
-    background-color: #b45f2b;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
     border: none;
     padding: 14px;
     font-size: 1.1rem;
     font-weight: bold;
     border-radius: 50px;
     cursor: pointer;
-    color: white;
+    color: #fffaf5;
     margin-top: 15px;
+    transition: all 0.3s ease;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 2px;
 }
 
 .btn-enviar:hover {
-    background-color: #8a4a20;
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
+    transform: translateY(-2px);
+    letter-spacing: 3px;
 }
 
-/* FOOTER */
+/* ===== FOOTER ELEGANTE ===== */
 footer {
-    background-color: rgba(255, 189, 108, 0.25);
-    border-top: 3px solid black;
-    padding: 40px 30px 20px;
-    margin-top: 20px;
+    background-color: #2e241f;
+    color: #fde9d5;
+    padding: 50px 30px 20px;
+    margin-top: 60px;
 }
 
 .footer-container {
@@ -386,145 +526,915 @@ footer {
 }
 
 .footer-col h3 {
-    margin-bottom: 15px;
-    color: #2d2d2d;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    margin-bottom: 20px;
+    color: #ffbd6c;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
 }
 
 .footer-col p {
-    margin: 8px 0;
+    margin: 10px 0;
     font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    padding-top: 20px;
-    margin-top: 30px;
+    border-top: 1px solid rgba(255, 189, 108, 0.2);
+    padding-top: 25px;
+    margin-top: 35px;
     font-size: 0.8rem;
+    opacity: 0.6;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     header {
-        padding: 10px 20px;
+        padding: 0.8rem 1.5rem;
+        height: 70px;
     }
+    
     .logo {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        letter-spacing: 4px;
     }
+    
+    .header-derecha {
+        gap: 1rem;
+    }
+    
+    .enlace-header {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    
     .btn-cita-header {
-        padding: 5px 15px;
-        font-size: 0.9rem;
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
     }
+    
     main {
         padding-top: 70px;
     }
+    
     .seccion-imagen {
-        height: 350px;
+        height: 50vh;
+        min-height: 350px;
     }
+    
     .seccion-info {
         padding: 40px 20px;
     }
+    
     .titulo-seccion h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .contenido-sobre {
+        flex-direction: column;
+    }
+    
+    .valores {
+        width: 100%;
+    }
+    
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .modal-contenido {
+        margin: 30% auto;
+        width: 95%;
     }
 }
-/* 1. Botón flotante - Aseguramos posición sobre todo */
-#btnChatFlotante {
-    position: fixed !important;
-    bottom: 30px !important;
-    right: 30px !important;
-    background-color: #b45f2b !important;
-    color: white !important;
-    border: none !important;
-    padding: 15px 25px !important;
-    border-radius: 50px !important;
-    font-weight: bold !important;
-    cursor: pointer !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-    z-index: 99999 !important; /* Prioridad máxima */
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+    
+    .enlace-header {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn-cita-header {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .titulo-seccion h2 {
+        font-size: 1.5rem;
+    }
+}
+/* ===== CHATBOT STUDIOLUX ===== */
+/* ===== CHATBOT STUDIOLUX ===== */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 110px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
-/* 2. Ventana del chat - Estilo adaptado a tu modal */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 99998; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.5);
+.chatbot-button:hover {
+    transform: scale(1.05);
 }
 
-.modal-contenido {
-    background-color: white;
-    margin: 10% auto;
-    width: 90%;
-    max-width: 400px;
+.chatbot-button span {
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.chat-ventana {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    height: auto;
+    background: #fffaf5;
     border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border: 1px solid #ffbd6c;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.modal-header {
-    background-color: #ffbd6c;
+.chat-header {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
     padding: 15px 20px;
+    border-radius: 20px 20px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
+    flex-shrink: 0;
 }
 
-/* 3. Área de mensajes tipo WhatsApp */
-.chat-whatsapp {
-    padding: 15px;
-    background: #f4f4f4;
-    height: 300px;
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chat-cerrar {
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.chat-cerrar:hover {
+    color: #2e241f;
+}
+
+.chat-mensajes {
+    flex: 1;
     overflow-y: auto;
+    padding: 15px;
+    background: #fffaf5;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    max-height: 380px;
+    min-height: 200px;
 }
 
 .mensaje-bot {
     background: white;
-    padding: 10px;
-    border-radius: 10px 10px 10px 0;
-    margin-bottom: 10px;
-    width: fit-content;
-    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    border-bottom-left-radius: 5px;
+    max-width: 85%;
     align-self: flex-start;
+    color: #3e2c21;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid #ffbd6c;
+    word-wrap: break-word;
 }
 
 .mensaje-usuario {
-    background: #e7ffdb;
-    padding: 10px;
-    border-radius: 10px 10px 0 10px;
-    margin-bottom: 10px;
-    width: fit-content;
-    max-width: 80%;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 18px;
+    border-bottom-right-radius: 5px;
+    max-width: 85%;
     align-self: flex-end;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    word-wrap: break-word;
 }
 
-/* 4. Input y botón de envío */
 .chat-input-area {
     display: flex;
-    padding: 15px;
+    padding: 12px 15px;
     background: white;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ffbd6c;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ffbd6c;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.chat-input-area input:focus {
+    border-color: #b86c40;
+    box-shadow: 0 0 0 2px rgba(184,108,64,0.2);
+}
+
+.chat-input-area button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.chat-input-area button:hover {
+    transform: scale(1.02);
+}
+
+/* Scrollbar */
+.chat-mensajes::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-mensajes::-webkit-scrollbar-track {
+    background: #f0ddcd;
+    border-radius: 10px;
+}
+
+.chat-mensajes::-webkit-scrollbar-thumb {
+    background: #b86c40;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .chat-ventana {
+        width: calc(100vw - 40px);
+        max-height: 450px;
+        right: 20px;
+        bottom: 90px;
+    }
+    
+    .chat-mensajes {
+        max-height: 330px;
+    }
+    
+    .chatbot-button {
+        bottom: 20px;
+        right: 20px;
+        width: 100px;
+        height: 45px;
+    }
+    
+    .chatbot-button span {
+        font-size: 12px;
+    }
+}
+.mensaje-usuario {
+    background: #ffbd6c;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    text-align: right;
+    color: white;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ffbd6c;
 }
 
 .chat-input-area input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
+    border: 1px solid #ffbd6c;
+    border-radius: 25px;
 }
 
 .chat-input-area button {
     margin-left: 10px;
-    background: #b45f2b;
+    padding: 10px 20px;
+    background: rgb(184, 108, 64);
     color: white;
     border: none;
-    padding: 0 15px;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
+}
+.btn-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: rgb(184, 108, 64);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.btn-whatsapp:hover {
+    transform: scale(1.05);
+    background-color:rgb(88, 49, 28);;
+}
+.btn-whatsapp img {
+    width: 24px;
+    height: 24px;
+}
+@media (max-width: 480px) {
+    .btn-whatsapp {
+        bottom: 20px;
+        left: 20px;
+        padding: 8px 16px;
+    }
+}
+#global-loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
+            backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.5s;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        #global-loader-overlay.active-loader {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ANIMACIÓN DE CARGANDO ELEGANTE */
+        .loader-spinner {
+            width: 70px;
+            height: 70px;
+            border: 5px solid rgba(255, 189, 108, 0.3);
+            border-top: 5px solid #b86c40;
+            border-radius: 50%;
+            animation: spinLoader 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            box-shadow: 0 0 15px rgba(184, 108, 64, 0.2);
+        }
+
+        @keyframes spinLoader {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            margin-top: 28px;
+            font-family: "Sekuya", "Playfair Display", cursive;
+            letter-spacing: 4px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #7f3907 0%, #b86c40 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: softPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes softPulse {
+            0% { opacity: 0.6; letter-spacing: 4px; }
+            50% { opacity: 1; letter-spacing: 6px; }
+            100% { opacity: 0.6; letter-spacing: 4px; }
+        }
+
+        .loader-decoration {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+        .loader-decoration span {
+            width: 8px;
+            height: 8px;
+            background-color: #ffbd6c;
+            border-radius: 50%;
+            animation: bounceDot 0.8s infinite alternate;
+        }
+        .loader-decoration span:nth-child(2) { animation-delay: 0.2s; }
+        .loader-decoration span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounceDot {
+            0% { transform: translateY(0px); opacity: 0.4; }
+            100% { transform: translateY(-8px); opacity: 1; background-color: #b86c40; }
+        }
+
+        /* evita interacción durante carga */
+        body.loader-active {
+            overflow: hidden;
+        }/* ---------- CHATBOT Y SUGERENCIAS ---------- */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: auto;
+    min-width: 140px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    padding: 0 20px;
+}
+.chatbot-button span {
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', 'Sekuya', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+.chatbot-button:hover {
+    transform: scale(1.05);
+}
+.chat-ventana {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background: #fffaf5;
+    border-radius: 25px;
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    border: 1px solid #ffbd6c;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.chat-header {
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    padding: 12px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.chat-mensajes {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 380px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mensaje-bot {
+    background: #f1e6dc;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-bottom-left-radius: 5px;
+    align-self: flex-start;
+    max-width: 85%;
+}
+.mensaje-usuario {
+    background: #b86c40;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-bottom-right-radius: 5px;
+    align-self: flex-end;
+    max-width: 85%;
+}
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-top: 1px solid #ffbd6c;
+    background: white;
+}
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ffbd6c;
+}
+.chat-input-area button {
+    background: #b86c40;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* SUGERENCIAS */
+.sugerencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    justify-content: flex-start;
+}
+.sugerencia-btn {
+    background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
+    border: 1.5px solid #ffbd6c;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    color: #7f3907;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.sugerencia-btn:hover {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: white;
+    transform: translateY(-1px);
+    border-color: transparent;
+}
+.escribiendo {
+    background: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    border-bottom-left-radius: 5px;
+    max-width: 70%;
+    align-self: flex-start;
+    color: #b86c40;
+    font-size: 0.85rem;
+    font-style: italic;
+    border: 1px solid #ffbd6c;
+    animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+@media (max-width: 768px) {
+    .chat-ventana { width: calc(100vw - 40px); right: 20px; bottom: 90px; }
+    .chatbot-button { bottom: 20px; right: 20px; padding: 0 15px; min-width: 120px; height: 45px; }
+    .chatbot-button span { font-size: 0.8rem; }
+    .sugerencia-btn { padding: 4px 12px; font-size: 0.7rem; }
+}
+/* ---------- CHATBOT GLOBAL ---------- */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: auto;
+    min-width: 140px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    padding: 0 20px;
+}
+.chatbot-button span {
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', 'Sekuya', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+.chatbot-button:hover {
+    transform: scale(1.05);
+}
+.chat-ventana {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background: #fffaf5;
+    border-radius: 25px;
+    display: none;
+    flex-direction: column;
+    z-index: 9998;
+    border: 1px solid #ffbd6c;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.chat-header {
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    padding: 12px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.chat-mensajes {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 380px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mensaje-bot {
+    background: #f1e6dc;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-bottom-left-radius: 5px;
+    align-self: flex-start;
+    max-width: 85%;
+    color: #2e241f;
+}
+.mensaje-usuario {
+    background: #b86c40;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-bottom-right-radius: 5px;
+    align-self: flex-end;
+    max-width: 85%;
+}
+.chat-input-area {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-top: 1px solid #ffbd6c;
+    background: white;
+}
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ffbd6c;
+}
+.chat-input-area button {
+    background: #b86c40;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.chat-input-area button:hover {
+    background: #7f3907;
+    transform: scale(1.02);
+}
+
+/* INDICADOR "ESCRIBIENDO..." */
+.escribiendo {
+    background: #f1e6dc;
+    padding: 10px 18px;
+    border-radius: 20px;
+    border-bottom-left-radius: 5px;
+    max-width: 70%;
+    align-self: flex-start;
+    color: #b86c40;
+    font-size: 0.85rem;
+    font-style: italic;
+    border: 1px solid #ffbd6c;
+    animation: pulse 1.2s infinite;
+    margin-bottom: 5px;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+}
+
+/* SUGERENCIAS (BOTONES) */
+.sugerencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    justify-content: flex-start;
+}
+.sugerencia-btn {
+    background: linear-gradient(135deg, #fffaf5 0%, #fde9d5 100%);
+    border: 1.5px solid #ffbd6c;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    color: #7f3907;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.sugerencia-btn:hover {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    color: white;
+    transform: translateY(-2px);
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(184, 108, 64, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .chat-ventana {
+        width: calc(100vw - 40px);
+        right: 20px;
+        bottom: 90px;
+    }
+    .chatbot-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 0 15px;
+        min-width: 120px;
+        height: 45px;
+    }
+    .chatbot-button span {
+        font-size: 0.8rem;
+    }
+    .sugerencia-btn {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+    .escribiendo {
+        font-size: 0.75rem;
+        padding: 8px 14px;
+    }
+}
+/* Ajustes para los botones del header */
+#btnRegistrarseHeader, #btnIniciarSesionHeader {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+/* Fuente Sekuya - misma que usa Studio Lux */
+        @font-face {
+            font-family: 'Sekuya';
+            src: url('https://fonts.googleapis.com/css2?family=Sekuya&display=swap');
+            font-display: swap;
+        }
+        /* Estilos adicionales para el perfil de usuario en el header */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 189, 108, 0.15);
+            padding: 5px 15px 5px 10px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .user-avatar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "Playfair Display", cursive;
+            color: #7f3907;
+            cursor: pointer;
+        }
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .btn-logout {
+            background: transparent;
+            border: 1px solid #b86c40;
+            padding: 5px 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            color: #b86c40;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: "Playfair Display", cursive;
+        }
+        .btn-logout:hover {
+            background: #b86c40;
+            color: white;
+            transform: translateY(-1px);
+        }
+        body.dark .user-profile {
+            background: rgba(255, 189, 108, 0.1);
+        }
+        body.dark .user-avatar {
+            color: #ffbd6c;
+        }
+        body.dark .btn-logout {
+            border-color: #ffbd6c;
+            color: #ffbd6c;
+        }
+        body.dark .btn-logout:hover {
+            background: #ffbd6c;
+            color: #2a1f1a;
+        }
+        @media (max-width: 768px) {
+    .contenedor-imagen-click::after {
+        content: "✨ Toca aquí";
+        font-size: 0.7rem;
+        padding: 4px 12px;
+        bottom: 10px;
+    }
+}
+/* Efecto de pulso al pasar el ratón */
+.contenedor-imagen-click:hover {
+    animation: pulseGlow 1.2s infinite;
+}
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 189, 108, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 189, 108, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 189, 108, 0);
+    }
+}
+/* CHATBOT BOTÓN - CORREGIDO */
+.chatbot-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: auto;               /* Cambiado de 160px a auto para que se ajuste al contenido */
+    min-width: 160px;          /* Ancho mínimo por si el texto es corto */
+    height: 50px;
+    background: linear-gradient(135deg, #ffbd6c, #b86c40);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    padding: 0 20px;           /* Espaciado horizontal interno */
+    white-space: nowrap;       /* Evita que el texto se rompa en varias líneas */
+}
+
+.chatbot-button span {
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', 'Sekuya', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+    display: inline-block;
+    line-height: 1;            /* Asegura centrado vertical */
+}
+
+/* Ajuste para móviles (si el texto es largo, que no se salga) */
+@media (max-width: 480px) {
+    .chatbot-button {
+        padding: 0 15px;
+        min-width: 130px;
+        height: 45px;
+    }
+    .chatbot-button span {
+        font-size: 0.8rem;
+        white-space: normal;    /* Permitir salto de línea en móvil muy pequeño */
+        line-height: 1.2;
+    }
 }

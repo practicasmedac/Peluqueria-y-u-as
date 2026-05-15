@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Studio Lux | Uñas - Experiencia interactiva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="uñas.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+<div id="global-loader-overlay">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">STUDIO LUX</div>
+</div>
+
+<header>
+    <div class="contenedorheader">
+        <div class="logo-section">
+            <h1>Studio Lux</h1>
+        </div>
+        <div class="header-derecha">
+            <nav>
+                <ul class="enlaces">
+                    <li><a href="#" id="fakeInicio">Inicio</a></li>
+                    <li><a href="#" id="fakePelo">Pelo</a></li>
+                </ul>
+            </nav>
+            <button class="btn-cita-header" id="btnRegistrarseHeader">Registrarse</button>
+            <button class="btn-cita-header" id="btnIniciarSesionHeader">Iniciar sesión</button>
+            <button class="btn-cita-header" id="btnAgendarHeader">Agendar cita</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- FILA 1: Imagen izquierda, texto derecha -->
+    <div class="fila-interactiva" id="fila1">
+        <div class="contenedor-imagen-click">
+            <img src="uñas 1.jpg" alt="Uñas elegantes Studio Lux" loading="eager">
+        </div>
+        <div class="texto-acompanante">
+            <h2>Manicura de Autor</h2>
+            <h4>Donde el lujo se encuentra con el cuidado</h4>
+            <p>En Studio Lux redefinimos el concepto de belleza. No se trata solo de color, sino de salud y estructura. Utilizamos polímeros de alta resistencia y geles autonivelantes que respetan la placa natural de tu uña, garantizando un brillo espejo que perdura semanas tras semanas.</p>
+            <p>Nuestra técnica de cutícula combinada permite un acabado impecable, limpio y extremadamente duradero.</p>
+        </div>
+    </div>
+
+    <!-- Sección de valores -->
+    <div class="seccion-valores">
+        <div class="valor-item">
+            <h5>Calidad Premium</h5>
+            <p>Productos libres de tóxicos y de las mejores marcas internacionales.</p>
+        </div>
+        <div class="valor-item">
+            <h5>Higiene Rigurosa</h5>
+            <p>Protocolos de esterilización de grado médico para tu total seguridad.</p>
+        </div>
+        <div class="valor-item">
+            <h5>Estilo Único</h5>
+            <p>Asesoramiento personalizado según la forma de tus manos y tu estilo.</p>
+        </div>
+    </div>
+
+    <!-- FILA 2: Imagen derecha, texto izquierda (clase fila-reverse) -->
+    <div class="fila-interactiva fila-reverse" id="fila2">
+        <div class="texto-acompanante">
+            <h2>Brillo Infinito</h2>
+            <h4>Durabilidad que impresiona</h4>
+            <p>Nuestros acabados están diseñados para resistir el ritmo de tu día a día sin perder la intensidad del primer momento. Gracias a la tecnología de polimerización avanzada, logramos un sellado que evita las ralladuras y el desgaste prematuro en las puntas.</p>
+            <p>Cada capa se aplica con precisión milimétrica, asegurando que el grosor sea natural pero la protección sea máxima. Disfruta de unas manos impecables durante más de tres semanas con nuestra fórmula de alto rendimiento.</p>
+        </div>
+        <div class="contenedor-imagen-click">
+            <img src="uñas 3.jpg" alt="Manicura con gel brillante">
+        </div>
+    </div>
+
+    <!-- FILA 3: Imagen izquierda, texto derecha -->
+    <div class="fila-interactiva" id="fila3">
+        <div class="contenedor-imagen-click">
+            <img src="uñas 4.jpg" alt="Diseños personalizados de uñas">
+        </div>
+        <div class="texto-acompanante">
+            <h2>Nail Art Exclusivo</h2>
+            <h4>Lienzos en miniatura para tu día a día</h4>
+            <p>¿Buscas algo diferente? Nuestros artistas están especializados en técnicas de mano alzada, encapsulados de joyería y efectos cromados. Cada diseño es una pieza única creada exclusivamente para ti, adaptando las tendencias de las pasarelas a la comodidad de tu rutina.</p>
+            <p>Transformamos una simple manicura en una declaración de intenciones. Atrévete a brillar con Studio Lux.</p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer-custom">
+    <div class="redes-sociales">
+        <p style="margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.3rem;">Forma parte de nuestra comunidad</p>
+        <a href="#">@StudioLux_Premium</a>
+        <a href="#">Studio Lux Facebook</a>
+        <a href="#">TikTok Studio</a>
+    </div>
+    <p style="margin-top: 30px;">Calle de la Elegancia 123, Madrid | Citas: +34 600 000 000</p>
+    <p style="margin-top: 10px; opacity: 0.6;">&copy; 2026 STUDIO LUX - EXPERIENCIA EN UÑAS DE ALTA GAMA</p>
+</footer>
+
+<!-- ================= MODALES ================= -->
+
+<!-- MODAL REGISTRO -->
+<div id="modalRegistro" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Registrarse</h3>
+            <span class="modal-cerrar" id="cerrarRegistroBtn">&times;</span>
+        </div>
+        <form id="formRegistro">
+            <div class="campo-form">
+                <label>Nombre completo</label>
+                <input type="text" id="regNombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="regEmail" placeholder="tu@email.com" required>
+            </div>
+            <div class="campo-form">
+                <label>Teléfono</label>
+                <input type="tel" id="regTelefono" placeholder="Ej: 612345678" required>
+            </div>
+            <div class="campo-form">
+                <label>Contraseña</label>
+                <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <button type="submit" class="btn-enviar">Crear cuenta</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL INICIAR SESIÓN -->
+<div id="modalLogin" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Iniciar sesión</h3>
+            <span class="modal-cerrar" id="cerrarLoginBtn">&times;</span>
+        </div>
+        <form id="formLogin">
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="loginEmail" placeholder="tu@email.com" required>
+            </div>
+            <div class="campo-form">
+                <label>Contraseña</label>
+                <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+            </div>
+            <button type="submit" class="btn-enviar">Ingresar</button>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" id="btnOlvidePassword" style="color: #b86c40; text-decoration: none;">¿Olvidaste tu contraseña?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL RECUPERAR CONTRASEÑA -->
+<div id="modalResetPassword" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Recuperar contraseña</h3>
+            <span class="modal-cerrar" id="cerrarResetBtn">&times;</span>
+        </div>
+        <form id="formResetPassword">
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="resetEmail" placeholder="tu@email.com" required>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar correo</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL PERFIL DE USUARIO (CON MIS CITAS) -->
+<div id="modalPerfil" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Mi Perfil</h3>
+            <span class="modal-cerrar" id="cerrarPerfilBtn">&times;</span>
+        </div>
+        <form id="formPerfil">
+            <div class="campo-form">
+                <label>Nombre completo</label>
+                <input type="text" id="perfilNombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="campo-form">
+                <label>Correo electrónico</label>
+                <input type="email" id="perfilEmail" disabled style="background:#f0f0f0;">
+            </div>
+            <div class="campo-form">
+                <label>Teléfono</label>
+                <input type="tel" id="perfilTelefono" placeholder="Tu teléfono">
+            </div>
+            <div class="campo-form">
+                <label>Miembro desde</label>
+                <input type="text" id="perfilFecha" disabled style="background:#f0f0f0;">
+            </div>
+            <button type="submit" class="btn-enviar">Guardar cambios</button>
+        </form>
+        
+        <!-- SECCIÓN MIS CITAS -->
+        <div style="margin: 20px 25px 25px 25px; border-top: 1px solid #ffbd6c; padding-top: 20px;">
+            <h4 style="color:#7f3907; font-family:'Playfair Display', cursive; margin-bottom:15px;">📋 Mis próximas citas</h4>
+            <div id="misCitasContainer" style="max-height: 300px; overflow-y: auto;">
+                <p style="color:#999;">Cargando tus citas...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL AGENDAR CITA -->
+<div id="modalCita" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Agendar cita</h3>
+            <span class="modal-cerrar" id="cerrarModalBtn">&times;</span>
+        </div>
+        <form id="formCita">
+            <div class="campo-form">
+                <label>Nombre</label>
+                <input type="text" id="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="campo-form">
+                <label>Apellido</label>
+                <input type="text" id="apellido" placeholder="Tu apellido" required>
+            </div>
+            <div class="campo-form">
+                <label>Día de la cita</label>
+                <input type="date" id="fecha" required>
+            </div>
+            <div class="campo-form">
+                <label>Teléfono</label>
+                <input type="tel" id="telefono" placeholder="Ej: 612345678" required>
+            </div>
+            <button type="submit" class="btn-enviar">Confirmar cita</button>
+        </form>
+    </div>
+</div>
+
+<!-- CHATBOT -->
+<div class="chatbot-button" id="chatbotBtn">
+    <span>¿Necesitas ayuda?</span>
+</div>
+<div class="chat-ventana" id="ventanaChat">
+    <div class="chat-header">
+        <h3>✨ StudioLux Asistente</h3>
+        <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
+    </div>
+    <div class="chat-mensajes" id="contenedorMensajes">
+        <div class="mensaje-bot">🎉 ¡Hola! Soy el asistente virtual de StudioLux. Puedo ayudarte con información sobre nuestros servicios, precios, horario y ubicación. ¿Qué te gustaría saber?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
+        <button id="enviarBtn">Enviar</button>
+    </div>
+</div>
+
+<a href="https://wa.me/34123456789?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" class="btn-whatsapp" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <span>WhatsApp</span>
+</a>
+
+<!-- SCRIPTS: firebase, login y animaciones -->
+<script src="firebase.js"></script>
+<script src="login.js"></script>
+<script src="uñas.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+</html>
