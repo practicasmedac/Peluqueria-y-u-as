@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Lux · Looks de Cabello</title>
+    
+    <!-- FUENTES -->
+    <link href="https://fonts.googleapis.com/css2?family=Sekuya&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="pelo.css">
+    <link rel="stylesheet" href="interacciones-plus.css"> 
+    <!-- Firebase  -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<!-- Pantalla de carga  -->
+<div id="global-loader-overlay">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">STUDIO LUX</div>
+</div>
+<body>
+
+<header>
+    <div class="logo">Studio<span> Lux</span></div>
+    <div class="header-derecha" id="headerDerecha">
+        <a href="Peluquería.html" class="enlace-header">Inicio</a>
+        <a href="uñas4.html" class="enlace-header">Uñas</a>
+        <button class="btn-cita-header" id="btnRegistrarseHeader">Registrarse</button>
+        <button class="btn-cita-header" id="btnIniciarSesionHeader">Iniciar sesión</button>
+        <button class="btn-cita-header" id="btnAgendarHeader">Agendar cita</button>
+    </div>
+</header>
+
+<main>
+    <style>
+        /* Pantalla de carga completa */
+#global-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fffaf5, #fde9d5);
+    backdrop-filter: blur(12px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s, visibility 0.6s;
+}
+
+#global-loader-overlay.active-loader {
+    visibility: visible;
+    opacity: 1;
+}
+
+.loader-spinner {
+    width: 70px;
+    height: 70px;
+    border: 5px solid rgba(255, 189, 108, 0.3);
+    border-top: 5px solid #b86c40;
+    border-radius: 50%;
+    animation: spinLoader 1s infinite;
+}
+
+@keyframes spinLoader {
+    to { transform: rotate(360deg); }
+}
+
+.loader-text {
+    margin-top: 20px;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #7f3907, #b86c40);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 1.2rem;
+}
+
+body.loader-active {
+    overflow: hidden;
+}
+    </style>
+    <div class="intro">
+        <h1>Nuestros  looks  de  cabello</h1>
+        <p>Cada estilo tiene su historia y su técnica</p>
+    </div>
+
+    <div class="grid-looks">
+        <!-- 1. PELIRROJA CORTO -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/1200x/65/b8/b6/65b8b63e38d745861db24dd102f1110c.jpg" alt="Pelo corto pelirrojo">
+            </div>
+            <div class="info-look">
+                <h3>Corte Pixie Cobrizo</h3>
+                <p>Un estilo atrevido y lleno de personalidad. El corte pixie favorece rostros pequeños y resalta los pómulos. El color cobrizo intenso aporta calidez y luz, perfecto para quienes buscan un cambio radical sin perder feminidad. Es un look de bajo mantenimiento que se ve genial en cualquier ocasión, desde la oficina hasta una noche de fiesta. Además, el tono cobrizo refleja la luz de manera espectacular, dando un brillo natural que ilumina todo el rostro.</p>
+                <span class="etiqueta-texto">Cortes · Color</span>
+            </div>
+        </div>
+
+        <!-- 2. HIDRATACIÓN INTENSA LISO -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/1200x/09/10/dc/0910dc029f5a6863223bcfdd2fafb7ba.jpg" alt="Hidratación intensa pelo liso">
+            </div>
+            <div class="info-look">
+                <h3>Hidratación Profunda</h3>
+                <p>Tratamiento reconstructor para cabello liso y dañado. Sella la cutícula, aporta brillo espejo y elimina el encrespamiento. Ideal para melenas que han sufrido tintes, decoloraciones o el uso frecuente de herramientas de calor. Nuestro tratamiento incluye una mascarilla de keratina vegetal y un sellado con calor que penetra hasta la fibra capilar. El resultado es un cabello sedoso, manejable y con un brillo espectacular que dura semanas. Notarás la diferencia desde el primer lavado.</p>
+                <span class="etiqueta-texto">Tratamiento · Brillo</span>
+            </div>
+        </div>
+
+        <!-- 3. CORTE PIXIE -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/1200x/5e/58/27/5e5827f363bdbbe5a30869d0c3f8b312.jpg" alt="Corte pixie despeinado">
+            </div>
+            <div class="info-look">
+                <h3>Pixie Despeinado</h3>
+                <p>Versión moderna del pixie clásico. Capas desconectadas que dan movimiento y textura, creando un look desenfadado pero sofisticado. Muy fácil de peinar, solo necesitas un poco de cera mate para definir las puntas y crear volumen en la parte superior. Favorece especialmente a caras ovaladas y alargadas, equilibrando las facciones. Es un corte que transmite confianza y personalidad, perfecto para quien quiere un cambio radical sin complicaciones en el día a día.</p>
+                <span class="etiqueta-texto">Corte · Estilo urbano</span>
+            </div>
+        </div>
+
+        <!-- 4. PELO RIZADO -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/736x/44/60/9f/44609f57c1e731c683604446ec47746f.jpg" alt="Pelo rizado definido">
+            </div>
+            <div class="info-look">
+                <h3>Rizos Definidos</h3>
+                <p>Trabajamos la curva natural del cabello rizado con productos libres de alcohol y sulfatos. Aplicamos la técnica curly hair method que consiste en hidratar en profundidad, peinar el cabello mojado y secar con difusor para respetar la forma natural del rizo. Conseguimos rizos elásticos, sin encrespamiento y con mucha memoria. Además, te enseñamos la rutina de mantenimiento para que puedas lucir tus rizos perfectos en casa. Olvídate del frizz y presume de rizos con personalidad.</p>
+                <span class="etiqueta-texto">Rizos · Volumen</span>
+            </div>
+        </div>
+
+        <!-- 5. TRENZAS -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/736x/81/7a/44/817a44061238444e2539ff2c5e8a505c.jpg" alt="Trenzas laterales">
+            </div>
+            <div class="info-look">
+                <h3>Trenzas Bohemias</h3>
+                <p>Trenzas laterales deshechas que dan un aire romántico y relajado. Ideales para bodas, festivales o un look especial sin complicaciones. La técnica consiste en hacer una trenza holgada, tirando ligeramente de los mechones para crear volumen y textura. Combinan perfectamente con recogidos bajos o medias melenas, y se pueden adornar con flores naturales o horquillas decorativas. Aportan textura y un toque muy femenino que nunca pasa de moda. Ideales para invitadas o para la propia novia.</p>
+                <span class="etiqueta-texto">Peinados · Eventos</span>
+            </div>
+        </div>
+
+        <!-- 6. TINTE BALAYAGE -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/736x/7e/ee/e4/7eeee4cd98d059f2613902f672f4154b.jpg" alt="Tinte chocolate con reflejos">
+            </div>
+            <div class="info-look">
+                <h3>Balayage Chocolate</h3>
+                <p>Coloración a mano alzada que degrada desde un marrón chocolate intenso en raíces hasta reflejos miel y caramelo en puntas. Es una técnica francesa que imita el efecto del sol sobre el cabello, creando un acabado muy natural y luminoso. Una de sus mayores ventajas es que no necesita retoques frecuentes, ya que el crecimiento se integra de forma suave. Aporta muchísima luz al rostro y es perfecta para morenas que quieren suavizar su mirada sin perder profundidad. El mantenimiento es mínimo y el resultado es espectacular.</p>
+                <span class="etiqueta-texto">Color · Balayage</span>
+            </div>
+        </div>
+
+        <!-- 7. TINTE AZUL -->
+        <div class="tarjeta-look">
+            <div class="contenedor-imagen-deco">
+                <img src="https://i.pinimg.com/736x/07/1e/8d/071e8ddd70dfc1d5c7800dff6adc7d2a.jpg" alt="Tinte azul fantasía">
+            </div>
+            <div class="info-look">
+                <h3>Azul Eléctrico</h3>
+                <p>Un color fantasía que transmite fuerza, creatividad y personalidad. El azul eléctrico es una de las tendencias más fuertes en coloración creativa. Para conseguir este tono vibrante, realizamos una decoloración previa respetando la salud de tu cabello, aplicamos tratamientos protectores y finalmente fijamos el pigmento azul de alta duración. El resultado es un color intenso, duradero hasta 8-10 lavados y que desvanece de forma bonita hacia tonos pastel. Ideal para quienes quieren salir de lo común y expresar su estilo más auténtico. Atrévete a brillar con un color único.</p>
+                <span class="etiqueta-texto">Color · Fantasía</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="seccion-contacto">
+        <h3>¿Quieres un look personalizado?</h3>
+        <p>Teléfono: 600 123 456 · Dirección: Calle de la Melena 123, Madrid</p>
+        <button class="btn-cita-header" id="btnAgendarFooter">Reserva tu cita</button>
+    </div>
+</main>
+
+<footer>
+    <p>Studio Lux · Trabajo artesanal y trato cercano</p>
+    <p>2025 - Todos los estilos tienen su historia</p>
+</footer>
+
+<!-- ================= MODALES (estructura original) ================= -->
+
+<div id="modalRegistro" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Registrarse</h3>
+            <span class="modal-cerrar" id="cerrarRegistroBtn">&times;</span>
+        </div>
+        <form id="formRegistro">
+            <div class="campo-form"><label>Nombre completo</label><input type="text" id="regNombre" placeholder="Tu nombre completo" required></div>
+            <div class="campo-form"><label>Correo electrónico</label><input type="email" id="regEmail" placeholder="tu@email.com" required></div>
+            <div class="campo-form"><label>Teléfono</label><input type="tel" id="regTelefono" placeholder="Ej: 612345678" required></div>
+            <div class="campo-form"><label>Contraseña</label><input type="password" id="regPassword" placeholder="Mínimo 6 caracteres" required></div>
+            <button type="submit" class="btn-enviar">Crear cuenta</button>
+        </form>
+    </div>
+</div>
+
+<div id="modalLogin" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>Iniciar sesión</h3>
+            <span class="modal-cerrar" id="cerrarLoginBtn">&times;</span>
+        </div>
+        <form id="formLogin">
+            <div class="campo-form"><label>Correo electrónico</label><input type="email" id="loginEmail" placeholder="tu@email.com" required></div>
+            <div class="campo-form"><label>Contraseña</label><input type="password" id="loginPassword" placeholder="Tu contraseña" required></div>
+            <button type="submit" class="btn-enviar">Ingresar</button>
+            <div style="text-align: center; margin-top: 15px;"><a href="#" id="btnOlvidePassword" style="color: #b86c40; text-decoration: none;">¿Olvidaste tu contraseña?</a></div>
+        </form>
+    </div>
+</div>
+
+<div id="modalResetPassword" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header"><h3>Recuperar contraseña</h3><span class="modal-cerrar" id="cerrarResetBtn">&times;</span></div>
+        <form id="formResetPassword">
+            <div class="campo-form"><label>Correo electrónico</label><input type="email" id="resetEmail" placeholder="tu@email.com" required></div>
+            <button type="submit" class="btn-enviar">Enviar correo</button>
+        </form>
+    </div>
+</div>
+
+<div id="modalPerfil" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header"><h3>Mi Perfil</h3><span class="modal-cerrar" id="cerrarPerfilBtn">&times;</span></div>
+        <form id="formPerfil">
+            <div class="campo-form"><label>Nombre completo</label><input type="text" id="perfilNombre" placeholder="Tu nombre" required></div>
+            <div class="campo-form"><label>Correo electrónico</label><input type="email" id="perfilEmail" disabled style="background:#f0f0f0;"></div>
+            <div class="campo-form"><label>Teléfono</label><input type="tel" id="perfilTelefono" placeholder="Tu teléfono"></div>
+            <div class="campo-form"><label>Miembro desde</label><input type="text" id="perfilFecha" disabled style="background:#f0f0f0;"></div>
+            <button type="submit" class="btn-enviar">Guardar cambios</button>
+        </form>
+        <div style="margin: 20px 25px 25px 25px; border-top: 1px solid #ffbd6c; padding-top: 20px;">
+            <h4 style="color:#7f3907; font-family:'Playfair Display', cursive; margin-bottom:15px;">📋 Mis próximas citas</h4>
+            <div id="misCitasContainer" style="max-height: 300px; overflow-y: auto;"><p style="color:#999;">Cargando tus citas...</p></div>
+        </div>
+    </div>
+</div>
+
+<div id="modalCita" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header"><h3>Agendar cita</h3><span class="modal-cerrar" id="cerrarModalBtn">&times;</span></div>
+        <form id="formCita">
+            <div class="campo-form"><label>Nombre</label><input type="text" id="nombre" placeholder="Tu nombre" required></div>
+            <div class="campo-form"><label>Apellido</label><input type="text" id="apellido" placeholder="Tu apellido" required></div>
+            <div class="campo-form"><label>Día de la cita</label><input type="date" id="fecha" required></div>
+            <div class="campo-form"><label>Teléfono</label><input type="tel" id="telefono" placeholder="Ej: 612345678" required></div>
+            <button type="submit" class="btn-enviar">Confirmar cita</button>
+        </form>
+    </div>
+</div>
+
+<!-- CHATBOT (estructura HTML) -->
+<div class="chatbot-button" id="chatbotBtn">
+    <span>¿Necesitas ayuda?</span>
+</div>
+<div class="chat-ventana" id="ventanaChat">
+    <div class="chat-header">
+        <h3>✨ StudioLux Asistente</h3>
+        <span class="chat-cerrar" id="cerrarChatBtn">&times;</span>
+    </div>
+    <div class="chat-mensajes" id="contenedorMensajes">
+        <!-- Los mensajes se generarán dinámicamente -->
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="inputUsuario" placeholder="Escribe tu mensaje..." autocomplete="off">
+        <button id="enviarBtn">Enviar</button>
+    </div>
+</div>
+
+<a href="https://wa.me/34123456789?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios" class="btn-whatsapp" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <span>WhatsApp</span>
+</a>
+
+<!-- SCRIPTS: Firebase + Lógica de Login -->
+<script>
+    // ==================== CONFIGURACIÓN FIREBASE ====================
+    const firebaseConfig = {
+        apiKey: "AIzaSyALTEWvrAe0wZ2uw3n35jKKdPrQ0M3jxXc",
+        authDomain: "peluqueria-y-manicura.firebaseapp.com",
+        projectId: "peluqueria-y-manicura",
+        storageBucket: "peluqueria-y-manicura.firebasestorage.app",
+        messagingSenderId: "967796738416",
+        appId: "1:967796738416:web:6b42c6b02139b686ad27b5"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ========== NOTIFICACIONES ==========
+    function mostrarMensaje(texto, tipo = 'exito') {
+        const div = document.createElement('div');
+        div.textContent = texto;
+        div.style.cssText = `
+            position: fixed; top: 100px; right: 20px;
+            background: ${tipo === 'exito' ? '#4CAF50' : '#f44336'};
+            color: white; padding: 12px 24px; border-radius: 8px;
+            z-index: 10000;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+        `;
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 5000);
+    }
+
+    // ========== MODALES ==========
+    function abrirModal(modal) {
+        if (modal) {
+            modal.classList.add('modal-visible');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function cerrarModal(modal) {
+        if (modal) {
+            modal.classList.remove('modal-visible');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // ========== ACTUALIZAR INTERFAZ USUARIO ==========
+    function actualizarInterfazUsuario() {
+        const usuario = auth.currentUser;
+        const headerDerecha = document.querySelector('.header-derecha');
+        const perfilExistente = document.getElementById('userProfileDisplay');
+        if (perfilExistente) perfilExistente.remove();
+        
+        if (usuario && usuario.emailVerified) {
+            const nombre = usuario.displayName || usuario.email.split('@')[0];
+            const userSpan = document.createElement('span');
+            userSpan.id = 'userProfileDisplay';
+            userSpan.style.cssText = 'color:#7f3907; font-weight:bold; background:#fde9d5; padding:5px 15px; border-radius:50px; margin-right:10px; font-family:"Playfair Display", cursive; letter-spacing:1px; cursor:pointer;';
+            userSpan.innerHTML = `👤 ${nombre}`;
+            userSpan.onclick = async () => {
+                await cargarPerfil();
+                abrirModal(modalPerfil);
+            };
+            const logoutBtn = document.createElement('button');
+            logoutBtn.textContent = 'Salir';
+            logoutBtn.className = 'btn-cita-header';
+            logoutBtn.id = 'btnCerrarSesion';
+            logoutBtn.style.cssText = 'padding: 6px 18px; font-family:"Playfair Display", cursive; letter-spacing:2px; background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%); border: none; border-radius: 50px; cursor: pointer; color: #fffaf5; box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);';
+            logoutBtn.onclick = async function() {
+                await auth.signOut();
+                mostrarMensaje('👋 Sesión cerrada');
+                location.reload();
+            };
+            const btnReg = document.getElementById('btnRegistrarseHeader');
+            const btnLog = document.getElementById('btnIniciarSesionHeader');
+            if (btnReg) btnReg.style.display = 'none';
+            if (btnLog) btnLog.style.display = 'none';
+            const btnAgendar = document.getElementById('btnAgendarHeader');
+            headerDerecha.insertBefore(userSpan, btnAgendar);
+            headerDerecha.insertBefore(logoutBtn, btnAgendar);
+        } else {
+            const btnReg = document.getElementById('btnRegistrarseHeader');
+            const btnLog = document.getElementById('btnIniciarSesionHeader');
+            if (btnReg) btnReg.style.display = 'inline-block';
+            if (btnLog) btnLog.style.display = 'inline-block';
+            if (auth.currentUser && !auth.currentUser.emailVerified) {
+                mostrarMensaje('⚠️ Por favor, verifica tu correo electrónico.', 'error');
+            }
+        }
+    }
+
+    // ========== REGISTRO ==========
+    const modalRegistro = document.getElementById('modalRegistro');
+    const btnRegistrar = document.getElementById('btnRegistrarseHeader');
+    const cerrarRegistro = document.getElementById('cerrarRegistroBtn');
+    const formRegistro = document.getElementById('formRegistro');
+    if (btnRegistrar) btnRegistrar.addEventListener('click', (e) => { e.preventDefault(); abrirModal(modalRegistro); });
+    if (cerrarRegistro) cerrarRegistro.addEventListener('click', () => cerrarModal(modalRegistro));
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('regNombre').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const telefono = document.getElementById('regTelefono').value.trim();
+            const password = document.getElementById('regPassword').value;
+            if (!nombre || !email || !telefono || !password) return mostrarMensaje('❌ Completa todos los campos', 'error');
+            if (password.length < 6) return mostrarMensaje('❌ Contraseña mínima 6 caracteres', 'error');
+            if (!/^\d{9,}$/.test(telefono)) return mostrarMensaje('❌ Teléfono inválido', 'error');
+            try {
+                const resultado = await auth.createUserWithEmailAndPassword(email, password);
+                await resultado.user.updateProfile({ displayName: nombre });
+                await resultado.user.sendEmailVerification();
+                await db.collection('usuarios').doc(resultado.user.uid).set({
+                    nombre, email, telefono, fechaRegistro: new Date(), emailVerificado: false
+                });
+                mostrarMensaje(`✅ Registro exitoso. Enviamos un correo de verificación a ${email}.`);
+                formRegistro.reset();
+                cerrarModal(modalRegistro);
+                await auth.signOut();
+            } catch(error) {
+                if (error.code === 'auth/email-already-in-use') mostrarMensaje('❌ Correo ya registrado', 'error');
+                else mostrarMensaje('❌ Error: ' + error.message, 'error');
+            }
+        });
+    }
+
+    // ========== INICIAR SESIÓN ==========
+    const modalLogin = document.getElementById('modalLogin');
+    const btnLogin = document.getElementById('btnIniciarSesionHeader');
+    const cerrarLogin = document.getElementById('cerrarLoginBtn');
+    const formLogin = document.getElementById('formLogin');
+    if (btnLogin) btnLogin.addEventListener('click', (e) => { e.preventDefault(); abrirModal(modalLogin); });
+    if (cerrarLogin) cerrarLogin.addEventListener('click', () => cerrarModal(modalLogin));
+    if (formLogin) {
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            if (!email || !password) return mostrarMensaje('❌ Completa todos los campos', 'error');
+            try {
+                const resultado = await auth.signInWithEmailAndPassword(email, password);
+                if (!resultado.user.emailVerified) {
+                    mostrarMensaje('⚠️ Verifica tu correo antes de iniciar sesión.', 'error');
+                    await auth.signOut();
+                    return;
+                }
+                mostrarMensaje(`✅ ¡Bienvenid@ ${resultado.user.displayName || email}!`);
+                formLogin.reset();
+                cerrarModal(modalLogin);
+                actualizarInterfazUsuario();
+            } catch(error) {
+                mostrarMensaje('❌ Error al iniciar sesión. Verifica tus credenciales.', 'error');
+            }
+        });
+    }
+
+    // ========== RECUPERAR CONTRASEÑA ==========
+    const modalReset = document.getElementById('modalResetPassword');
+    const btnOlvide = document.getElementById('btnOlvidePassword');
+    const cerrarReset = document.getElementById('cerrarResetBtn');
+    const formReset = document.getElementById('formResetPassword');
+    if (btnOlvide) btnOlvide.addEventListener('click', (e) => { e.preventDefault(); cerrarModal(modalLogin); abrirModal(modalReset); });
+    if (cerrarReset) cerrarReset.addEventListener('click', () => cerrarModal(modalReset));
+    if (formReset) {
+        formReset.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value.trim();
+            if (!email) return mostrarMensaje('❌ Introduce tu correo', 'error');
+            try {
+                await auth.sendPasswordResetEmail(email);
+                mostrarMensaje(`✅ Se envió un enlace de recuperación a ${email}.`);
+                formReset.reset();
+                cerrarModal(modalReset);
+            } catch(error) { mostrarMensaje('❌ Error: ' + error.message, 'error'); }
+        });
+    }
+
+    // ========== PERFIL Y CITAS ==========
+    const modalPerfil = document.getElementById('modalPerfil');
+    const cerrarPerfil = document.getElementById('cerrarPerfilBtn');
+    const formPerfil = document.getElementById('formPerfil');
+
+    async function cargarMisCitas() {
+        const usuario = auth.currentUser;
+        if (!usuario) return;
+        const container = document.getElementById('misCitasContainer');
+        if (!container) return;
+        const hoy = new Date().toISOString().split('T')[0];
+        try {
+            const snapshot = await db.collection('citas').where('usuarioEmail', '==', usuario.email).get();
+            const citasFuturas = [];
+            snapshot.forEach(doc => {
+                const cita = doc.data();
+                if (cita.fecha >= hoy && (cita.estado === 'pendiente' || cita.estado === 'confirmada')) {
+                    citasFuturas.push({ id: doc.id, ...cita });
+                }
+            });
+            citasFuturas.sort((a, b) => a.fecha.localeCompare(b.fecha));
+            if (citasFuturas.length === 0) {
+                container.innerHTML = '<p style="color:#999;">No tienes citas próximas.</p>';
+                return;
+            }
+            let html = '<div style="display:flex; flex-direction:column; gap:15px;">';
+            citasFuturas.forEach(cita => {
+                const fechaFormateada = new Date(cita.fecha).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+                html += `<div style="background:#fef5e8; border-radius:15px; padding:15px; border-left:4px solid #b86c40;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                                <div><strong style="color:#7f3907;">📅 ${fechaFormateada}</strong><br>👤 ${cita.nombre} ${cita.apellido || ''}<br>📞 ${cita.telefono}<br><span style="font-size:12px;">${cita.estado === 'pendiente' ? '⏳ Pendiente' : '✅ Confirmada'}</span></div>
+                                <button onclick="cancelarCita('${cita.id}')" style="background:#f44336; color:white; border:none; padding:8px 20px; border-radius:25px; cursor:pointer;">❌ Cancelar</button>
+                            </div>
+                        </div>`;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        } catch(error) { container.innerHTML = '<p style="color:#f44336;">Error al cargar tus citas.</p>'; }
+    }
+
+    window.cancelarCita = async function(citaId) {
+        if (!confirm('¿Cancelar esta cita?')) return;
+        try {
+            await db.collection('citas').doc(citaId).update({ estado: 'cancelada' });
+            mostrarMensaje('✅ Cita cancelada');
+            await cargarMisCitas();
+        } catch(error) { mostrarMensaje('❌ Error al cancelar', 'error'); }
+    };
+
+    async function cargarPerfil() {
+        const usuario = auth.currentUser;
+        if (!usuario) return;
+        document.getElementById('perfilNombre').value = usuario.displayName || '';
+        document.getElementById('perfilEmail').value = usuario.email || '';
+        const userDoc = await db.collection('usuarios').doc(usuario.uid).get();
+        if (userDoc.exists) {
+            const data = userDoc.data();
+            document.getElementById('perfilTelefono').value = data.telefono || '';
+            if (data.fechaRegistro) {
+                let fecha = data.fechaRegistro.seconds ? new Date(data.fechaRegistro.seconds * 1000) : new Date(data.fechaRegistro);
+                document.getElementById('perfilFecha').value = fecha.toLocaleDateString('es-ES');
+            }
+        }
+        await cargarMisCitas();
+    }
+
+    if (formPerfil) {
+        formPerfil.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usuario = auth.currentUser;
+            const nuevoNombre = document.getElementById('perfilNombre').value.trim();
+            const nuevoTelefono = document.getElementById('perfilTelefono').value.trim();
+            try {
+                await usuario.updateProfile({ displayName: nuevoNombre });
+                await db.collection('usuarios').doc(usuario.uid).update({ nombre: nuevoNombre, telefono: nuevoTelefono });
+                mostrarMensaje('✅ Perfil actualizado');
+                cerrarModal(modalPerfil);
+                location.reload();
+            } catch(error) { mostrarMensaje('❌ Error: ' + error.message, 'error'); }
+        });
+    }
+    if (cerrarPerfil) cerrarPerfil.addEventListener('click', () => cerrarModal(modalPerfil));
+
+    // ========== AGENDAR CITA ==========
+    const modalCita = document.getElementById('modalCita');
+    const btnAgendar = document.getElementById('btnAgendarHeader');
+    const cerrarModalCita = document.getElementById('cerrarModalBtn');
+    const formCita = document.getElementById('formCita');
+    if (btnAgendar) {
+        btnAgendar.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!auth.currentUser || !auth.currentUser.emailVerified) {
+                mostrarMensaje('⚠️ Debes iniciar sesión y verificar tu correo', 'error');
+                abrirModal(modalLogin);
+                return;
+            }
+            abrirModal(modalCita);
+        });
+    }
+    if (cerrarModalCita) cerrarModalCita.addEventListener('click', () => cerrarModal(modalCita));
+    if (formCita) {
+        formCita.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usuario = auth.currentUser;
+            if (!usuario || !usuario.emailVerified) {
+                mostrarMensaje('⚠️ Debes iniciar sesión', 'error');
+                cerrarModal(modalCita);
+                abrirModal(modalLogin);
+                return;
+            }
+            const nombre = document.getElementById('nombre').value.trim();
+            const apellido = document.getElementById('apellido').value.trim();
+            const fecha = document.getElementById('fecha').value;
+            const telefono = document.getElementById('telefono').value.trim();
+            if (!nombre || !apellido || !fecha || !telefono) return mostrarMensaje('❌ Completa todos los campos', 'error');
+            if (!/^\d{9,}$/.test(telefono)) return mostrarMensaje('❌ Teléfono inválido', 'error');
+            if (new Date(fecha) < new Date().setHours(0,0,0,0)) return mostrarMensaje('❌ La fecha no puede ser anterior a hoy', 'error');
+            try {
+                await db.collection('citas').add({
+                    nombre, apellido, fecha, telefono, usuarioId: usuario.uid, usuarioEmail: usuario.email, estado: 'pendiente', fechaRegistro: new Date()
+                });
+                mostrarMensaje(`✅ Cita agendada para ${new Date(fecha).toLocaleDateString('es-ES')}`);
+                formCita.reset();
+                cerrarModal(modalCita);
+            } catch(error) { mostrarMensaje('❌ Error al guardar la cita', 'error'); }
+        });
+    }
+
+    // Cerrar modales al hacer clic fuera
+    window.addEventListener('click', (e) => {
+        if (e.target === modalRegistro) cerrarModal(modalRegistro);
+        if (e.target === modalLogin) cerrarModal(modalLogin);
+        if (e.target === modalReset) cerrarModal(modalReset);
+        if (e.target === modalPerfil) cerrarModal(modalPerfil);
+        if (e.target === modalCita) cerrarModal(modalCita);
+    });
+
+    auth.onAuthStateChanged(() => { actualizarInterfazUsuario(); });
+    document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
+
+    // ========== ANIMACIONES SCROLL Y ESCRITURA TÍTULO (originales) ==========
+    (function() {
+        const elementos = document.querySelectorAll('.intro h1, .intro p, .info-look, .seccion-contacto h3, .seccion-contacto p, .seccion-contacto button');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revelado'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.9, rootMargin: "0px 0px -80px 0px" });
+        elementos.forEach(el => observer.observe(el));
+        setTimeout(() => {
+            elementos.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('revelado'); observer.unobserve(el); } });
+        }, 200);
+    })();
+
+    const titulo = document.querySelector('.intro h1');
+    if(titulo && !titulo.getAttribute('data-typed')) {
+        titulo.setAttribute('data-typed', 'true');
+        const textoOriginal = titulo.innerText;
+        titulo.innerText = '';
+        let i = 0;
+        const escribir = setInterval(() => {
+            titulo.innerText += textoOriginal[i];
+            i++;
+            if(i >= textoOriginal.length) clearInterval(escribir);
+        }, 100);
+    }
+
+    // Loader (sin modificar)
+    (function() {
+        let loaderOverlay = document.getElementById('global-loader-overlay');
+        if (!loaderOverlay) {
+            const div = document.createElement('div');
+            div.id = 'global-loader-overlay';
+            div.innerHTML = `<div class="loader-spinner"></div><div class="loader-text">STUDIO LUX<span class="loader-dots"></span></div><div class="loader-decoration"><span></span><span></span><span></span></div>`;
+            document.body.appendChild(div);
+            loaderOverlay = div;
+        }
+        function hideLoader() {
+            if (loaderOverlay) {
+                loaderOverlay.classList.remove('active-loader');
+                document.body.classList.remove('loader-active');
+            }
+        }
+        window.addEventListener('load', () => setTimeout(hideLoader, 100));
+        window.addEventListener('pageshow', (event) => { if (event.persisted) hideLoader(); });
+    })();
+</script>
+
+<!-- SCRIPT DEL CHATBOT (totalmente funcional, sin depender de chatbot.js externo) -->
+<script>
+    (function() {
+        // Esperar a que el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', iniciarChatbot);
+        } else {
+            iniciarChatbot();
+        }
+
+        function iniciarChatbot() {
+            const chatbotBtn = document.getElementById('chatbotBtn');
+            const ventanaChat = document.getElementById('ventanaChat');
+            const cerrarChat = document.getElementById('cerrarChatBtn');
+            const inputUsuario = document.getElementById('inputUsuario');
+            const enviarBtn = document.getElementById('enviarBtn');
+            const contenedorMsgs = document.getElementById('contenedorMensajes');
+
+            if (!chatbotBtn || !ventanaChat) return;
+
+            // Abrir / cerrar ventana
+            chatbotBtn.addEventListener('click', () => {
+                ventanaChat.style.display = 'flex';
+                inputUsuario.focus();
+                // Si no hay mensajes, mostrar el mensaje de bienvenida con sugerencias
+                if (contenedorMsgs.children.length === 0) {
+                    mostrarBienvenida();
+                }
+            });
+            cerrarChat.addEventListener('click', () => {
+                ventanaChat.style.display = 'none';
+            });
+
+            // Función para agregar mensaje
+            function addMensaje(texto, tipo) {
+                const div = document.createElement('div');
+                div.className = tipo === 'user' ? 'mensaje-usuario' : 'mensaje-bot';
+                div.innerText = texto;
+                contenedorMsgs.appendChild(div);
+                contenedorMsgs.scrollTop = contenedorMsgs.scrollHeight;
+            }
+
+            // Indicador "escribiendo..."
+            function mostrarEscribiendo() {
+                if (document.getElementById('escribiendo-indicador')) return;
+                const div = document.createElement('div');
+                div.id = 'escribiendo-indicador';
+                div.className = 'escribiendo';
+                div.innerText = '✍️ Asistente está escribiendo...';
+                contenedorMsgs.appendChild(div);
+                contenedorMsgs.scrollTop = contenedorMsgs.scrollHeight;
+            }
+            function ocultarEscribiendo() {
+                const el = document.getElementById('escribiendo-indicador');
+                if (el) el.remove();
+            }
+
+            // Respuestas según la consulta
+            function obtenerRespuesta(consulta) {
+                const respuestas = {
+                    'corte': '✂️ Ofrecemos cortes modernos, clásicos y personalizados. Precios desde 10€. ¿Te gustaría reservar una cita?',
+                    'color': '🎨 Coloración: tintes, reflejos, balayage, mechas. Desde 30€.',
+                    'manicura': '💅 Manicura semipermanente (20€), gel (35€) y acrílico (45€).',
+                    'tratamiento': '💆 Tratamientos capilares: keratina, alisado, hidratación intensiva. Consulta precios.',
+                    'depilacion': '🪒 Depilación con cera: piernas (15€), axilas (8€), ingles (12€).',
+                    'precios': '💰 Precios: Corte 10€, Coloración 30€, Manicura 20€, Depilación desde 8€.',
+                    'horario': '🕒 Horario: Lunes a Viernes 9:00-20:00, Sábados 10:00-16:00. Domingos cerrado.',
+                    'ubicacion': '📍 Estamos en Calle de la Melena 123, Madrid. ¡Te esperamos!',
+                    'default': '🎉 ¡Hola! Soy el asistente virtual de StudioLux. Puedo ayudarte con información sobre nuestros servicios, precios, horario y ubicación. ¿Qué te gustaría saber?'
+                };
+                return respuestas[consulta] || respuestas.default;
+            }
+
+            // Mostrar mensaje de bienvenida con botones de sugerencias
+            function mostrarBienvenida() {
+                const divBienvenida = document.createElement('div');
+                divBienvenida.className = 'mensaje-bot';
+                divBienvenida.innerHTML = `🎉 ¡Hola! Soy el asistente virtual de StudioLux. Puedo ayudarte con información sobre nuestros servicios, precios, horario y ubicación. ¿Qué te gustaría saber?
+                    <div class="sugerencias">
+                        <button class="sugerencia-btn" data-consulta="corte">✂️ Corte de pelo</button>
+                        <button class="sugerencia-btn" data-consulta="color">🎨 Coloración</button>
+                        <button class="sugerencia-btn" data-consulta="manicura">💅 Manicura</button>
+                        <button class="sugerencia-btn" data-consulta="tratamiento">💆 Tratamientos</button>
+                        <button class="sugerencia-btn" data-consulta="depilacion">🪒 Depilación</button>
+                        <button class="sugerencia-btn" data-consulta="precios">💰 Precios</button>
+                        <button class="sugerencia-btn" data-consulta="horario">⏰ Horario</button>
+                        <button class="sugerencia-btn" data-consulta="ubicacion">📍 Ubicación</button>
+                    </div>`;
+                contenedorMsgs.appendChild(divBienvenida);
+                contenedorMsgs.scrollTop = contenedorMsgs.scrollHeight;
+            }
+
+            // Manejar clic en los botones de sugerencia (delegación)
+            contenedorMsgs.addEventListener('click', (e) => {
+                const btn = e.target.closest('.sugerencia-btn');
+                if (!btn) return;
+                const consulta = btn.getAttribute('data-consulta');
+                if (!consulta) return;
+                const textoBoton = btn.innerText.trim();
+                addMensaje(textoBoton, 'user');
+                mostrarEscribiendo();
+                setTimeout(() => {
+                    ocultarEscribiendo();
+                    const respuesta = obtenerRespuesta(consulta);
+                    addMensaje(respuesta, 'bot');
+                }, 600);
+            });
+
+            // Enviar mensaje escrito por el usuario
+            function enviarMensajeEscrito() {
+                const texto = inputUsuario.value.trim();
+                if (texto === '') return;
+                addMensaje(texto, 'user');
+                inputUsuario.value = '';
+                mostrarEscribiendo();
+
+                setTimeout(() => {
+                    ocultarEscribiendo();
+                    const textoLower = texto.toLowerCase();
+                    let consulta = 'default';
+                    if (textoLower.includes('corte') || textoLower.includes('pixie')) consulta = 'corte';
+                    else if (textoLower.includes('color') || textoLower.includes('tinte') || textoLower.includes('balayage')) consulta = 'color';
+                    else if (textoLower.includes('uña') || textoLower.includes('manicura') || textoLower.includes('semi')) consulta = 'manicura';
+                    else if (textoLower.includes('tratamiento') || textoLower.includes('hidratación') || textoLower.includes('keratina')) consulta = 'tratamiento';
+                    else if (textoLower.includes('depilación') || textoLower.includes('depilar')) consulta = 'depilacion';
+                    else if (textoLower.includes('precio') || textoLower.includes('cuesta') || textoLower.includes('tarifa')) consulta = 'precios';
+                    else if (textoLower.includes('horario') || textoLower.includes('abren') || textoLower.includes('días')) consulta = 'horario';
+                    else if (textoLower.includes('ubicación') || textoLower.includes('dirección') || textoLower.includes('donde')) consulta = 'ubicacion';
+                    
+                    const respuesta = obtenerRespuesta(consulta);
+                    addMensaje(respuesta, 'bot');
+                }, 700);
+            }
+
+            enviarBtn.addEventListener('click', enviarMensajeEscrito);
+            inputUsuario.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') enviarMensajeEscrito();
+            });
+        }
+    })();
+</script>
+<script>
+// Mostrar / ocultar pantalla de carga
+const loader = document.getElementById('global-loader-overlay');
+
+function showLoader() {
+    if (loader) {
+        loader.classList.add('active-loader');
+        document.body.classList.add('loader-active');
+    }
+}
+
+function hideLoader() {
+    if (loader) {
+        loader.classList.remove('active-loader');
+        document.body.classList.remove('loader-active');
+    }
+}
+
+
+document.querySelectorAll('a').forEach(link => {
+    // Evita aplicarlo a enlaces externos, anclas, WhatsApp, etc.
+    const href = link.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('http') || href.startsWith('#') || href.startsWith('javascript:') ||
+        href.startsWith('mailto:') || href.startsWith('tel:') || link.classList.contains('btn-whatsapp')) {
+        return;
+    }
+
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showLoader();
+        setTimeout(() => {
+            window.location.href = href;
+        }, 1500); // Tiempo para que se vea la animación
+    });
+});
+
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        hideLoader();
+    }, 300);
+});
+</script>
+<script>
+(function particulasSuaves() {
+    const container = document.createElement('div');
+    container.id = 'particles-container';
+    document.body.appendChild(container);
+    
+    // Colores suaves y elegantes (para fondo claro)
+    const colores = [
+        '#fde9d5', // crema
+        '#ffe0b5', // melocotón claro
+        '#ffd6a0', // durazno
+        '#ffc78e', // arena
+        '#ffbd8c', // salmón suave
+        '#f5bc9a', // coral pastel
+        '#e8d1b5', // beige rosado
+        '#ffcfb0'  // piel
+    ];
+    
+    const numParticles = 50; // menos partículas para mayor sutileza
+    
+    for (let i = 0; i < numParticles; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        
+        // Tamaño pequeño y variable
+        const size = Math.random() * 4 + 2; // 2px a 6px
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        
+        // Color suave aleatorio
+        const color = colores[Math.floor(Math.random() * colores.length)];
+        p.style.backgroundColor = color;
+        p.style.boxShadow = `0 0 3px ${color}`;
+        
+        // Posición inicial
+        p.style.left = `${Math.random() * 100}%`;
+        
+        // Animación aleatoria entre dos tipos
+        const anim = Math.random() > 0.6 ? 'floatSoftHorizontal' : 'floatSoft';
+        const duration = Math.random() * 15 + 12; // más lentas: 12s a 27s
+        const delay = Math.random() * 20;
+        
+        p.style.animation = `${anim} ${duration}s ease-in-out ${delay}s infinite`;
+        
+        container.appendChild(p);
+    }
+    
+    // Añadir estilos dinámicos de animación si no existen
+    if (!document.querySelector('#soft-particle-styles')) {
+        const style = document.createElement('style');
+        style.id = 'soft-particle-styles';
+        style.textContent = `
+            @keyframes floatSoft {
+                0% { transform: translateY(110vh) translateX(-20px) rotate(0deg); opacity: 0; }
+                20% { opacity: 0.45; }
+                80% { opacity: 0.25; }
+                100% { transform: translateY(-10vh) translateX(30px) rotate(360deg); opacity: 0; }
+            }
+            @keyframes floatSoftHorizontal {
+                0% { transform: translateX(-10vw) translateY(30vh) rotate(0deg); opacity: 0; }
+                25% { opacity: 0.4; }
+                75% { opacity: 0.25; }
+                100% { transform: translateX(110vw) translateY(-5vh) rotate(540deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+})();
+</script>
+<script src="interacciones-plus.js"></script>
+</body>
+</html>
