@@ -1,0 +1,42 @@
+    // 2. INICIAR SESIÓN (Y REDIRECCIÓN ADMIN)
+    // ============================================
+    const formLogin = document.getElementById('formLogin');
+    if (formLogin) {
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await auth.signInWithEmailAndPassword(email, pass);
+                const user = res.user;
+
+                // REDIRECCIÓN ADMINISTRADOR
+                if (user.email === 'studiolux331@gmail.com') { 
+                    mostrarMensaje('👑 Bienvenido Administrador');
+                    setTimeout(() => { window.location.href = 'admin.html'; }, 1000);
+                    return;
+                }
+
+                if (!user.emailVerified) {
+                    mostrarMensaje('⚠️ Por favor, verifica tu correo', 'error');
+                    await auth.signOut();
+                    return;
+                }
+
+                mostrarMensaje('✅ Sesión iniciada');
+                formLogin.reset();
+                cerrarModal(modalLogin);
+                
+            } catch(err) {
+                mostrarMensaje('❌ Credenciales incorrectas', 'error');
+            }
+        });
+    }
+    if (user && user.email === 'studiolux331@gmail.com') {
+            // Verificamos que no estemos ya en la página admin para evitar bucles infinitos
+            if (!window.location.pathname.includes('admin.html')) {
+                window.location.href = 'admin.html';
+                return; // Detenemos la ejecución aquí
+            }
+        }
