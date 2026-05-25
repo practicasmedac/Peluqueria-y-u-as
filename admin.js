@@ -10,6 +10,8 @@ import {
     updateDoc, 
     deleteDoc 
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+// NUEVO: Importamos las funciones de Autenticación de Firebase
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
 // --- 2. CONFIGURACIÓN FIREBASE ---
 const firebaseConfig = {
@@ -23,6 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app); // NUEVO: Inicializamos la autenticación
 
 // --- 3. VARIABLES GLOBALES ---
 let citas = [];
@@ -170,6 +173,29 @@ window.abrirEditar = function(id) {
 
 // --- 7. EVENTOS Y FORMULARIOS ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- NUEVO: CERRAR SESIÓN Y SEGURIDAD ---
+    const btnCerrarSesion = document.getElementById('btnCerrarSesion');
+    if (btnCerrarSesion) {
+        btnCerrarSesion.addEventListener('click', async () => {
+            try {
+                await signOut(auth); // Cerramos sesión en Firebase
+                // La redirección a index.html se hará automáticamente por el vigilante de abajo
+            } catch (error) {
+                console.error("Error al cerrar sesión:", error);
+                alert("Hubo un error al cerrar sesión");
+            }
+        });
+    }
+
+    // Vigilante de sesión: Si no es el admin, lo echamos a la página principal
+    onAuthStateChanged(auth, (usuario) => {
+        if (!usuario || usuario.email !== 'studiolux331@gmail.com') {
+            window.location.href = 'index.html'; // Te expulsa al index
+        }
+    });
+    // ----------------------------------------
+
     const modalNueva = document.getElementById('modalCita');
     const modalEditar = document.getElementById('modalEditarCita');
     

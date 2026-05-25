@@ -340,3 +340,29 @@ th {
         gap: 1rem;
     }
 }
+/* BOTON salir */
+.btn-cita-header {
+    background: linear-gradient(135deg, #ffbd6c 0%, #b86c40 100%);
+    border: none;
+    padding: 10px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fffaf5;
+    font-family: "Sekuya", "Playfair Display", cursive;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 12px rgba(127, 57, 7, 0.2);
+}
+
+.btn-cita-header:hover {
+    background: linear-gradient(135deg, #b86c40 0%, #7f3907 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(127, 57, 7, 0.3);
+    letter-spacing: 4px;
+}
+
+main {
+    padding-top: 90px;
+}
