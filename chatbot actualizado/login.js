@@ -1,9 +1,14 @@
 // ============================================
 // STUDIO LUX - CON FIREBASE Y VERIFICACIÓN DE EMAIL
-// RECUPERAR CONTRASEÑA + PERFIL + CANCELAR CITA
+// RECUPERAR CONTRASEÑA + PERFIL + CANCELAR CITA + BLOQUEO POR INTENTOS
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // ========== CONTROL DE INTENTOS FALLIDOS ==========
+    let intentosFallidos = 0;
+    let tiempoBloqueo = 0;
+    let intervaloTemporizador = null;
     
     // ========== NOTIFICACIONES ==========
     function mostrarMensaje(texto, tipo = 'exito') {
@@ -47,6 +52,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // ========== MOSTRAR CUENTA REGRESIVA EN EL BOTÓN ==========
+    function mostrarCuentaRegresiva(segundos) {
+        const btnLogin = document.querySelector('#formLogin button[type="submit"]');
+        if (!btnLogin) return;
+        
+        const textoOriginal = btnLogin.textContent;
+        btnLogin.disabled = true;
+        
+        if (intervaloTemporizador) clearInterval(intervaloTemporizador);
+        
+        let tiempoRestante = segundos;
+        
+        intervaloTemporizador = setInterval(() => {
+            if (tiempoRestante <= 0) {
+                clearInterval(intervaloTemporizador);
+                btnLogin.disabled = false;
+                btnLogin.textContent = textoOriginal;
+            } else {
+                btnLogin.textContent = `Espera ${tiempoRestante}s`;
+                tiempoRestante--;
+            }
+        }, 1000);
+    }
+    
     // ========== ACTUALIZAR INTERFAZ ==========
     function actualizarInterfazUsuario() {
         const usuario = auth.currentUser;
@@ -58,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (usuario && usuario.emailVerified) {
             const nombre = usuario.displayName || usuario.email.split('@')[0];
             
-            // Span del nombre (clickable para abrir perfil)
             const userSpan = document.createElement('span');
             userSpan.id = 'userProfileDisplay';
             userSpan.style.cssText = 'color:#7f3907; font-weight:bold; background:#fde9d5; padding:5px 15px; border-radius:50px; margin-right:10px; font-family:"Playfair Display", cursive; letter-spacing:1px; cursor:pointer;';
@@ -68,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 abrirModal(modalPerfil);
             };
             
-            // Botón de cerrar sesión
             const logoutBtn = document.createElement('button');
             logoutBtn.textContent = 'Salir';
             logoutBtn.className = 'btn-cita-header';
@@ -80,13 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 location.reload();
             };
             
-            // Ocultar botones de registro y login
             const btnReg = document.getElementById('btnRegistrarseHeader');
             const btnLog = document.getElementById('btnIniciarSesionHeader');
             if (btnReg) btnReg.style.display = 'none';
             if (btnLog) btnLog.style.display = 'none';
             
-            // Insertar elementos
             const btnAgendar = document.getElementById('btnAgendarHeader');
             headerDerecha.insertBefore(userSpan, btnAgendar);
             headerDerecha.insertBefore(logoutBtn, btnAgendar);
@@ -177,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // 2. INICIAR SESIÓN
+    // 2. INICIAR SESIÓN (CON BLOQUEO POR INTENTOS)
     // ============================================
     const modalLogin = document.getElementById('modalLogin');
     const btnLogin = document.getElementById('btnIniciarSesionHeader');
@@ -187,6 +212,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btnLogin) {
         btnLogin.addEventListener('click', (e) => {
             e.preventDefault();
+            // Reiniciar intentos al abrir el modal
+            intentosFallidos = 0;
+            if (intervaloTemporizador) clearInterval(intervaloTemporizador);
             abrirModal(modalLogin);
         });
     }
@@ -200,6 +228,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (formLogin) {
         formLogin.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Verificar si está bloqueado
+            if (tiempoBloqueo > Date.now()) {
+                const segundosRestantes = Math.ceil((tiempoBloqueo - Date.now()) / 1000);
+                mostrarMensaje(`⛔ Demasiados intentos. Espera ${segundosRestantes} segundos.`, 'error');
+                mostrarCuentaRegresiva(segundosRestantes);
+                return;
+            }
             
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
@@ -219,18 +255,53 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                // ✅ ÉXITO: Reiniciar contadores
+                intentosFallidos = 0;
+                tiempoBloqueo = 0;
+                if (intervaloTemporizador) clearInterval(intervaloTemporizador);
+                
                 mostrarMensaje(`✅ ¡Bienvenid@ ${usuario.displayName || email}!`);
                 formLogin.reset();
                 cerrarModal(modalLogin);
                 actualizarInterfazUsuario();
                 
             } catch(error) {
-                if (error.code === 'auth/user-not-found') {
-                    mostrarMensaje('❌ Usuario no encontrado', 'error');
-                } else if (error.code === 'auth/wrong-password') {
-                    mostrarMensaje('❌ Contraseña incorrecta', 'error');
-                } else {
-                    mostrarMensaje('❌ Error al iniciar sesión', 'error');
+                // ❌ ERROR: Aumentar contador de intentos
+                intentosFallidos++;
+                
+                let mensaje = '❌ Email o contraseña incorrectos';
+                
+                // Mensajes según número de intentos
+                if (intentosFallidos === 2) {
+                    mensaje = '❌ Email o contraseña incorrectos. Te queda 1 intento.';
+                } else if (intentosFallidos === 3) {
+                    mensaje = '⚠️ Último intento. Si fallas, serás bloqueado 30 segundos.';
+                } else if (intentosFallidos >= 4) {
+                    // Calcular tiempo de bloqueo
+                    let segundosBloqueo = 0;
+                    if (intentosFallidos === 4) {
+                        segundosBloqueo = 30; // 30 segundos
+                        mensaje = '⛔ Has sido bloqueado 30 segundos por demasiados intentos.';
+                    } else if (intentosFallidos === 5) {
+                        segundosBloqueo = 300; // 5 minutos
+                        mensaje = '⛔ Has sido bloqueado 5 minutos.';
+                    } else {
+                        segundosBloqueo = 1800; // 30 minutos
+                        mensaje = '⛔ Has sido bloqueado 30 minutos.';
+                    }
+                    
+                    tiempoBloqueo = Date.now() + (segundosBloqueo * 1000);
+                    mostrarCuentaRegresiva(segundosBloqueo);
+                    
+                    // Limpiar contraseña
+                    document.getElementById('loginPassword').value = '';
+                }
+                
+                mostrarMensaje(mensaje, 'error');
+                
+                // Limpiar contraseña después de 2 intentos
+                if (intentosFallidos >= 2) {
+                    document.getElementById('loginPassword').value = '';
                 }
             }
         });
@@ -284,13 +355,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================================
-    // 4. PERFIL DE USUARIO + MIS CITAS (VERSIÓN SIMPLIFICADA - SIN ÍNDICES)
+    // 4. PERFIL DE USUARIO + MIS CITAS
     // ============================================
     const modalPerfil = document.getElementById('modalPerfil');
     const cerrarPerfil = document.getElementById('cerrarPerfilBtn');
     const formPerfil = document.getElementById('formPerfil');
 
-    // Cargar mis citas - VERSIÓN SIMPLIFICADA (solo busca por email, filtra en JavaScript)
     async function cargarMisCitas() {
         const usuario = auth.currentUser;
         if (!usuario) {
@@ -306,7 +376,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const hoy = new Date().toISOString().split('T')[0];
         
         try {
-            // 🔧 CONSULTA SIMPLE: solo por email (NO necesita índice compuesto)
             const snapshot = await db.collection('citas')
                 .where('usuarioEmail', '==', usuario.email)
                 .get();
@@ -318,19 +387,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Filtrar y ordenar manualmente en JavaScript
             const citasFuturas = [];
             snapshot.forEach(doc => {
                 const cita = doc.data();
                 console.log("Cita encontrada:", cita);
                 
-                // Filtrar por fecha futura y estado válido
                 if (cita.fecha >= hoy && (cita.estado === 'pendiente' || cita.estado === 'confirmada')) {
                     citasFuturas.push({ id: doc.id, ...cita });
                 }
             });
             
-            // Ordenar por fecha
             citasFuturas.sort((a, b) => a.fecha.localeCompare(b.fecha));
             
             console.log("Citas futuras y pendientes:", citasFuturas.length);
@@ -374,7 +440,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Cancelar cita
     window.cancelarCita = async function(citaId) {
         if (!confirm('¿Estás seguro de que quieres cancelar esta cita?')) return;
         
@@ -391,7 +456,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Cargar perfil
     async function cargarPerfil() {
         const usuario = auth.currentUser;
         if (!usuario) return;
